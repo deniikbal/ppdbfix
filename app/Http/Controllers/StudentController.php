@@ -36,9 +36,9 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function biodata($uuid)
+    public function biodata()
     {
-        $student = Student::where('uuid', $uuid)->first();
+        $student = Student::where('user_id', auth()->id())->first();
         //dd($student);
         $siswa = new Student();
         $jenis_kelamin = $siswa->jenis_kelamin();
@@ -160,9 +160,9 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Data Sekolah Berhasil Diupdate');
     }
 
-    public function editorangtua($uuid)
+    public function editorangtua()
     {
-        $student = Student::where('uuid', $uuid)->first();
+        $student = Student::where('user_id', auth()->id())->first();
         $siswa = new Student();
         $pendidikan = $siswa->pendidikan();
         $pekerjaan = $siswa->pekerjaan();

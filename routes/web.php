@@ -44,13 +44,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('student', [StudentController::class, 'index'])->name('student.index');
     Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
-    Route::get('biodata/{uuid}', [StudentController::class, 'biodata'])->name('biodata.edit');
+    Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
     Route::post('updatebiodata/{uuid}', [StudentController::class, 'updatebiodata'])->name('updatebiodata');
     Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
-    Route::get('editorangtua/{uuid}', [StudentController::class, 'editorangtua'])->name('editorangtua');
+    Route::get('editorangtua', [StudentController::class, 'editorangtua'])->name('editorangtua');
     Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
     //Payment
-    Route::get('payment/{uuid}', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');
     Route::post('bayar/{id}', [PaymentController::class, 'bayar'])->name('payment.bayar');
+    Route::post('checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
 });

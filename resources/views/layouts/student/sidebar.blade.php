@@ -10,14 +10,14 @@
     @endphp
     @if ($hitung != 1)
     @else
-        <li class="nav-item @if (request()->routeIs('biodata.edit', $student->uuid)) active @endif"><a
-                href="{{ route('biodata.edit', $student->uuid) }}" class="nav-link"><i data-feather="globe"></i>
+        <li class="nav-item @if (request()->routeIs('biodata.edit')) active @endif"><a href="{{ route('biodata.edit') }}"
+                class="nav-link"><i data-feather="globe"></i>
                 <span>Biodata Siswa</span></a></li>
-        <li class="nav-item @if (request()->routeIs('editorangtua', $student->uuid)) active @endif"><a
-                href="{{ route('editorangtua', $student->uuid) }}" class="nav-link"><i data-feather="globe"></i>
+        <li class="nav-item @if (request()->routeIs('editorangtua')) active @endif"><a href="{{ route('editorangtua') }}"
+                class="nav-link"><i data-feather="globe"></i>
                 <span>Biodata Orang Tua</span></a></li>
-        <li class="nav-item @if (request()->routeIs('payment.index', $student->uuid)) active @endif"><a
-                href="{{ route('payment.index', $student->uuid) }}" class="nav-link"><i data-feather="globe"></i>
+        <li class="nav-item @if (request()->routeIs('payment.index')) active @endif"><a href="{{ route('payment.index') }}"
+                class="nav-link"><i data-feather="globe"></i>
                 <span>Pembayaran</span></a></li>
     @endif
 

@@ -117,7 +117,8 @@
         </div>
     </div>
     @include('layouts.admin.script')
-
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-CqGqrjaolSRsf7c7"></script>
 
     <!-- append theme customizer -->
     <script src="{{ asset('/lib/js-cookie/js.cookie.js') }}"></script>

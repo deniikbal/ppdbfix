@@ -1,4 +1,4 @@
-<div class="modal fade" id="createpaymenttp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="createpaymentdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
@@ -44,11 +44,11 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput2" class="d-block">Jenis Pembayaran</label>
-                        <select class="custom-select @error('jenis_bayar') is-invalid @enderror" name="jenis_bayar">
+                        <select class="custom-select @error('jenisbayar') is-invalid @enderror" name="jenisbayar">
                             <option value="">--Pilih--</option>
                             <option value="tp">Titipan Pembayaran</option>
                         </select>
-                        @error('jenis_bayar')
+                        @error('jenisbayar')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

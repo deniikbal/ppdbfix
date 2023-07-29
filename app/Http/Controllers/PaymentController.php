@@ -13,21 +13,21 @@ use App\DataTables\PaymentDataTable;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
+use App\Models\TempPayment;
 
 class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($uuid)
+    public function index()
 
     {
-        $student = Student::where('user_id', Auth::user()->id)->first();
+        $student = Student::where('user_id', auth()->id())->first();
         $payment = Payment::where('student_id', $student->id)->get();
         $countpayment = Payment::where('student_id', $student->id)->count();
         $pending = Payment::where('student_id', $student->id)->where('jenis_bayar', 'tp')->first();
-        $student = Student::where('uuid', $uuid)->first();
-        return view('student.payment.index', compact('student', 'payment', 'countpayment'));
+        return view('student.payment.index', compact('student', 'payment', 'countpayment', 'pending'));
     }
 
     /**
@@ -78,10 +78,30 @@ class PaymentController extends Controller
 
     public function callback(Request $request)
     {
-        Config::$serverKey = config('services.midtrans.serverKey');
-        Config::$isProduction = config('services.midtrans.isProduction');
-        Config::$isSanitized = config('services.midtrans.isSanitized');
-        Config::$is3ds = config('services.midtrans.is3ds');
+        Config::$serverKey = 'SB-Mid-server--_hpiUHhQo8miMGcnrzcAoxw';
+        Config::$isProduction = false;
+        // Config::$isSanitized = config('services.midtrans.isSanitized');
+        // Config::$is3ds = config('services.midtrans.is3ds');
+
+        // \Midtrans\Config::$isProduction = false;
+        // \Midtrans\Config::$serverKey = 'SB-Mid-server--_hpiUHhQo8miMGcnrzcAoxw';
+        // $notif = new \Midtrans\Notification();
+        // dd($notif);
+
+        // $transaction = $notif->transaction_status;
+        // $type = $notif->payment_type;
+        // $status_code = $notif->status_code;
+        // $order_id = $notif->order_id;
+        // $fraud = $notif->fraud_status;
+        // $signature_key = $notif->signature_key;
+        // $payment = Payment::where('order_id', $order_id)->first();
+        // $signature = hash('sha512', $payment->order_id . 200 . $payment->gross_amount . 'SB-Mid-server--_hpiUHhQo8miMGcnrzcAoxw');
+
+        // if ($signature != $signature_key) {
+        //     return abort(404);
+        // }
+
+
 
         // Buat instance midtrans notification
         $notification = new Notification();
@@ -93,27 +113,27 @@ class PaymentController extends Controller
         $order_id = $notification->order_id;
 
         // Cari transaksi berdasarkan ID
-        $transaction = Payment::findOrFail($order_id);
+        $transaction = Payment::where('order_id', $order_id)->first();
 
         // Handle notification status midtrans
         if ($status == 'capture') {
             if ($type == 'credit_card') {
                 if ($fraud == 'challenge') {
-                    $transaction->status = 'PENDING';
+                    $transaction->transaction_status = 'PENDING';
                 } else {
-                    $transaction->status = 'SUCCESS';
+                    $transaction->transaction_status = 'SUCCESS';
                 }
             }
         } else if ($status == 'settlement') {
-            $transaction->status = 'SUCCESS';
+            $transaction->transaction_status = 'SUCCESS';
         } else if ($status == 'pending') {
-            $transaction->status = 'PENDING';
+            $transaction->transaction_status = 'PENDING';
         } else if ($status == 'deny') {
-            $transaction->status = 'CANCELLED';
+            $transaction->transaction_status = 'CANCELLED';
         } else if ($status == 'expire') {
-            $transaction->status = 'CANCELLED';
+            $transaction->transaction_status = 'CANCELLED';
         } else if ($status == 'cancel') {
-            $transaction->status = 'CANCELLED';
+            $transaction->transaction_status = 'CANCELLED';
         }
 
         // Simpan transaksi
@@ -125,17 +145,69 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        Payment::create([
-            'student_id' => $request->id,
+        //dd($request->all());
+        \Midtrans\Config::$serverKey = 'SB-Mid-server--_hpiUHhQo8miMGcnrzcAoxw';
+        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isSanitized = true;
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $request->nominal,
+            ),
+            'item_details' => array(
+                [
+                    'id' => 'a1',
+                    'price' =>  $request->nominal,
+                    'quantity' => 1,
+                    'name' =>  $request->jenis_bayar
+                ]
+            ),
+            'customer_details' => array(
+                'first_name' => $request->name,
+                'last_name' => '',
+                'email' => Auth::user()->email,
+                'phone' => Auth::user()->nohp,
+            ),
+        );
+        $student = Student::where('user_id', auth()->id())->first();
+        TempPayment::create([
+            'student_id' => $student->id,
             'name' => $request->name,
+            'jenis_bayar' => $request->jenis_bayar,
+            'nominal' => $request->nominal,
             'email' => $request->email,
             'nohp' => $request->nohp,
-            'jenis_bayar' => $request->jenisbayar,
-            'gross_amount' => $request->nominal,
-            'order_id' => rand(),
-            'transaction_status' => 'PENDING',
         ]);
-        return redirect()->back();
+        $temppayment = TempPayment::where('student_id', $student->id)->first();
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        return view('student.payment.create', compact('params', 'student', 'snapToken', 'temppayment'));
+    }
+
+    public function checkout(Request $request, $id)
+    {
+        $json = json_decode($request->get('json'));
+        //dd($json);
+        $student = Student::where('user_id', Auth::user()->id)->first();
+        $temp = TempPayment::find($id);
+        Payment::create([
+            'student_id' => $student->id,
+            'transaction_status' => $json->transaction_status,
+            'name' => $temp->name,
+            'email' => $temp->email,
+            'nohp' => $temp->nohp,
+            'jenis_bayar' => $temp->jenis_bayar,
+            'transaction_id' => $json->transaction_id,
+            'order_id' => $json->order_id,
+            'gross_amount' => $json->gross_amount,
+            'payment_type' => $json->payment_type,
+            'transaction_time' => $json->transaction_time,
+            'status_message' => $json->status_message,
+            'pdf_url' => $json->pdf_url,
+        ]);
+        TempPayment::find($id)->delete();
+        return redirect()->route('payment.index');
     }
 
     /**
