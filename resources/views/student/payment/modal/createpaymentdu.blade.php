@@ -44,11 +44,11 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput2" class="d-block">Jenis Pembayaran</label>
-                        <select class="custom-select @error('jenisbayar') is-invalid @enderror" name="jenisbayar">
+                        <select class="custom-select @error('jenis_bayar') is-invalid @enderror" name="jenis_bayar">
                             <option value="">--Pilih--</option>
-                            <option value="tp">Titipan Pembayaran</option>
+                            <option value="tp">Daftar Ulang</option>
                         </select>
-                        @error('jenisbayar')
+                        @error('jenis_bayar')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -57,7 +57,7 @@
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nominal Pembayaran</label>
                         <input type="text" name="nominal" class="form-control @error('nominal') is-invalid @enderror"
-                            placeholder="Nominal Pembayaran" value="300000">
+                            placeholder="Nominal Pembayaran">
                         @error('nominal')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
