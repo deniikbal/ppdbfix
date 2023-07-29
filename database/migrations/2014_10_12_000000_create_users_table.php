@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password_plain');
             $table->string('role');
             $table->string('no_handphone');
-            $table->string('notif_wa');
+            $table->string('notif_wa')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
