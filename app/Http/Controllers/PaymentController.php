@@ -83,8 +83,10 @@ class PaymentController extends Controller
         Config::$isSanitized = config('services.midtrans.isSanitized');
         Config::$is3ds = config('services.midtrans.is3ds');
 
+        $notification = new \Midtrans\Notification();
+
         // Buat instance midtrans notification
-        $notification = new Notification();
+        //$notification = new Notification();
         dd($notification);
 
         // Assign ke variable untuk memudahkan coding
