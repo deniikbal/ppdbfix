@@ -53,5 +53,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('payment/{uuid}', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');
     Route::post('bayar/{id}', [PaymentController::class, 'bayar'])->name('payment.bayar');
-    Route::get('callback', [PaymentController::class, 'callback'])->name('callback');
+    Route::post('/checkout/callback', [PaymentController::class, 'callback'])->name('callback');
 });
