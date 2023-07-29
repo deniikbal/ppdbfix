@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Api\LocationController;
 
 /*
@@ -24,3 +25,5 @@ Route::get('users', [UserController::class, 'index'])->name('users.index');
 Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provincies');
 Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
 Route::get('districts/{regencys_id}', [LocationController::class, 'district'])->name('api-district');
+
+Route::post('/checkout/callback', [PaymentController::class, 'callback'])->name('callback');
