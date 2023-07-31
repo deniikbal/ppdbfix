@@ -12,23 +12,28 @@
     <div class="col-lg-8 mb-2">
         <div class="card bd-gray-500">
             <div class="card-body">
-                <h6 class="card-subtitle mb-2">Payment Detail</h6>
+                <h6 class="card-subtitle mb-2" style="font-size: 18px">Payment Detail</h6>
                 <div class="p-3" style="background-color: #eee;">
                     <div class="d-flex justify-content-between mt-2">
-                        <span>Nama Calon Siswa</span> <span>{{ $temppayment->name }}</span>
+                        <span class="font-weight-bold">Nama Calon Siswa</span> <span
+                            class="font-weight-bold">{{ $temppayment->name }}</span>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <span>Email</span> <span>{{ $temppayment->email }}</span>
+                        <span class="font-weight-bold">Email</span> <span
+                            class="font-weight-bold">{{ $temppayment->email }}</span>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <span>No Hp</span> <span>{{ $temppayment->nohp }}</span>
+                        <span class="font-weight-bold">No Hp</span> <span
+                            class="font-weight-bold">{{ $temppayment->nohp }}</span>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <span>Jenis Pembayaran</span> <span>{{ $temppayment->jenis_bayar }}</span>
+                        <span class="font-weight-bold">Jenis Pembayaran</span> <span
+                            class="font-weight-bold">{{ $temppayment->jenis_bayar }}</span>
                     </div>
                     <hr />
                     <div class="d-flex justify-content-between mt-2">
-                        <span>Nominal Pembayaran</span> <span> Rp. {{ $temppayment->nominal }}</span>
+                        <span class="font-weight-bold">Nominal Pembayaran</span> <span class="font-weight-bold"> Rp.
+                            {{ $temppayment->nominal }}</span>
                     </div>
                 </div>
             </div>

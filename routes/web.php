@@ -54,4 +54,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');
     Route::post('bayar/{id}', [PaymentController::class, 'bayar'])->name('payment.bayar');
     Route::post('checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
+    //Update Alamat
+    Route::post('updatealamat/{uuid}', [StudentController::class, 'updatealamat'])->name('updatealamat');
 });

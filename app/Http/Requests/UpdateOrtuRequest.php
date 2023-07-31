@@ -22,15 +22,15 @@ class UpdateOrtuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'no_kk' => 'required|size:16',
+            'no_kk' => 'required|size:16|unique:students,no_kk',
             'nama_ayah' => 'required',
-            'nik_ayah' => 'required|size:16',
+            'nik_ayah' => 'required|size:16|unique:students,nik_ayah',
             'tahun_ayah' => 'required|size:4',
             'pendidikan_ayah' => 'required',
             'pekerjaan_ayah' => 'required',
             'penghasilan_ayah' => 'required',
             'nama_ibu' => 'required',
-            'nik_ibu' => 'required|size:16',
+            'nik_ibu' => 'required|size:16|unique:students,nik_ibu',
             'tahun_ibu' => 'required|size:4',
             'pendidikan_ibu' => 'required',
             'pekerjaan_ibu' => 'required',

@@ -20,14 +20,23 @@
                         pembayaran.</li>
                     <li class="list-group-item bg-primary text-white">harap di isi data.</li>
                 </ul>
-                @if ($pending == null)
+                @php
+                    $student = App\Models\Student::where('user_id', auth()->id())->first();
+                    $tp = App\Models\Payment::where('student_id', $student->id)
+                        ->where('jenis_bayar', 'Titipan Pembayaran')
+                        ->where('transaction_status', 'pending')
+                        ->count();
+                @endphp
+                {{ $tp }}
+                @if ($tp == 0)
                     <a href="#createpaymenttp" class="btn btn-danger" data-toggle="modal">Tambah Pembayaran</a>
                     @include('student.payment.modal.createpayment')
-                @elseif ($pending->transaction_status == 'pending')
                 @else
-                    <a href="#createpaymentdu" class="btn btn-danger" data-toggle="modal">Tambah Pembayaran</a>
+                    <a href="#createpaymentdu" class="btn btn-danger" data-toggle="modal">Tambah Pembayaran DU</a>
                     @include('student.payment.modal.createpaymentdu')
                 @endif
+                <a href="#createpaymentdu" class="btn btn-danger" data-toggle="modal">Tambah Pembayaran DU</a>
+                @include('student.payment.modal.createpaymentdu')
             </div>
 
         </div>
@@ -35,7 +44,7 @@
     @foreach ($payment as $pay)
         <div class="col-sm-6 col-lg-3">
             <div class="card card-body bd-gray-500 {{ $countpayment >= 5 ? 'mb-2' : '' }}">
-                @if ($pay->jenisbayar == 'tp')
+                @if ($pay->jenis_bayar == 'Titipan Pembayaran')
                     <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold tx-primary mg-b-8">Titipan Pembayaran
                     </h6>
                 @else

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateOrtuRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateDomisiliRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
@@ -108,8 +109,19 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function updatealamat(UpdateDomisiliRequest $request, $uuid)
     {
+        $student = Student::where('uuid', $uuid)->first();
+        $student->update([
+            'alamat_pd' => $request->alamat_pd,
+            'jarak' => $request->jarak,
+            'waktu' => $request->waktu,
+            'provinsi_pd' => $request->provinsi_pd,
+            'kota_pd' => $request->kota_pd,
+            'kec_pd' => $request->kec_pd,
+            'desa_pd' => $request->desa_pd,
+        ]);
+        return redirect()->back()->with('success', 'Data Alamat Berhasil Diupdate');
     }
 
     /**

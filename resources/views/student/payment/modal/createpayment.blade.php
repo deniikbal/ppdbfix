@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Create Payment</h6>
+                <h6 class="modal-title" id="exampleModalLabel">Tambah Pembayaran</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -25,7 +25,7 @@
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Email</label>
                         <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"
-                            placeholder="Enter your full email" value="{{ Auth::user()->email }}">
+                            placeholder="Enter your full email" value="{{ auth()->user()->email }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">No Hp</label>
                         <input type="text" name="nohp" class="form-control @error('nohp') is-invalid @enderror"
-                            placeholder="Enter your full nohp" value="{{ Auth::user()->nohp }}">
+                            placeholder="Enter your full nohp" value="{{ auth()->user()->no_handphone }}">
                         @error('nohp')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -44,15 +44,8 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput2" class="d-block">Jenis Pembayaran</label>
-                        <select class="custom-select @error('jenis_bayar') is-invalid @enderror" name="jenis_bayar">
-                            <option value="">--Pilih--</option>
-                            <option value="tp">Titipan Pembayaran</option>
-                        </select>
-                        @error('jenis_bayar')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input type="text" name="jenis_bayar" class="form-control" value="Titipan Pembayaran"
+                            readonly>
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nominal Pembayaran</label>

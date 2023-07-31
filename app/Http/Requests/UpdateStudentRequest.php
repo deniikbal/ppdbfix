@@ -26,7 +26,7 @@ class UpdateStudentRequest extends FormRequest
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'tempat_lahir' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|size:16',
             'agama' => 'required',
             'nohp_siswa' => 'required',
             'anak_ke' => 'required',

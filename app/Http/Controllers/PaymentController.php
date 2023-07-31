@@ -191,23 +191,41 @@ class PaymentController extends Controller
         //dd($json);
         $student = Student::where('user_id', Auth::user()->id)->first();
         $temp = TempPayment::find($id);
-        Payment::create([
-            'student_id' => $student->id,
-            'transaction_status' => $json->transaction_status,
-            'name' => $temp->name,
-            'email' => $temp->email,
-            'nohp' => $temp->nohp,
-            'jenis_bayar' => $temp->jenis_bayar,
-            'transaction_id' => $json->transaction_id,
-            'order_id' => $json->order_id,
-            'gross_amount' => $json->gross_amount,
-            'payment_type' => $json->payment_type,
-            'transaction_time' => $json->transaction_time,
-            'status_message' => $json->status_message,
-            'pdf_url' => $json->pdf_url,
-        ]);
-        TempPayment::find($id)->delete();
-        return redirect()->route('payment.index');
+        if ($json->payment_type == 'qris' || $json->status_code == 200) {
+            Payment::create([
+                'student_id' => $student->id,
+                'transaction_status' => $json->transaction_status,
+                'name' => $temp->name,
+                'email' => $temp->email,
+                'nohp' => $temp->nohp,
+                'jenis_bayar' => $temp->jenis_bayar,
+                'transaction_id' => $json->transaction_id,
+                'order_id' => $json->order_id,
+                'gross_amount' => $json->gross_amount,
+                'payment_type' => $json->payment_type,
+                'transaction_time' => $json->transaction_time,
+                'status_message' => $json->status_message,
+            ]);
+            return redirect()->route('payment.index');
+        } else {
+            Payment::create([
+                'student_id' => $student->id,
+                'transaction_status' => $json->transaction_status,
+                'name' => $temp->name,
+                'email' => $temp->email,
+                'nohp' => $temp->nohp,
+                'jenis_bayar' => $temp->jenis_bayar,
+                'transaction_id' => $json->transaction_id,
+                'order_id' => $json->order_id,
+                'gross_amount' => $json->gross_amount,
+                'payment_type' => $json->payment_type,
+                'transaction_time' => $json->transaction_time,
+                'status_message' => $json->status_message,
+                'pdf_url' => $json->pdf_url,
+            ]);
+            TempPayment::find($id)->delete();
+            return redirect()->route('payment.index');
+        }
     }
 
     /**
