@@ -19,7 +19,7 @@
         <h6 class="tx-semibold mg-b-0">{{ Auth::user()->name }}</h6>
         <i data-feather="chevron-down"></i>
     </a>
-    <p class="tx-12 mg-b-0 badge badge-danger">{{ Illuminate\Support\Str::ucfirst(Auth::user()->role) }}</p>
+    <p class="tx-12 mg-b-0 badge badge-danger">{{ auth()->user()->role == 1 ? 'Admin' : 'Student' }}</p>
 </div>
 <div class="collapse" id="loggedinMenu">
     <ul class="nav nav-aside mg-b-0">

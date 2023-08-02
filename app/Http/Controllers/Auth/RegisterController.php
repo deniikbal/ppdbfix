@@ -71,7 +71,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'no_handphone' => $data['no_handphone'],
-            'role' => 'student',
             'password_plain' => $data['password'],
         ]);
         RegisterNewUser::dispatch($user);

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('password_plain');
-            $table->string('role');
+            $table->string('role')->default(0);
             $table->string('no_handphone');
             $table->string('notif_wa')->default(0);
             $table->rememberToken();
