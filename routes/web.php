@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('getschoolas', [HomeController::class, 'getschoolas']);
 Auth::routes();
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
+//Route::get('home', [HomeController::class, 'index'])->name('home');
 //Admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
