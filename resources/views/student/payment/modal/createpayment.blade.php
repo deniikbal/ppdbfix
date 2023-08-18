@@ -9,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('payment.create') }}">
+                {{-- <form method="POST" action="{{ route('payment.create') }}"> --}}
+                <form method="POST" action="{{ route('payment_xendit') }}">
                     @csrf
                     <input type="hidden" name="id" value="{{ $student->id }}">
                     <div class="form-group mb-2">

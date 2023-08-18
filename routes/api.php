@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\PaymentXenditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,7 @@ Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])
 Route::get('districts/{regencys_id}', [LocationController::class, 'district'])->name('api-district');
 
 Route::post('/checkout/callback', [PaymentController::class, 'callback'])->name('callback');
+
+//Route::post('createinvoice', [PaymentXenditController::class, 'create'])->name('createinvoice');
+
+Route::post('createinvoice', [PaymentXenditController::class, 'createinvoice'])->name('payment_xendit');

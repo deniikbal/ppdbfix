@@ -1,5 +1,6 @@
 <div class="d-flex align-items-center justify-content-start">
-    <a href="" class="avatar"><img src="https://via.placeholder.com/500" class="rounded-circle" alt=""></a>
+    {{-- <a href="" class="avatar"><img src="{{ $student->foto == null ? '' : asset('storage/' . $student->foto) }}"
+            class="rounded-circle" alt=""></a> --}}
     <div class="aside-alert-link">
         <a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i
                 data-feather="message-square"></i></a>

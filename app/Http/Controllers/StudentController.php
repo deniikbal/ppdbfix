@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 use App\Models\School;
 use App\Models\Regency;
@@ -127,14 +128,20 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function updatefoto(Request $request, $id)
     {
-        //
+        $test = Student::find($id);
+        if ($request->file('foto')){
+            if ($test->foto) {
+                Storage::delete($test->foto);
+            }
+            $save=$request->file('foto')->store('foto');
+        }
+        $test->update([
+            'foto'=>$save,
+        ]);
+        return redirect()->back();
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function updatebiodata(UpdateStudentRequest $request, $uuid)
     {
         //dd($uuid);

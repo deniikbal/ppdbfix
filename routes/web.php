@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
     Route::get('editorangtua', [StudentController::class, 'editorangtua'])->name('editorangtua');
     Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
+    Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
     //Payment
     Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');

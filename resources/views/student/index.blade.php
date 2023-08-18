@@ -13,8 +13,6 @@
         $hitung = App\Models\Student::where('user_id', auth()->id())
             ->get()
             ->count();
-        $siswa = App\Models\Student::with('user')->first();
-        
     @endphp
     @if ($count != 1)
         <div class="card-body">
@@ -28,10 +26,10 @@
                     <li>Klik tombol Tambah Siswa Baru
                         @if ($count != 1)
                             <button type="button" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                data-toggle="modal" data-target="#exampleModal">
+                                    data-toggle="modal" data-target="#exampleModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
@@ -39,10 +37,10 @@
                             </button>
                         @else
                             <button type="button" class="btn btn-sm pd-x-15 btn-warning btn-xs btn-uppercase mg-l-5"
-                                disabled>
+                                    disabled>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
@@ -78,22 +76,30 @@
                                 <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Profile Picture</h6>
                                 <nav class="nav nav-with-icon tx-13">
                                     <button type="button"
-                                        class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                        data-toggle="modal" data-target="#exampleModal{{ $student->id }}">
+                                            class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
+                                            data-toggle="modal" data-target="#profilepicture{{ $student->id }}">
                                         <i data-feather="plus"></i>
                                     </button>
                                 </nav>
                             </div><!-- card-header -->
+                            @include('student.modal.profilepicture')
                             <div class="card-body">
                                 <div class="media d-block d-sm-flex">
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <div class="avatar avatar-xl mb-3"><img src="https://via.placeholder.com/500"
-                                                class="rounded-circle" alt=""></div>
+                                        <div class="avatar avatar-xl mb-3">
+                                            @if($student->foto==null)
+                                                <img src="https://via.placeholder.com/500"
+                                                     class="rounded-circle" alt="">
+                                            @else
+                                                <img src="{{ asset('storage/' . $student->foto) }}"
+                                                     class="rounded-circle" alt="">
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
                                         <h5 class="mg-b-5">{{ $student->name }}</h5>
                                         <p class="mg-b-3 tx-color-02"><span
-                                                class="tx-medium tx-color-01">{{ auth()->user()->email }}</p>
+                                                    class="tx-medium tx-color-01">{{ auth()->user()->email }}</p>
                                         <span class="d-block tx-13 tx-color-03">TIM PPDB SMA TELKOM
                                             {{ Carbon\carbon::now()->format('Y') }}</span>
                                     </div>
@@ -106,13 +112,15 @@
                             <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
                                 <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">BIODATA SISWA</h6>
                                 <nav class="nav nav-with-icon tx-13">
-                                    <a href="" class="nav-link"><i data-feather="plus"></i> Add New</a>
+                                    <a href="{{route('biodata.edit')}}" class="btn btn-sm btn-danger"><i
+                                                data-feather="edit"></i>
+                                        Edit</a>
                                 </nav>
                             </div><!-- card-header -->
                             <div class="card-body pd-25">
                                 <div class="media d-block d-sm-flex">
                                     <div
-                                        class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
+                                            class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
                                         <i data-feather="briefcase" class="tx-white-7 wd-40 ht-40"></i>
                                     </div>
                                     <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
@@ -125,32 +133,75 @@
                                         <ul class="pd-l-10 mg-0 mg-t-20 tx-13">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <li class="font-weight-bold">Nama Lengkap : {{ $student->name }}</li>
+                                                    <li class="font-weight-bold">Nama Lengkap : <span
+                                                                class="badge badge-info">{{
+                                                $student->name ??
+                                                'Null'
+                                                }}</span></li>
                                                     <li class="font-weight-bold">Jenis Kelamin :
-                                                        {{ $student->jenis_kelamin }}
+                                                        <span class="badge badge-info">{{
+                                                $student->jenis_kelamin ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Tempat Lahir : {{ $student->tempat_lahir }}
+                                                    <li class="font-weight-bold">Tempat Lahir : <span
+                                                                class="badge badge-info">{{
+                                                $student->tempat_lahir ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
                                                     <li class="font-weight-bold">Tanggal Lahir :
-                                                        {{ $student->tanggal_lahir }}
+                                                        <span class="badge badge-info">{{
+                                                $student->tanggal_lahir ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">NIK : {{ $student->nik }}</li>
-                                                    <li class="font-weight-bold">Agama : {{ $student->agama }}</li>
-                                                    <li class="font-weight-bold">No Handphone : {{ $student->nohp_siswa }}
+                                                    <li class="font-weight-bold">NIK : <span class="badge badge-info">{{
+                                                $student->nik ??
+                                                'Null'
+                                                }}</span></li>
+                                                    <li class="font-weight-bold">Agama : <span class="badge badge-info">{{
+                                                $student->agama ??
+                                                'Null'
+                                                }}</span></li>
+                                                    <li class="font-weight-bold">No Handphone
+                                                        : <span class="badge badge-info">{{
+                                                $student->nohp_siswa ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Anak Ke : {{ $student->anak_ke }}</li>
+                                                    <li class="font-weight-bold">Anak Ke : <span class="badge badge-info">{{
+                                                $student->anak_ke ??
+                                                'Null'
+                                                }}</span></li>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <li class="font-weight-bold">Jumlah Saudara :
-                                                        {{ $student->jumlah_saudara }}
+                                                        <span class="badge badge-info">{{
+                                                $student->jumlah_saudara ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
                                                     <li class="font-weight-bold">Tinggi Badan :
-                                                        {{ $student->tinggi_badan }}
+                                                        <span class="badge badge-info">{{
+                                                $student->tinggi_badan ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Berat Badan : {{ $student->berat_badan }}
+                                                    <li class="font-weight-bold">Berat Badan
+                                                        : <span class="badge badge-info">{{
+                                                $student->berat_badan ??
+                                                'Null'
+                                                }}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Hoby : {{ $student->hoby }}</li>
-                                                    <li class="font-weight-bold">Cita - cita : {{ $student->cita }}</li>
+                                                    <li class="font-weight-bold">Hoby : <span class="badge badge-info">{{
+                                                $student->hoby ??
+                                                'Null'
+                                                }}</span></li>
+                                                    <li class="font-weight-bold">Cita - cita : <span class="badge badge-info">{{
+                                                $student->cita ??
+                                                'Null'
+                                                }}</span></li>
                                                 </div>
                                             </div>
 
@@ -177,11 +228,11 @@
                                 <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Asal Sekolah</h6>
                                 <nav class="nav nav-with-icon tx-13">
                                     <button type="button"
-                                        class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                        data-toggle="modal" data-target="#exampleModal{{ $student->uuid }}"><i
-                                            data-feather="plus"></i>
-                                        Edit Asal
-                                        Sekolah</button>
+                                            class="btn btn-sm pd-x-15 btn-danger btn-xs btn-uppercase mg-l-5"
+                                            data-toggle="modal" data-target="#exampleModal{{ $student->uuid }}"><i
+                                                data-feather="edit"></i>
+                                        Edit
+                                    </button>
                                 </nav>
                             </div><!-- card-header -->
 
@@ -189,7 +240,7 @@
                                 <div class="card-body pd-25">
                                     <div class="media d-block d-sm-flex">
                                         <div
-                                            class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
+                                                class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
                                             <i data-feather="briefcase" class="tx-white-7 wd-40 ht-40"></i>
                                         </div>
                                         <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
@@ -202,11 +253,26 @@
                                                 {{ Carbon\Carbon::now()->format('Y') }}</span>
 
                                             <ul class="pd-l-10 mg-0 mg-t-20 tx-13">
-                                                <li>Nama Sekolah : {{ $student->asal_sekolah }}</li>
-                                                <li>NPSN : {{ $student->npsn }}</li>
-                                                <li>Kecamatan : {{ $student->kec_sekolah }}</li>
-                                                <li>Kabupaten / Kota : {{ $student->kota_sekolah }}</li>
-                                                <li>Provinsi : {{ $student->provinsi_sekolah }}</li>
+                                                <li>Nama Sekolah : <span class="badge badge-info">{{
+                                                $student->asal_sekolah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>NPSN : <span class="badge badge-info">{{
+                                                $student->npsn ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Kecamatan : <span class="badge badge-info">{{
+                                                $student->kec_sekolah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Kabupaten / Kota : <span class="badge badge-info">{{
+                                                $student->kota_sekolah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Provinsi : <span class="badge badge-info">{{
+                                                $student->provinsi_sekolah ??
+                                                'Null'
+                                                }}</span></li>
                                             </ul>
                                         </div>
                                     </div><!-- media -->
@@ -220,11 +286,9 @@
                             <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
                                 <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">BIODATA ORANG TUA</h6>
                                 <nav class="nav nav-with-icon tx-13">
-                                    <button type="button"
-                                        class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                        data-toggle="modal" data-target="#exampleModal{{ $student->uuid }}"><i
-                                            data-feather="plus"></i>
-                                        Edit</button>
+                                    <a href="{{route('editorangtua')}}" class="btn btn-sm btn-danger"><i
+                                                data-feather="edit"></i>
+                                        Edit</a>
                                 </nav>
                             </div><!-- card-header -->
 
@@ -232,7 +296,7 @@
                                 <div class="card-body pd-25">
                                     <div class="media d-block d-sm-flex">
                                         <div
-                                            class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
+                                                class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
                                             <i data-feather="briefcase" class="tx-white-7 wd-40 ht-40"></i>
                                         </div>
                                         <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
@@ -245,17 +309,48 @@
                                                 {{ Carbon\Carbon::now()->format('Y') }}</span>
 
                                             <ul class="pd-l-10 mg-0 mg-t-20 tx-13">
-                                                <li>Nomor KK : {{ $student->no_kk }}</li>
-                                                <li>Nama Ayah : {{ $student->nama_ayah }}</li>
-                                                <li>Tahun Lahir : {{ $student->tahun_ayah }}</li>
-                                                <li>Pendidikan Ayah : {{ $student->pendidikan_ayah }}</li>
-                                                <li>Pekerjaan Ayah : {{ $student->pekerjaan_ayah }}</li>
-                                                <li>Penghasilan Ayah : {{ $student->penghasilan_ayah }}</li>
-                                                <li>Nama Ibu : {{ $student->nama_ibu }}</li>
-                                                <li>Tahun Lahir : {{ $student->tahun_Ibu }}</li>
-                                                <li>Pendidikan Ibu : {{ $student->pendidikan_ibu }}</li>
-                                                <li>Pekerjaan Ibu : {{ $student->pekerjaan_ibu }}</li>
-                                                <li>Penghasilan Ibu : {{ $student->penghasilan_ibu }}</li>
+                                                <li>Nomor KK : <span class="badge badge-info">{{ $student->no_kk ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Nama Ayah : <span class="badge badge-info">{{ $student->nama_ayah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Tahun Lahir : <span class="badge badge-info">{{
+                                                $student->tahun_ayah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Pendidikan Ayah : <span class="badge badge-info">{{
+                                                $student->pendidikan_ayah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Pekerjaan Ayah : <span class="badge badge-info">{{
+                                                $student->pekerjaan_ayah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Penghasilan Ayah : <span class="badge badge-info">{{
+                                                $student->penghasilan_ayah ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Nama Ibu : <span class="badge badge-info">{{
+                                                $student->nama_ibu ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Tahun Lahir : <span class="badge badge-info">{{
+                                                $student->tahun_ibu ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Pendidikan Ibu : <span class="badge badge-info">{{
+                                                $student->pendidikan_ibu ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Pekerjaan Ibu : <span class="badge badge-info">{{
+                                                $student->pekerjaan_ibu ??
+                                                'Null'
+                                                }}</span></li>
+                                                <li>Penghasilan Ibu : <span class="badge badge-info">{{
+                                                $student->penghasilan_ibu ??
+                                                'Null'
+                                                }}</span></li>
                                             </ul>
                                         </div>
                                     </div><!-- media -->
@@ -269,15 +364,17 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
-                                <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Alamat Domisili</h6>
+                                <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">ALAMAT DOMISILI</h6>
                                 <nav class="nav nav-with-icon tx-13">
-                                    <a href="" class="nav-link"><i data-feather="plus"></i> Add New</a>
+                                    <a href="{{route('editorangtua')}}" class="btn btn-sm btn-danger"><i
+                                                data-feather="edit"></i>
+                                        Edit</a>
                                 </nav>
                             </div><!-- card-header -->
                             <div class="card-body">
                                 <div class="media d-block d-sm-flex">
                                     <div
-                                        class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
+                                            class="wd-80 ht-80 bg-ui-04 rounded d-flex align-items-center justify-content-center">
                                         <i data-feather="briefcase" class="tx-white-7 wd-40 ht-40"></i>
                                     </div>
                                     <div class="media-body pd-t-25 pd-sm-t-0 pd-sm-l-25">
@@ -290,21 +387,32 @@
                                         <ul class="pd-l-10 mg-0 mg-t-20 tx-13">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <li class="font-weight-bold">Alamat Rumah : {{ $student->alamat_pd }}
+                                                    <li class="font-weight-bold">Alamat Rumah : <span class="badge
+                                                    badge-info">{{$student->alamat_pd ??
+                                                        'Null'}}</span>
                                                     </li>
                                                     <li class="font-weight-bold">Jarak :
-                                                        {{ $student->jarak . ' ' . 'Km' }}
+                                                        <span class="badge badge-info">{{$student->jarak ??
+                                                        'Null'}}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Waktu : {{ $student->waktu . 'Menit' }}
+                                                    <li class="font-weight-bold">Waktu : <span class="badge
+                                                    badge-info">{{$student->waktu ??
+                                                        'Null'}}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Tanggal Lahir :
-                                                        {{ $student->tanggal_lahir }}
+                                                    <li class="font-weight-bold">Provinsi :
+                                                        <span class="badge badge-info">{{$student->provinsi_pd ??
+                                                        'Null'}}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">NIK : {{ $student->nik }}</li>
-                                                    <li class="font-weight-bold">Agama : {{ $student->agama }}</li>
-                                                    <li class="font-weight-bold">No Handphone : {{ $student->nohp_siswa }}
+                                                    <li class="font-weight-bold">Kota / Kabupaten : <span
+                                                                class="badge badge-info">{{$student->kota_pd ??
+                                                        'Null'}}</span></li>
+                                                    <li class="font-weight-bold">Kecamatan : <span class="badge
+                                                    badge-info">{{$student->kec_pd ??
+                                                        'Null'}}</span></li>
+                                                    <li class="font-weight-bold">Desa / Kelurahan : <span
+                                                                class="badge badge-info">{{$student->desa_pd ??
+                                                        'Null'}}</span>
                                                     </li>
-                                                    <li class="font-weight-bold">Anak Ke : {{ $student->anak_ke }}</li>
                                                 </div>
                                             </div>
 
