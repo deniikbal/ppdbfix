@@ -32,3 +32,4 @@ Route::post('/checkout/callback', [PaymentController::class, 'callback'])->name(
 //Route::post('createinvoice', [PaymentXenditController::class, 'create'])->name('createinvoice');
 
 Route::post('createinvoice', [PaymentXenditController::class, 'createinvoice'])->name('payment_xendit');
+Route::post('callback', [PaymentXenditController::class, 'callback'])->name('callback');

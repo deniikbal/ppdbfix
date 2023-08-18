@@ -43,7 +43,7 @@
     </div>
     @foreach ($payment as $pay)
         <div class="col-sm-6 col-lg-3">
-            <div class="card card-body bd-gray-500 {{ $countpayment >= 5 ? 'mb-2' : '' }}">
+            <div class="card card-body bd-gray-500 {{ $countpayment >= 4 ? 'mb-2' : '' }}">
                 @if ($pay->jenis_bayar == 'Titipan Pembayaran')
                     <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold tx-primary mg-b-8">Titipan Pembayaran
                     </h6>
@@ -85,10 +85,11 @@
     @php
         $student = App\Models\Student::where('user_id', auth()->id())->first();
         $paymentxendit = App\Models\payment_xendit::where('student_id', $student->id)->get();
+        $countxendit = App\Models\payment_xendit::where('student_id', $student->id)->count();
     @endphp
     @foreach ($paymentxendit as $pay)
         <div class="col-sm-6 col-lg-3">
-            <div class="card card-body bd-gray-500">
+            <div class="card card-body bd-gray-500 {{ $countxendit >= 5 ? 'mb-2' : '' }}">
                 {{-- @if ($pay->jenis_bayar == 'Titipan Pembayaran')
                     <h6 class="tx-uppercase tx-11 tx-spacing-1 tx-color-02 tx-semibold tx-primary mg-b-8">Titipan Pembayaran
                     </h6>
