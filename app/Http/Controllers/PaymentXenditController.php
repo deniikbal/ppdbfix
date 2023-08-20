@@ -12,28 +12,14 @@ class PaymentXenditController extends Controller
 
     public function createinvoice(Request $request)
     {
-        Xendit::setApiKey('xnd_development_TRgulyb0HGsABsXzZPq6yqq1KXxsEfYnkDuKkLrTXMdeMY3vtIF8UXBsFcRJ');
+        Xendit::setApiKey(env('SECRET_API_KEY'));
         $kode_bayar = IdGenerator::generate(['table' => 'xendit_payments', 'field' => 'external_id', 'length' => 10, 'prefix' => ('INV-')]);
         $params = [
             'external_id' => $kode_bayar,
             'amount' => $request->nominal,
             'description' => $request->jenis_bayar,
-            'invoice_duration' => 30,
-            'customer_notification_preference' => [
-                'invoice_created' => [
-                    'whatsapp',
-                ],
-                'invoice_reminder' => [
-                    'whatsapp',
-                ],
-                'invoice_paid' => [
-                    'whatsapp',
-                ],
-                'invoice_expired' => [
-                    'whatsapp',
-                ]
-            ],
-            'success_redirect_url' => 'http://127.0.0.1:8000/payment',
+            'invoice_duration' => 86400,
+            'success_redirect_url' => route('payment.index'),
             'currency' => 'IDR',
             'fees' => [
                 [
@@ -44,6 +30,7 @@ class PaymentXenditController extends Controller
         ];
 
         $createInvoice = \Xendit\Invoice::create($params);
+        //return response()->json(['data' => $createInvoice['invoice_url']]);
         payment_xendit::create([
             'student_id' => $request->id,
             'external_id' => $createInvoice['external_id'],
@@ -58,7 +45,7 @@ class PaymentXenditController extends Controller
 
     public function callback(Request $request)
     {
-        Xendit::setApiKey('xnd_development_TRgulyb0HGsABsXzZPq6yqq1KXxsEfYnkDuKkLrTXMdeMY3vtIF8UXBsFcRJ');
+        Xendit::setApiKey(env('SECRET_API_KEY'));
         $getInvoice = \Xendit\Invoice::retrieve($request->id);
         $payment = payment_xendit::where('external_id', $request->external_id)->firstOrFail();
 

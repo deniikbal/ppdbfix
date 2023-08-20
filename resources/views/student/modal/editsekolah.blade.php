@@ -9,7 +9,7 @@
             </div>
 
             <form class="image-upload" method="post" action="{{ route('updatesekolah', $student->uuid) }}"
-                enctype="multipart/form-data" id="locations">
+                  enctype="multipart/form-data" id="locations">
                 @csrf
                 <div class="modal-body">
 
@@ -20,7 +20,7 @@
                                 <option value="">---Pilih---</option>
                                 @foreach ($schools as $item)
                                     <option
-                                        value="{{ $item->id }}"{{ $item->sekolah == $student->asal_sekolah ? 'selected' : '' }}>
+                                            value="{{ $item->id }}"{{ $item->sekolah == $student->asal_sekolah ? 'selected' : '' }}>
                                         {{ $item->sekolah }}</option>
                                 @endforeach
                             </select>
@@ -35,3 +35,4 @@
         </div>
     </div>
 </div>
+

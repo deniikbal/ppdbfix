@@ -44,10 +44,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('student', [StudentController::class, 'index'])->name('student.index');
     Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
+    Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
     Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
+    Route::get('calon_siswa', [StudentController::class, 'isibiodata'])->name('isibiodata');
     Route::post('updatebiodata/{uuid}', [StudentController::class, 'updatebiodata'])->name('updatebiodata');
     Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
     Route::get('editorangtua', [StudentController::class, 'editorangtua'])->name('editorangtua');
+    Route::get('editsekolah', [StudentController::class, 'editsekolah'])->name('editsekolah');
     Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
     Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
     //Payment

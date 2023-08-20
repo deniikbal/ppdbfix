@@ -1,7 +1,8 @@
 <ul class="nav nav-aside">
     <li class="nav-label">Dashboard</li>
     <li class="nav-item @if (request()->routeIs('student.index')) active @endif"><a href="{{ route('student.index') }}"
-            class="nav-link"><i data-feather="shopping-bag"></i>
+                                                                                    class="nav-link"><i
+                    data-feather="shopping-bag"></i>
             <span>Dashboard</span></a></li>
     @php
         $hitung = App\Models\Student::where('user_id', auth()->id())
@@ -10,23 +11,13 @@
     @endphp
     @if ($hitung != 1)
     @else
-        <li class="nav-item @if (request()->routeIs('biodata.edit')) active @endif"><a href="{{ route('biodata.edit') }}"
-                class="nav-link"><i data-feather="globe"></i>
-                <span>Biodata Siswa</span></a></li>
-        <li class="nav-item @if (request()->routeIs('editorangtua')) active @endif"><a href="{{ route('editorangtua') }}"
-                class="nav-link"><i data-feather="globe"></i>
-                <span>Biodata Orang Tua</span></a></li>
-        <li class="nav-item @if (request()->routeIs('payment.index')) active @endif"><a href="{{ route('payment.index') }}"
-                class="nav-link"><i data-feather="globe"></i>
-                <span>Pembayaran</span></a></li>
+        <li class="nav-item @if (request()->routeIs('isibiodata')) active @endif"><a
+                    href="{{ route('isibiodata') }}" class="nav-link"><i
+                        data-feather="user"></i><span>Isi Biodata</span></a></li>
+        <li class="nav-item @if (request()->routeIs('payment.index')) active @endif"><a
+                    href="{{ route('payment.index') }}" class="nav-link"><i
+                        data-feather="life-buoy"></i><span>Pembayaran</span></a></li>
     @endif
-
-    <li class="nav-item"><a href="dashboard-two.html" class="nav-link"><i data-feather="globe"></i>
-            <span>Website Analytics</span></a></li>
-    <li class="nav-item"><a href="dashboard-three.html" class="nav-link"><i data-feather="pie-chart"></i>
-            <span>Cryptocurrency</span></a></li>
-    <li class="nav-item"><a href="dashboard-four.html" class="nav-link"><i data-feather="life-buoy"></i>
-            <span>Helpdesk Management</span></a></li>
     <li class="nav-label mg-t-25">Web Apps</li>
     <li class="nav-item"><a href="app-calendar.html" class="nav-link"><i data-feather="calendar"></i>
             <span>Calendar</span></a></li>
@@ -42,10 +33,12 @@
 
     <li class="nav-label mg-t-25">Pages</li>
     <li class="nav-item @if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}"
-            class="nav-link"><i data-feather="user"></i>
+                                                                                  class="nav-link"><i
+                    data-feather="user"></i>
             <span>User Management</span></a></li>
     <li class="nav-item @if (request()->routeIs('schools.index')) active @endif"><a href="{{ route('schools.index') }}"
-            class="nav-link"><i data-feather="user"></i>
+                                                                                    class="nav-link"><i
+                    data-feather="user"></i>
             <span>Schools</span></a></li>
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>

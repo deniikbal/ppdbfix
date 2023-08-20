@@ -1,14 +1,14 @@
 <div class="d-flex align-items-center justify-content-start">
     <a href="" class="avatar"><img
-            src="{{ $student->foto == null ? 'https://via.placeholder.com/500' : asset('storage/' . $student->foto) }}"
-            class="rounded-circle" alt=""></a>
+                src="{{ $student->foto == null ? 'https://via.placeholder.com/500' : asset('storage/' . $student->foto) }}"
+                class="rounded" alt=""></a>
     <div class="aside-alert-link">
         <a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i
-                data-feather="message-square"></i></a>
+                    data-feather="message-square"></i></a>
         <a href="" class="new" data-toggle="tooltip" title="You have 4 new notifications"><i
-                data-feather="bell"></i></a>
+                    data-feather="bell"></i></a>
         <a data-toggle="tooltip" title="Sign out" href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i data-feather="log-out"></i>
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -35,7 +35,7 @@
                 <span>Help Center</span></a></li>
         <li>
             <a data-toggle="tooltip" title="Sign out" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i data-feather="log-out"></i> Sign Out
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

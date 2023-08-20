@@ -27,12 +27,17 @@ class StudentController extends Controller
     public function index()
     {
         $student = Student::where('user_id', auth()->id())->first();
-        //dd($student);
         $count = Student::where('user_id', auth()->id())->get()->count();
         $schools = School::all();
-        //dd($schools);
-        //dd($count);
         return view('student.index', compact('student', 'count', 'schools'));
+    }
+
+    public function isibiodata()
+    {
+        $student = Student::where('user_id', auth()->id())->first();
+        $count = Student::where('user_id', auth()->id())->get()->count();
+        $schools = School::all();
+        return view('student.isibiodata', compact('student', 'count', 'schools'));
     }
 
     /**
@@ -131,17 +136,18 @@ class StudentController extends Controller
     public function updatefoto(Request $request, $id)
     {
         $test = Student::find($id);
-        if ($request->file('foto')){
+        if ($request->file('foto')) {
             if ($test->foto) {
                 Storage::delete($test->foto);
             }
-            $save=$request->file('foto')->store('foto');
+            $save = $request->file('foto')->store('foto');
         }
         $test->update([
-            'foto'=>$save,
+            'foto' => $save,
         ]);
         return redirect()->back();
     }
+
     public function updatebiodata(UpdateStudentRequest $request, $uuid)
     {
         //dd($uuid);
@@ -213,8 +219,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function editsekolah()
     {
-        //
+        $student = Student::where('user_id', auth()->id())->first();
+        $schools = School::all();
+        return view('student.biodata.asalsekolah', compact('student', 'schools'));
     }
 }

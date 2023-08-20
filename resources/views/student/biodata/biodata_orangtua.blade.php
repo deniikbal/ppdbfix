@@ -12,7 +12,13 @@
 @section('content')
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header bg-secondary tx-white">BIODATA ORANG TUA</div>
+            <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
+                <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Biodata Orang Tua</h6>
+                <nav class="nav nav-with-icon tx-13">
+                    <a href="{{route('student.index')}}" class="btn btn-danger btn-sm"><i data-feather="skip-back"></i>
+                        Kembali</a>
+                </nav>
+            </div><!-- card-header -->
             <div class="card-body">
                 <div class="container">
                     <form action="{{ route('updateorangtua', $student->uuid) }}" method="post">
