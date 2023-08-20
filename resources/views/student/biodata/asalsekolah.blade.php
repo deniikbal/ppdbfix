@@ -12,15 +12,17 @@
     <div class="col-lg-12 col-sm-6">
         <div class="card mt-3">
             <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
-                <h6 class="tx-13 tx-spacing-1 tx-white tx-uppercase tx-semibold mg-b-0">Asal Sekolah</h6>
-                <nav class="nav nav-with-icon tx-13">
+                <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Asal Sekolah SMP / MTs</h6>
+                <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
                             data-toggle="modal" data-target="#exampleModal{{ $student->uuid }}"><i
                                 data-feather="plus"></i>
                         Edit Asal
                         Sekolah
                     </button>
-                </nav>
+                    <a href="{{route('isibiodata')}}" class="ml-2 btn btn-sm btn-danger">
+                        <i data-feather="skip-back"></i> Kembali</a>
+                </div>
             </div><!-- card-header -->
             <div class="card-body pd-25">
                 <div class="media d-block d-sm-flex">

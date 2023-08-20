@@ -18,7 +18,7 @@ class PaymentXenditController extends Controller
             'external_id' => $kode_bayar,
             'amount' => $request->nominal,
             'description' => $request->jenis_bayar,
-            'invoice_duration' => 86400,
+            'invoice_duration' => 60,
             'success_redirect_url' => route('payment.index'),
             'currency' => 'IDR',
             'fees' => [

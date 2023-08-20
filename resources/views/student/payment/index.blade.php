@@ -35,18 +35,22 @@
                         $student = App\Models\Student::where('user_id', auth()->id())->first();
                         $paymentxendit = App\Models\payment_xendit::where('student_id', $student->id)->get();
                         $countxendit = App\Models\payment_xendit::where('student_id', $student->id)->count();
-                        $pending = App\Models\payment_xendit::where('description', 'Titipan Pembayaran')->where('status',
+                        $pay01 = App\Models\payment_xendit::where('student_id', $student->id)->count();
+                        $pay02 = App\Models\payment_xendit::where('description', 'Titipan Pembayaran')->where('status',
+                        'EXPIRED')->where('student_id', $student->id)->count();
+                        $pay03 = App\Models\payment_xendit::where('description', 'Titipan Pembayaran')->where('status',
                         'pending')->where('student_id', $student->id)->count();
+                        $settled = App\Models\payment_xendit::where('status','settled')->where('student_id',
+                        $student->id)->where('description', 'Titipan Pembayaran')->count();
                     @endphp
-                    @if ($pending == 1)
-                        <a href="#createpaymentdu" class="btn btn-danger btn-sm" data-toggle="modal">Tambah Pembayaran
-                            DU</a>
-                        @include('student.payment.modal.createpaymentdu')
-                    @else
-                        <a href="#createpaymenttp" class="btn btn-danger btn-sm" data-toggle="modal">Tambah
-                            Pembayaran</a>
-                        @include('student.payment.modal.createpayment')
+
+                    <a href="#createpaymenttp" class="btn btn-danger btn-sm @if($settled==1) disabled @endif"
+                       data-toggle="modal">Titipan Pembayaran</a>
+                    @if($settled!=0)
+                        <a href="#createpaymentdu" class="btn btn-success btn-sm" data-toggle="modal">Daftar Ulang</a>
                     @endif
+                    @include('student.payment.modal.createpaymentdu')
+                    @include('student.payment.modal.createpayment')
                 </div>
                 <div class="row">
                     @foreach ($paymentxendit as $pay)
@@ -71,9 +75,9 @@
                                         <p class="mb-1">Status : <span
                                                     class="badge badge-danger">{{ Str::upper($pay->status) }}</span>
                                         </p>
-                                    @elseif ($pay->status == 'settlement')
+                                    @elseif ($pay->status == 'SETTLED')
                                         <p class="mb-1">Status : <span
-                                                    class="badge bg-success">{{ Str::upper($pay->status) }}</span>
+                                                    class="badge badge-success">{{ Str::upper($pay->status) }}</span>
                                         </p>
                                     @else
                                         <p class="mb-1">Status : <span
@@ -81,9 +85,11 @@
                                         </p>
                                     @endif
 
-                                    <p class="mb-1 badge badge-danger">Expiry
-                                        : {{ Carbon\carbon::parse($pay->expiry_date) }}
-                                    </p>
+                                    @if($pay->status =='PENDING')
+                                        <p class="mb-1 badge badge-danger">Expiry
+                                            : {{ Carbon\carbon::parse($pay->expiry_date) }}
+                                        </p>
+                                    @endif
                                     @if ($pay->status == 'PENDING')
                                         <a href="{{ $pay->invoice_url }}" target="blank"
                                            class="btn btn-primary btn-block">

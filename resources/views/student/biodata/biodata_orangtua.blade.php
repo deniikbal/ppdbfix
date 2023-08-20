@@ -15,7 +15,7 @@
             <div class="card-header pd-y-15 pd-x-20 d-flex align-items-center justify-content-between">
                 <h6 class="tx-13 tx-spacing-1 tx-uppercase tx-semibold mg-b-0">Biodata Orang Tua</h6>
                 <nav class="nav nav-with-icon tx-13">
-                    <a href="{{route('student.index')}}" class="btn btn-danger btn-sm"><i data-feather="skip-back"></i>
+                    <a href="{{route('isibiodata')}}" class="btn btn-danger btn-sm"><i data-feather="skip-back"></i>
                         Kembali</a>
                 </nav>
             </div><!-- card-header -->
