@@ -1,7 +1,6 @@
 <div class="d-flex align-items-center justify-content-start">
     <a href="" class="avatar"><img
-                src="{{ $student->foto == null ? 'https://via.placeholder.com/500' : asset('storage/' . $student->foto) }}"
-                class="rounded" alt=""></a>
+                src="https://via.placeholder.com/500" class="rounded" alt=""></a>
     <div class="aside-alert-link">
         <a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i
                     data-feather="message-square"></i></a>

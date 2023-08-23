@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\RegNewStudent;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
@@ -107,6 +108,7 @@ class StudentController extends Controller
                 'nama_ayah' => $request->nama_ayah,
                 'uuid' => $uuid,
             ]);
+            RegNewStudent::dispatch($student);
             //SendRegisStudent::dispatch($student);
             return response()->json(['success' => 'Data is successfully added']);
         }

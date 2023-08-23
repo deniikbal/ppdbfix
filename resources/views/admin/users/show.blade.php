@@ -3,15 +3,15 @@
     <div class="container">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header text-primary">Edit <strong>{{$users->name}}</strong></div>
+                <div class="card-header text-primary">Edit <strong>{{$user->name}}</strong></div>
                 <div class="card-body">
-                    <form action="{{route('users.update', $users->id)}}" method="post">
+                    <form action="{{route('user.update', $user->id)}}" method="post">
                         @method('put')
                         @csrf
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Lengkap</label>
                             <div class="col-sm-8">
-                                <input type="text" value="{{$users->name}}" name="name" class="form-control"
+                                <input type="text" value="{{$user->name}}" name="name" class="form-control"
                                        id="inputEmail3" placeholder="Email">
                             </div>
                         </div>
@@ -19,7 +19,7 @@
                             <label for="example-text-input" class="col-sm-4 col-form-label">No Handphone</label>
                             <div class="col-sm-8">
                                 <input class="form-control @error('no_handphone') is-invalid @enderror" type="text"
-                                       name="no_handphone" value="{{ $users->no_handphone }}">
+                                       name="no_handphone" value="{{ $user->no_handphone }}">
                                 @error('no_handphone')
                                 @enderror
                             </div>
@@ -28,7 +28,7 @@
                             <label for="example-text-input" class="col-sm-4 col-form-label">Email</label>
                             <div class="col-sm-8">
                                 <input class="form-control @error('email') is-invalid @enderror" type="text"
-                                       name="email" value="{{ $users->email }}">
+                                       name="email" value="{{ $user->email }}">
                                 @error('email')
                                 @enderror
                             </div>
@@ -38,8 +38,8 @@
                             <div class="col-sm-8">
                                 <select class="form-control" name="role" aria-label="Default select example">
                                     <option value="">--Pilih--</option>
-                                    <option value="admin" {{ $users->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                    <option value="siswa" {{ $users->role == 'siswa' ? 'selected' : '' }}>User</option>
+                                    <option value="1" {{ $user->role == '1' ? 'selected' : '' }}>Admin</option>
+                                    <option value="0" {{ $user->role == '0' ? 'selected' : '' }}>User</option>
                                 </select>
                             </div>
                         </div>

@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,6 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained();
             $table->string('external_id')->nullable();
+            $table->string('no_handphone')->nullable();
             $table->string('status')->nullable();
             $table->string('amount')->nullable();
             $table->string('expiry_date')->nullable();

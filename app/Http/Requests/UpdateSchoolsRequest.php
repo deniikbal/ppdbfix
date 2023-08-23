@@ -11,7 +11,7 @@ class UpdateSchoolsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateSchoolsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'sekolah' => 'required',
+            'provinces_id' => 'required',
+            'regencies_id' => 'required',
+            'districts_id' => 'required',
         ];
     }
 }

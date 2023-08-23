@@ -1,32 +1,20 @@
 <ul class="nav nav-aside">
     <li class="nav-label">Dashboard</li>
-    <li class="nav-item active"><a href="dashboard-one.html" class="nav-link"><i data-feather="shopping-bag"></i>
-            <span>Sales Monitoring</span></a></li>
-    <li class="nav-item"><a href="dashboard-two.html" class="nav-link"><i data-feather="globe"></i>
-            <span>Website Analytics</span></a></li>
-    <li class="nav-item"><a href="dashboard-three.html" class="nav-link"><i data-feather="pie-chart"></i>
-            <span>Cryptocurrency</span></a></li>
-    <li class="nav-item"><a href="dashboard-four.html" class="nav-link"><i data-feather="life-buoy"></i>
-            <span>Helpdesk Management</span></a></li>
-    <li class="nav-label mg-t-25">Web Apps</li>
-    <li class="nav-item"><a href="app-calendar.html" class="nav-link"><i data-feather="calendar"></i>
-            <span>Calendar</span></a></li>
-    <li class="nav-item"><a href="app-chat.html" class="nav-link"><i data-feather="message-square"></i>
-            <span>Chat</span></a></li>
-    <li class="nav-item"><a href="app-contacts.html" class="nav-link"><i data-feather="users"></i>
-            <span>Contacts</span></a></li>
-    <li class="nav-item"><a href="app-file-manager.html" class="nav-link"><i data-feather="file-text"></i>
-            <span>File Manager</span></a></li>
-    <li class="nav-item"><a href="app-mail.html" class="nav-link"><i data-feather="mail"></i>
-            <span>Mail</span></a></li>
+    <li class="nav-item @if (request()->routeIs('admin.index')) active @endif "><a href="{{ route('admin.index') }}"
+                                                                                   class="nav-link"><i
+                    data-feather="shopping-bag"></i>
+            <span>Dashboard</span></a></li>
 
     <li class="nav-label mg-t-25">Pages</li>
+    <li class="nav-item @if (request()->routeIs('allstudent')) active @endif"><a href="{{ route('allstudent') }}"
+                                                                                 class="nav-link"><i
+                    data-feather="users"></i> <span>Student</span></a></li>
     <li class="nav-item @if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}"
                                                                                   class="nav-link"><i
                     data-feather="user"></i>
             <span>User Management</span></a></li>
     <li class="nav-item @if (request()->routeIs('schools.index')) active @endif"><a href="{{ route('schools.index') }}"
-                                                                                  class="nav-link"><i
+                                                                                    class="nav-link"><i
                     data-feather="user"></i>
             <span>Schools</span></a></li>
     <li class="nav-item with-sub">
@@ -39,9 +27,9 @@
         </ul>
     </li>
     <li class="nav-item with-sub">
-        <a href="" class="nav-link"><i data-feather="file"></i> <span>Other Pages</span></a>
+        <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>
-            <li><a href="page-timeline.html">Timeline</a></li>
+            <li><a href="{{route('wa.index')}}">WhatsApp</a></li>
         </ul>
     </li>
     <li class="nav-label mg-t-25">User Interface</li>

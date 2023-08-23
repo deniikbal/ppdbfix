@@ -22,7 +22,18 @@ class SchoolsDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'schools.action')
+            ->addColumn('action', function ($row) {
+                $aksi = '
+                <a class="btn btn-danger btn-sm" href="' . url("schooledit/$row->id") . '"><i class="fas fa-user-edit"></i></a>
+                <form action="' . url("schooldelet/$row->id") . '" method="post" style="display: inline-block">
+                ' . csrf_field() . '
+                    ' . method_field("DELETE") . '
+                <button onclick="return confirm(\'Yakin Mau Menghapus ' . $row->name . '\')" class="btn btn-danger btn-sm" type="submit">
+                <i class="far fa-trash-alt"></i></button>
+                </form>
+                ';
+                return $aksi;
+            })
             ->setRowId('id');
     }
 
@@ -40,12 +51,12 @@ class SchoolsDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('schools-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(0,'asc')
-                    ->selectStyleSingle();
+            ->setTableId('schools-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0, 'asc')
+            ->selectStyleSingle();
     }
 
     /**
@@ -60,6 +71,7 @@ class SchoolsDataTable extends DataTable
             Column::make('npsn'),
             Column::make('status'),
             Column::make('bentuk'),
+            Column::make('action'),
         ];
     }
 

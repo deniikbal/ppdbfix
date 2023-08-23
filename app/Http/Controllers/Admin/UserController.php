@@ -20,8 +20,8 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $users = User::find($id);
-        return view('admin.users.show', compact('users'));
+        $user = User::find($id);
+        return view('admin.users.show', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -53,22 +53,21 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('users.index')->with('success',' Berhasil di Hapus');
+        return redirect()->route('users.index')->with('success', ' Berhasil di Hapus');
     }
 
     public function store(Request $request)
     {
         $valid = Validator::make($request->all(), [
-            'name'=>'required|unique:users',
-            'email'=>'required|unique:users',
-            'role'=>'required',
-            'no_handphone'=>'required',
-            'password'=>'required',
+            'name' => 'required|unique:users',
+            'email' => 'required|unique:users',
+            'role' => 'required',
+            'no_handphone' => 'required',
+            'password' => 'required',
         ]);
-        if ($valid->fails())
-        {
-            return response()->json(['errors'=>$valid->errors()->all()]);
-        }else{
+        if ($valid->fails()) {
+            return response()->json(['errors' => $valid->errors()->all()]);
+        } else {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -85,6 +84,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         RegisterNewUser::dispatch($user);
-        return redirect()->back()->with('success',' Berhasil di Hapus');
+        return redirect()->back()->with('success', ' Berhasil di Hapus');
     }
 }

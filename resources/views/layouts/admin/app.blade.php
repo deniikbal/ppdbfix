@@ -48,89 +48,101 @@
 
 
     <!-- DashForge CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('/assets/css/dashforge.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/dashforge.dashboard.css') }}">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.css"
+          rel="stylesheet">
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
 <body>
 
-    <aside class="aside aside-fixed">
-        <div class="aside-header">
-            <a href="../../index.html" class="aside-logo">PPDB<span>SMATEL</span></a>
-            <a href="" class="aside-menu-link">
-                <i data-feather="menu"></i>
-                <i data-feather="x"></i>
-            </a>
-        </div>
-        <div class="aside-body">
-            <div class="aside-loggedin">
-                @include('layouts.admin.sidebarlog')
-            </div><!-- aside-loggedin -->
-            @include('layouts.admin.sidebar')
-        </div>
-    </aside>
-
-    <div class="content ht-100v pd-0">
-        <div class="content-header">
-            <div class="content-search">
-                <i data-feather="search"></i>
-                <input type="search" class="form-control" placeholder="Search...">
-            </div>
-            <nav class="nav">
-                <a href="" class="nav-link"><i data-feather="help-circle"></i></a>
-                <a href="" class="nav-link"><i data-feather="grid"></i></a>
-                <a href="" class="nav-link"><i data-feather="align-left"></i></a>
-            </nav>
-        </div><!-- content-header -->
-
-        <div class="content-body">
-            <div class="container pd-x-0">
-                <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
-                    <div>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-                                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Sales Monitoring</li>
-                            </ol>
-                        </nav>
-                        <h4 class="mg-b-0 tx-spacing--1">Welcome to Dashboard</h4>
-                    </div>
-                    <div class="d-none d-md-block">
-                        <button class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="mail"
-                                class="wd-10 mg-r-5"></i> Email</button>
-                        <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="printer"
-                                class="wd-10 mg-r-5"></i> Print</button>
-                        <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i data-feather="file"
-                                class="wd-10 mg-r-5"></i> Generate Report</button>
-                    </div>
-                </div>
-
-                <div class="row row-xs">
-                    @yield('content')
-                </div><!-- row -->
-            </div><!-- container -->
-        </div>
+<aside class="aside aside-fixed">
+    <div class="aside-header">
+        <a href="../../index.html" class="aside-logo">PPDB<span>SMATEL</span></a>
+        <a href="" class="aside-menu-link">
+            <i data-feather="menu"></i>
+            <i data-feather="x"></i>
+        </a>
     </div>
+    <div class="aside-body">
+        <div class="aside-loggedin">
+            @include('layouts.admin.sidebarlog')
+        </div><!-- aside-loggedin -->
+        @include('layouts.admin.sidebar')
+    </div>
+</aside>
 
-    @include('layouts.admin.script')
+<div class="content ht-100v pd-0">
+    <div class="content-header">
+        <div class="content-search">
+            <i data-feather="search"></i>
+            <input type="search" class="form-control" placeholder="Search...">
+        </div>
+        <nav class="nav">
+            <a href="" class="nav-link"><i data-feather="help-circle"></i></a>
+            <a href="" class="nav-link"><i data-feather="grid"></i></a>
+            <a href="" class="nav-link"><i data-feather="align-left"></i></a>
+        </nav>
+    </div><!-- content-header -->
+
+    <div class="content-body">
+        <div class="container pd-x-0">
+            <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+                @yield('welcome')
+            </div>
+
+            <div class="row row-xs">
+                @yield('content')
+            </div><!-- row -->
+        </div><!-- container -->
+    </div>
+</div>
+
+@include('layouts.admin.script')
 
 
-    <!-- append theme customizer -->
-    <script src="{{ asset('/lib/js-cookie/js.cookie.js') }}"></script>
-    <script src="{{ asset('/assets/js/dashforge.settings.js') }}"></script>
-    @yield('script')
-    @stack('scripts')
-    <script>
-        //message with toastr
-        @if (session()->has('success'))
+<!-- append theme customizer -->
+<script src="{{ asset('/lib/js-cookie/js.cookie.js') }}"></script>
+<script src="{{ asset('/assets/js/dashforge.settings.js') }}"></script>
+@yield('script')
+@stack('scripts')
+@stack('addon-script')
+<script>
+    //message with toastr
+    @if (session()->has('success'))
 
-            toastr.success('{{ session('success') }}');
-        @elseif (session()->has('error'))
-            toastr.error('{{ session('error') }}', 'GAGAL!');
-        @endif
-    </script>
+    toastr.success('{{ session('success') }}');
+    @elseif (session()->has('error'))
+    toastr.error('{{ session('error') }}', 'GAGAL!');
+    @endif
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            theme: "bootstrap",
+        });
+    });
+</script>
+
+<script>
+    $('#example2').DataTable({
+        responsive: true,
+        language: {
+            searchPlaceholder: 'Cari data...',
+            sSearch: '',
+            lengthMenu: '_MENU_ items/halaman',
+        },
+    });
+
+</script>
+
 
 </body>
 

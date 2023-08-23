@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\SchoolsController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,17 +34,32 @@ Route::middleware(['auth', 'admin'])->group(function () {
     //Users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('user/{id}/edit', [UserController::class, 'show'])->name('users.show');
-    Route::put('user/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
     Route::delete('user/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::post('createusers', [UserController::class, 'store'])->name('users.store');
     Route::put('regisnewuser/{id}', [UserController::class, 'regisnewuser'])->name('regisnewuser');
-    Route::get('import', [SchoolsController::class, 'import'])->name('import');
-    Route::get('sekolah', [SchoolsController::class, 'index'])->name('schools.index');
+    //Sekolah
+    Route::post('tambahsekolah', [SchoolController::class, 'tambahsekolah'])->name('tambahsekolah');
+    Route::delete('schooldelet/{id}', [SchoolController::class, 'schooldelet'])->name('schooldelet');
+    Route::get('schooledit/{id}', [SchoolController::class, 'schooledit'])->name('schooledit');
+    Route::put('schoolupdate/{id}', [SchoolController::class, 'schoolupdate'])->name('schoolupdate');
+    Route::get('import', [SchoolController::class, 'import'])->name('import');
+    Route::get('sekolah', [SchoolController::class, 'index'])->name('schools.index');
+    //Student
+    Route::get('allstudent', [AdminStudentController::class, 'index'])->name('allstudent');
+    Route::get('showstudent/{id}/edit', [AdminStudentController::class, 'showtudent'])->name('showstudent');
+    Route::delete('deletestudent/{id}', [AdminStudentController::class, 'destroy'])->name('deletestudent');
+    Route::put('updatestudentadmin/{uuid}', [AdminStudentController::class, 'updatestudentadmin'])->name('updatestudentadmin');
+    //WhatsApp
+    Route::get('wa', [\App\Http\Controllers\WhatsAppController::class, 'index'])->name('wa.index');
+    Route::post('wastore', [\App\Http\Controllers\WhatsAppController::class, 'wastore'])->name('wa.store');
+    Route::post('deletewa/{id}', [\App\Http\Controllers\WhatsAppController::class, 'deletewa'])->name('deletewa');
+    Route::post('waupdate/{id}', [\App\Http\Controllers\WhatsAppController::class, 'waupdate'])->name('waupdate');
+
 });
 //Student
 Route::middleware(['auth'])->group(function () {
     Route::get('student', [StudentController::class, 'index'])->name('student.index');
-    Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
     Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
     Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
     Route::get('calon_siswa', [StudentController::class, 'isibiodata'])->name('isibiodata');

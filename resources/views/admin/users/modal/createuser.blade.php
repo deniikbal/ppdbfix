@@ -31,10 +31,12 @@
                         <div class="col-sm-8">
                             <select name="role" id="role" class="form-control select2">
                                 <option value="">--Pilih--</option>
-                                <option value="Admin" {{old('role')=="Admin" ? 'selected' :
-                                ''}}>Admin</option>
-                                <option value="Student" {{old('role')=="Student" ? 'selected' :
-                                ''}}>Student</option>
+                                <option value="1" {{old('role')=="1" ? 'selected' :
+                                ''}}>Admin
+                                </option>
+                                <option value="0" {{old('role')=="0" ? 'selected' :
+                                ''}}>Student
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -68,8 +70,8 @@
 
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('#formSubmit').click(function(e){
+        $(document).ready(function () {
+            $('#formSubmit').click(function (e) {
                 e.preventDefault();
                 $.ajaxSetup({
                     headers: {
@@ -82,22 +84,19 @@
                     method: 'post',
                     data: {
                         name: $('#name').val(),
-                        email:$('#email').val(),
-                        role:$('#role').val(),
-                        no_handphone:$('#no_handphone').val(),
-                        password:$('#password').val(),
+                        email: $('#email').val(),
+                        role: $('#role').val(),
+                        no_handphone: $('#no_handphone').val(),
+                        password: $('#password').val(),
                     },
-                    success: function(result){
-                        if(result.errors)
-                        {
+                    success: function (result) {
+                        if (result.errors) {
                             $('.alert-danger').html('');
-                            $.each(result.errors, function(key, value){
+                            $.each(result.errors, function (key, value) {
                                 $('.alert-danger').show();
-                                $('.alert-danger').append('<li>'+value+'</li>');
+                                $('.alert-danger').append('<li>' + value + '</li>');
                             });
-                        }
-                        else
-                        {
+                        } else {
                             $('.alert-danger').hide();
                             $(".modal-body input").val("")
                             $('#exampleModal').modal('hide');

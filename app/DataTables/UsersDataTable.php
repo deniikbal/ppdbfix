@@ -24,8 +24,8 @@ class UsersDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($row) {
                 $aksi = '
-                <button type="button" class="btn btn-warning btn-sm"
-                            data-toggle="modal" data-target="#exampleModal'.$row->id.'"><i class="fas fa-user-edit"></i></button>
+                <a href="' . url("user/$row->id/edit") . '" class="btn btn-warning btn-sm">
+                <i class="fas fa-user-edit"></i></a>
                 <form action="' . url("user/$row->id") . '" method="post" style="display: inline-block">
                 ' . csrf_field() . '
                     ' . method_field("DELETE") . '
@@ -57,12 +57,12 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('users-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(0, 'asc')
-                    ->selectStyleSingle();
+            ->setTableId('users-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0, 'asc')
+            ->selectStyleSingle();
     }
 
     /**

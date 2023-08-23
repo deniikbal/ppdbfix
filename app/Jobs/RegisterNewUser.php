@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\User;
+use App\Models\WhatsApp;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,9 +14,11 @@ use Illuminate\Queue\SerializesModels;
 class RegisterNewUser implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     protected $user;
     public $tries = 3;
     public $timeout = 120;
+
     /**
      * Create a new job instance.
      */
@@ -31,14 +34,13 @@ class RegisterNewUser implements ShouldQueue
     {
         $user = $this->user;
         $wa = $user->notif_wa + 1;
+        $setting = WhatsApp::findorfail(1);
         $data = [
-            'api_key' => 'huytkk8FrEfFJNyJ0r3HmU0DKzVE9tPQ',
-            'sender' => '085722676819',
+            'api_key' => $setting->api_key,
+            'sender' => $setting->sender,
             'number' => $user->no_handphone,
             'message' => "*Acount User Berhasil Dibuat* \n\nNama User : $user->name \nEmail : $user->email \nPassword : $user->password_plain
             \n *PANITIA PPDB 2023*",
-            // 'footer' => '*PPDB SMA TELKOM BANDUNG*',
-            // 'template1' => 'url|Login|http://ppdb.smatelkombandung.sch.id/login', //REQUIRED ( template minimal 1 )
         ];
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");

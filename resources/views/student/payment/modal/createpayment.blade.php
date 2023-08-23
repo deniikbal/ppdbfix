@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Tambah Pembayaran</h6>
+                <h6 class="modal-title" id="exampleModalLabel">Tambah Pembayaran {{auth()->id()}}</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,9 @@
                 {{-- <form method="POST" action="{{ route('payment.create') }}"> --}}
                 <form method="POST" action="{{ route('payment_xendit') }}">
                     @csrf
+
                     <input type="hidden" name="id" value="{{ $student->id }}">
+                    <input type="hidden" name="idUser" value="{{ auth()->id() }}">
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nama Calon Siswa</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
