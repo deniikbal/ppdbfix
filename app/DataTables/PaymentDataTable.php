@@ -26,7 +26,7 @@ class PaymentDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($row) {
                 $aksi = '
-                <span class="badge badge-' . ($row->status == 'PENDING' ? 'warning' : 'primary') . '">' . $row->status . '</span>
+                <span class="badge badge-' . ($row->status == 'PENDING' ? 'warning' : ($row->status == 'SETTLED' ? 'success' : 'dark')) . '">' . $row->status . '</span>
                 ';
                 return $aksi;
             })
