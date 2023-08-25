@@ -17,6 +17,9 @@
                                                                                     class="nav-link"><i
                     data-feather="user"></i>
             <span>Schools</span></a></li>
+    <li class="nav-item @if (request()->routeIs('adminpayment')) active @endif"><a href="{{ route('adminpayment') }}"
+                                                                                   class="nav-link"><i
+                    data-feather="user"></i><span>Payment</span></a></li>
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>
         <ul>
@@ -26,6 +29,7 @@
             <li><a href="page-events.html">Events</a></li>
         </ul>
     </li>
+
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>

@@ -2,7 +2,9 @@
 
 namespace App\DataTables;
 
-use App\Models\Payment;
+
+use App\Models\payment_xendit;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -22,16 +24,22 @@ class PaymentDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'payment.action')
+            ->addColumn('action', function ($row) {
+                $aksi = '
+                <span class="badge badge-' . ($row->status == 'PENDING' ? 'warning' : 'primary') . '">' . $row->status . '</span>
+                ';
+                return $aksi;
+            })
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Payment $model): QueryBuilder
+    public function query(payment_xendit $model): QueryBuilder
     {
-        return $model->newQuery();
+        //$query = payment_xendit::with('student')->get();
+        return $model->newQuery()->with('student');
     }
 
     /**
@@ -40,7 +48,7 @@ class PaymentDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('payment-table')
+            ->setTableId('xendit_payments-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -63,9 +71,16 @@ class PaymentDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('invoice'),
-            Column::make('jenis_bayar'),
-            Column::make('nominal'),
+            'name' => new \Yajra\DataTables\Html\Column(['title' => 'Nama Siswa', 'data' => 'student.name', 'name' =>
+            'student.name']),
+            'nodaftar' => new \Yajra\DataTables\Html\Column(['title' => 'No Daftar', 'data' => 'student.nodaftar', 'name' =>
+            'student.nodaftar']),
+            'invoice' => new \Yajra\DataTables\Html\Column(['title' => 'Invoice', 'data' => 'external_id', 'name' =>
+            'external_id']),
+            Column::make('amount'),
+            //Column::make(['data' => 'action'], 'Status'),
+            'status' => new \Yajra\DataTables\Html\Column(['title' => 'Status', 'data' => 'action', 'name' =>
+            'action']),
         ];
     }
 

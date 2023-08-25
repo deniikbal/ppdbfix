@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     public function user(): BelongsTo
@@ -131,5 +133,10 @@ class Student extends Model
             'seni/lukis/desain/artis' => 'Seni/Lukis/Desain/Artis',
             'lainnya' => 'Lainnya',
         ]);
+    }
+
+    public function payments(): HasMany
+    {
+        return $this->hasMany(payment_xendit::class);
     }
 }

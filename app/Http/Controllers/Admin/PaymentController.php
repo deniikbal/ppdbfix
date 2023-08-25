@@ -9,10 +9,8 @@ use function Termwind\render;
 
 class PaymentController extends Controller
 {
-    public function adminpayment(PaymentDataTable $paymentDataTable)
+    public function index(PaymentDataTable $dataTable)
     {
-        return $paymentDataTable->render('admin.payment.index');
-
-
+        return $dataTable->render('admin.payment.index');
     }
 }

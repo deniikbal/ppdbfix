@@ -55,6 +55,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('wastore', [\App\Http\Controllers\WhatsAppController::class, 'wastore'])->name('wa.store');
     Route::post('deletewa/{id}', [\App\Http\Controllers\WhatsAppController::class, 'deletewa'])->name('deletewa');
     Route::post('waupdate/{id}', [\App\Http\Controllers\WhatsAppController::class, 'waupdate'])->name('waupdate');
+    //PAYMENT
+    Route::get('adminpayment', [\App\Http\Controllers\Admin\PaymentController::class, 'index'])->name('adminpayment');
 
 });
 //Student
