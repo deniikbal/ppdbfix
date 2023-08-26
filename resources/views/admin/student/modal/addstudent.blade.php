@@ -27,6 +27,17 @@
 
                         </div>
                     </div>
+                    <div class="form-row mb-1">
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail3">Nama User</label>
+                            <select name="id" id="id" class="form-control select2">
+                                <option value="">--Pilih--</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-row mb-2">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">Jenis Kelamin</label>
@@ -123,10 +134,12 @@
                     }
                 });
                 $.ajax({
-                    url: "{{ url('/createstudent') }}",
+                    url: "{{ url('/createstudentadmin') }}",
                     method: 'post',
                     data: {
                         name: $('#name').val(),
+                        id: $('#id').val(),
+                        nodaftar: $('#nodaftar').val(),
                         nama_ayah: $('#nama_ayah').val(),
                         jenis_kelamin: $('#jenis_kelamin').val(),
                         provinces_id: $('#provinces_id').val(),

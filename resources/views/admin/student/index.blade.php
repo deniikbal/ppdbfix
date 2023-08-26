@@ -11,7 +11,8 @@
         <h4 class="mg-b-0 tx-spacing--1">All Student</h4>
     </div>
     <div class="d-none d-md-block">
-        <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i data-feather="clock" class="wd-10 mg-r-5"></i>
+        <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i data-feather="clock"
+                                                                               class="wd-10 mg-r-5"></i>
             {{ \Carbon\Carbon::now()->format('D, d M Y H:i:s') }}
         </button>
     </div>
@@ -23,7 +24,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-end">
                     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
-                        data-target="#exampleModal"><i data-feather="user-plus"></i> Add Student
+                            data-target="#exampleModal"><i data-feather="user-plus"></i> Add Student
                     </button>
                 </div>
                 <div class="card-body">
@@ -32,7 +33,7 @@
             </div>
         </div>
     </div>
-    @include('admin.users.modal.createuser')
+    @include('admin.student.modal.addstudent')
 @endsection
 
 @push('scripts')

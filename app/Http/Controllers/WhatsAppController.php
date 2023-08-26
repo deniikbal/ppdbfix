@@ -11,8 +11,9 @@ class WhatsAppController extends Controller
 {
     public function index()
     {
+        $title = 'WhatsApp';
         $settings = WhatsApp::all();
-        return view('admin.whatsapp.index', compact('settings'));
+        return view('admin.whatsapp.index', compact('settings', 'title'));
 
     }
 

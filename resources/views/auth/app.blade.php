@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +32,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.png">
 
-    <title>DashForge Responsive Bootstrap 4 Dashboard Template</title>
+    <title>{{$title ?? ''}}</title>
 
     <!-- vendor css -->
     <link href="{{asset('/lib/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
@@ -57,7 +56,8 @@
         </div><!-- navbar-menu-header -->
     </div><!-- navbar-menu-wrapper -->
     <div class="navbar-right">
-        @if(request()->routeIs('register')) <a href="{{route('login')}}" class="btn
+        @if(request()->routeIs('register'))
+            <a href="{{route('login')}}" class="btn
         btn-log"><i data-feather="log-in"></i> <span>Log In</span></a>
         @elseif(request()->routeIs('login'))
             <a href="{{route('register')}}" class="btn
@@ -96,19 +96,19 @@
 <script src="{{asset('/lib/js-cookie/js.cookie.js')}}"></script>
 <script src="{{asset('/assets/js/dashforge.settings.js')}}"></script>
 <script>
-    $(function(){
+    $(function () {
         'use script'
 
-        window.darkMode = function(){
+        window.darkMode = function () {
             $('.btn-white').addClass('btn-dark').removeClass('btn-white');
         }
 
-        window.lightMode = function() {
+        window.lightMode = function () {
             $('.btn-dark').addClass('btn-white').removeClass('btn-dark');
         }
 
         var hasMode = Cookies.get('df-mode');
-        if(hasMode === 'dark') {
+        if (hasMode === 'dark') {
             darkMode();
         } else {
             lightMode();

@@ -14,14 +14,16 @@ class UserController extends Controller
 {
     public function index(UsersDataTable $dataTable)
     {
+        $title = 'User Managemenet';
         $users = User::all();
-        return $dataTable->render('admin.users.index', compact('users'));
+        return $dataTable->render('admin.users.index', compact('users', 'title'));
     }
 
     public function show($id)
     {
+        $title = 'Edit User';
         $user = User::find($id);
-        return view('admin.users.show', compact('user'));
+        return view('admin.users.show', compact('user', 'title'));
     }
 
     public function update(Request $request, $id)

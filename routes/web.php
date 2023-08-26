@@ -50,6 +50,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('showstudent/{id}/edit', [AdminStudentController::class, 'showtudent'])->name('showstudent');
     Route::delete('deletestudent/{id}', [AdminStudentController::class, 'destroy'])->name('deletestudent');
     Route::put('updatestudentadmin/{uuid}', [AdminStudentController::class, 'updatestudentadmin'])->name('updatestudentadmin');
+    Route::post('createstudentadmin', [AdminStudentController::class, 'createstudentadmin'])->name('createstudentadmin');
     //WhatsApp
     Route::get('wa', [\App\Http\Controllers\WhatsAppController::class, 'index'])->name('wa.index');
     Route::post('wastore', [\App\Http\Controllers\WhatsAppController::class, 'wastore'])->name('wa.store');
@@ -57,6 +58,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('waupdate/{id}', [\App\Http\Controllers\WhatsAppController::class, 'waupdate'])->name('waupdate');
     //PAYMENT
     Route::get('adminpayment', [\App\Http\Controllers\Admin\PaymentController::class, 'index'])->name('adminpayment');
+    Route::get('editpaymentadmin/{id}', [\App\Http\Controllers\Admin\PaymentController::class, 'editpaymentadmin'])->name('editpaymentadmin');
+    Route::put('updatepayadmin/{id}', [\App\Http\Controllers\Admin\PaymentController::class, 'updatepayadmin'])->name
+    ('updatepayadmin');
 
 });
 //Student

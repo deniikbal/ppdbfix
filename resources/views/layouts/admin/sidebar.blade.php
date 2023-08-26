@@ -15,21 +15,11 @@
             <span>User Management</span></a></li>
     <li class="nav-item @if (request()->routeIs('schools.index')) active @endif"><a href="{{ route('schools.index') }}"
                                                                                     class="nav-link"><i
-                    data-feather="user"></i>
+                    data-feather="briefcase"></i>
             <span>Schools</span></a></li>
     <li class="nav-item @if (request()->routeIs('adminpayment')) active @endif"><a href="{{ route('adminpayment') }}"
                                                                                    class="nav-link"><i
-                    data-feather="user"></i><span>Payment</span></a></li>
-    <li class="nav-item with-sub">
-        <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>
-        <ul>
-            <li><a href="page-profile-view.html">View Profile</a></li>
-            <li><a href="page-connections.html">Connections</a></li>
-            <li><a href="page-groups.html">Groups</a></li>
-            <li><a href="page-events.html">Events</a></li>
-        </ul>
-    </li>
-
+                    data-feather="shopping-bag"></i><span>Payment</span></a></li>
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>

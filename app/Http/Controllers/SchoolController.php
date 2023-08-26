@@ -23,8 +23,9 @@ class SchoolController extends Controller
      */
     public function index(SchoolsDataTable $dataTable)
     {
+        $title = 'Data Sekolah';
         $schools = School::all();
-        return $dataTable->render('admin.school.index', compact('schools'));
+        return $dataTable->render('admin.school.index', compact('schools', 'title'));
     }
 
     public function import()
@@ -87,8 +88,9 @@ class SchoolController extends Controller
 
     public function schooledit($id)
     {
+        $title = 'Edit Sekolah';
         $school = School::find($id);
-        return view('admin.school.schooledit', compact('school'));
+        return view('admin.school.schooledit', compact('school', 'title'));
 
     }
 

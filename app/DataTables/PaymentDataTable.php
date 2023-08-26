@@ -26,7 +26,9 @@ class PaymentDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($row) {
                 $aksi = '
-                <span class="badge badge-' . ($row->status == 'PENDING' ? 'warning' : ($row->status == 'SETTLED' ? 'success' : 'dark')) . '">' . $row->status . '</span>
+                <a href="' . url("editpaymentadmin/$row->id") . '" class="badge badge-' . ($row->status == 'PENDING' ?
+                        'warning' : ($row->status == 'SETTLED' ?
+                            'success' : 'dark')) . '">' . $row->status . '</a>
                 ';
                 return $aksi;
             })
@@ -72,15 +74,12 @@ class PaymentDataTable extends DataTable
         return [
             Column::make('id'),
             'name' => new \Yajra\DataTables\Html\Column(['title' => 'Nama Siswa', 'data' => 'student.name', 'name' =>
-            'student.name']),
+                'student.name']),
             'nodaftar' => new \Yajra\DataTables\Html\Column(['title' => 'No Daftar', 'data' => 'student.nodaftar', 'name' =>
-            'student.nodaftar']),
+                'student.nodaftar']),
             'invoice' => new \Yajra\DataTables\Html\Column(['title' => 'Invoice', 'data' => 'external_id', 'name' =>
-            'external_id']),
-            Column::make('amount'),
-            //Column::make(['data' => 'action'], 'Status'),
-            'status' => new \Yajra\DataTables\Html\Column(['title' => 'Status', 'data' => 'action', 'name' =>
-            'action']),
+                'external_id']),
+            Column::make('amount'), 'status' => new \Yajra\DataTables\Html\Column(['title' => 'Status', 'data' => 'action', 'name' => 'action']),
         ];
     }
 
