@@ -28,6 +28,7 @@
                         <th>No.</th>
                         <th>Api Key</th>
                         <th>Sender</th>
+                        <th>Aktif Xendit</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -40,6 +41,7 @@
                             <td>{{$no++}}</td>
                             <td>{{$set->api_key}}</td>
                             <td>{{$set->sender}}</td>
+                            <td>{{$set->active}}</td>
                             <td>
                                 <button type="button" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
                                         data-toggle="modal" data-target="#editapikey{{$set->id}}"><i class="far

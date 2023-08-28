@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('api_key')->nullable();
             $table->string('sender')->nullable();
+            $table->integer('active')->default(0);
             $table->timestamps();
         });
     }

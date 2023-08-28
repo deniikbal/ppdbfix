@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,18 +14,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained()->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('nohp')->nullable();
+            $table->string('id_bayar')->nullable();
             $table->string('jenis_bayar')->nullable();
-            $table->string('transaction_status')->nullable();
-            $table->string('transaction_id')->nullable();
-            $table->string('order_id')->nullable();
-            $table->string('gross_amount')->nullable();
-            $table->string('payment_type')->nullable();
-            $table->string('transaction_time')->nullable();
-            $table->string('status_message')->nullable();
-            $table->string('pdf_url')->nullable();
+            $table->string('jenis_pembayaran')->nullable();
+            $table->string('nominal')->nullable();
+            $table->string('tanggal')->nullable();
+            $table->string('bukti_bayar')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

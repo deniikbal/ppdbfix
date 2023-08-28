@@ -44,16 +44,16 @@
                         $student->id)->where('description', 'Titipan Pembayaran')->count();
                     @endphp
 
-                    <a href="#createpaymenttp" class="btn btn-danger btn-sm @if($settled==1) disabled @endif"
+                    <a href="#uploadtp" class="btn btn-danger btn-sm @if($settled==1) disabled @endif"
                        data-toggle="modal">Titipan Pembayaran</a>
                     @if($settled!=0)
-                        <a href="#createpaymentdu" class="btn btn-success btn-sm" data-toggle="modal">Daftar Ulang</a>
+                        <a href="#uploaddu" class="btn btn-success btn-sm" data-toggle="modal">Daftar Ulang</a>
                     @endif
-                    @include('student.payment.modal.createpaymentdu')
-                    @include('student.payment.modal.createpayment')
+                    @include('student.payment.modal.uploaddu')
+                    @include('student.payment.modal.uploadtp')
                 </div>
                 <div class="row">
-                    @foreach ($paymentxendit as $pay)
+                    @foreach ($payment as $pay)
                         <div class="col-sm-6 col-lg-3">
                             <div class="alert alert-light">
                                 @if ($pay->description == 'Titipan Pembayaran')
@@ -67,10 +67,10 @@
                                         Ulang</h6>
                                 @endif
                                 <div class="d-flex d-lg-block d-xl-flex align-items-end">
-                                    <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">Rp. {{ $pay->amount }}</h3>
+                                    <h3 class="tx-normal tx-rubik mg-b-0 mg-r-5 lh-1">Rp. {{ $pay->nominal }}</h3>
                                 </div>
                                 <div>
-                                    <p class="mb-1">INVOICE : {{ $pay->external_id }}</p>
+                                    <p class="mb-1">INVOICE : {{ $pay->id_bayar }}</p>
                                     @if ($pay->status == 'pending')
                                         <p class="mb-1">Status : <span
                                                     class="badge badge-danger">{{ Str::upper($pay->status) }}</span>

@@ -77,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
     //Payment
     Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('pembayaran', [\App\Http\Controllers\Student\PaymentController::class, 'index'])->name('pembayaran.index');
+    Route::post('uploadtp', [\App\Http\Controllers\Student\PaymentController::class, 'uploadtp'])->name('uploadtp');
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');
     Route::post('bayar/{id}', [PaymentController::class, 'bayar'])->name('payment.bayar');
     Route::post('checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');

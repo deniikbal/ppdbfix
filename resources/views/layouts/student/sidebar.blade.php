@@ -8,14 +8,21 @@
         $hitung = App\Models\Student::where('user_id', auth()->id())
             ->get()
             ->count();
+        $activxendit = App\Models\WhatsApp::find(1);
     @endphp
     @if ($hitung != 1)
     @else
         <li class="nav-item @if (request()->routeIs('isibiodata')) active @endif"><a
                     href="{{ route('isibiodata') }}" class="nav-link"><i
                         data-feather="user"></i><span>Isi Biodata</span></a></li>
-        <li class="nav-item @if (request()->routeIs('payment.index')) active @endif"><a
-                    href="{{ route('payment.index') }}" class="nav-link"><i
-                        data-feather="life-buoy"></i><span>Pembayaran</span></a></li>
+        @if($activxendit->active==1)
+            <li class="nav-item @if (request()->routeIs('payment.index')) active @endif"><a
+                        href="{{ route('payment.index') }}" class="nav-link"><i
+                            data-feather="life-buoy"></i><span>Pembayaran Xendit</span></a></li>
+        @else
+            <li class="nav-item @if (request()->routeIs('pembayaran.index')) active @endif"><a
+                        href="{{ route('pembayaran.index') }}" class="nav-link"><i
+                            data-feather="life-buoy"></i><span>Pembayaran</span></a></li>
+        @endif
     @endif
 </ul>
