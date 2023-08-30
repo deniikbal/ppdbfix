@@ -1,4 +1,4 @@
-<div class="modal fade" id="createpaymentdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="uploaddu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
@@ -9,9 +9,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('payment_xendit') }}">
+                <form method="POST" action="{{ route('uploadtp') }}" enctype="multipart/form-data">
+                    {{--                <form method="POST" action="{{ route('payment_xendit') }}">--}}
                     @csrf
                     <input type="hidden" name="id" value="{{ $student->id }}">
+                    <input type="hidden" name="idUser" value="{{ auth()->id() }}">
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nama Calon Siswa</label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
@@ -33,24 +35,51 @@
                         @enderror
                     </div>
                     <div class="form-group mb-2">
-                        <label for="formGroupExampleInput" class="d-block">No Hp</label>
-                        <input type="text" name="nohp" class="form-control @error('nohp') is-invalid @enderror"
-                               placeholder="Enter your full nohp" value="{{ auth()->user()->no_handphone }}">
-                        @error('nohp')
+                        <label for="formGroupExampleInput" class="d-block">Tanggal Pembayaran</label>
+                        <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror"
+                               value="{{ old('tanggal') }}">
+                        @error('tanggal')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                     <div class="form-group mb-2">
+                        <label for="formGroupExampleInput2" class="d-block">Nama Pembayaran</label>
+                        <input type="text" name="jenis_bayar" class="form-control" value="Daftar Ulang"
+                               readonly>
+                    </div>
+                    <div class="form-group mb-2">
                         <label for="formGroupExampleInput2" class="d-block">Jenis Pembayaran</label>
-                        <input type="text" name="jenis_bayar" class="form-control" readonly value="Daftar Ulang">
+                        <select name="jenis_pembayaran"
+                                class="form-control @error('jenis_pembayaran') is-invalid @enderror">
+                            <option value="">--Pilih--</option>
+                            <option value="cash">Cash</option>
+                            <option value="transfer">Transfer</option>
+                        </select>
+                        @error('jenis_pembayaran')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nominal Pembayaran</label>
-                        <input type="text" name="nominal" class="form-control @error('nominal') is-invalid @enderror"
-                               placeholder="Nominal Pembayaran">
+                        <input type="text" name="nominal"
+                               class="form-control @error('nominal') is-invalid @enderror"
+                               placeholder="Nominal Pembayaran" value="{{old('nominal')}}">
                         @error('nominal')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="formGroupExampleInput" class="d-block">Bukti Pembayaran</label>
+                        <input type="file" name="bukti_bayar"
+                               class="form-control @error('bukti_bayar') is-invalid @enderror"
+                               placeholder="Nominal Pembayaran">
+                        @error('bukti_bayar')
                         <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -48,7 +48,6 @@ class UserController extends Controller
             ]);
             return redirect()->route('users.index')->with('success', 'User ' . $request->name . ' Berhasil di Update');
         }
-
     }
 
     public function delete($id)
@@ -86,6 +85,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         RegisterNewUser::dispatch($user);
-        return redirect()->back()->with('success', ' Berhasil di Hapus');
+        return redirect()->back()->with('success', ' Berhasil Mengirim Wa');
     }
 }

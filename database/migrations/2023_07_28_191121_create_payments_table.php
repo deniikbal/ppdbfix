@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('nominal')->nullable();
             $table->string('tanggal')->nullable();
             $table->string('bukti_bayar')->nullable();
+            $table->integer('verifikasi')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

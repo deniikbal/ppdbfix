@@ -14,12 +14,10 @@
         <div class="col-lg-12">
             <div class="card-body">
                 <div class="alert alert-solid alert-info alert-dismissible fade show" role="alert">
-                    <p>Pada menu pembayaran ini silahkan untuk mengikuti </p>
+                    <p>Pada menu pembayaran ini silahkan untuk mengikuti alur berikut : </p>
                     <ol>
-                        <li>Isi data siswa dengan mengklik
-                            <diV class="badge badge-danger"> Verifikasi Data Siswa dan Sekolah</diV>
-                            , harap di isi data siswa dengan
-                            data sebenar-benarnya dan jika sudah terisi semua klik simpan permananen diakhir mengisi.
+                        <li>Silahkan untuk melakukan transfer titipan pembayaran sebesar Rp. 300.000 ke nomor
+                            rekening yang di informasikan oleh admin.
                         </li>
                         <li>Klik tombol
                             <div class="badge badge-primary">Pembayaran Biaya Pendidikan</div>

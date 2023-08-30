@@ -12,7 +12,6 @@
                 <form method="POST" action="{{ route('uploadtp') }}" enctype="multipart/form-data">
                     {{--                <form method="POST" action="{{ route('payment_xendit') }}">--}}
                     @csrf
-
                     <input type="hidden" name="id" value="{{ $student->id }}">
                     <input type="hidden" name="idUser" value="{{ auth()->id() }}">
                     <div class="form-group mb-2">

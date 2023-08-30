@@ -12,8 +12,9 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payment = Payment::all();
-        return view('student.payment.main', compact('payment'));
+        $student = Student::where('user_id', auth()->id())->first();
+        $payments = Payment::where('student_id', $student->id)->get();
+        return view('student.payment.main', compact('payments'));
     }
 
     public function uploadtp(Request $request, Student $student)
@@ -42,6 +43,6 @@ class PaymentController extends Controller
             'jenis_bayar' => $request->jenis_bayar,
             'bukti_bayar' => $save,
         ]);
-        return redirect()->back()->with('success', 'Pembayaran berhasil Ditambah');
+        return redirect()->back()->with('success', 'Upload Bukti Pembayaran Berhasil');
     }
 }

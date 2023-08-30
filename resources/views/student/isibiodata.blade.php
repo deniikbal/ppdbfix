@@ -11,10 +11,10 @@
 @section('content')
     @php
         $student = App\Models\Student::where('user_id', auth()->id())->first();
-        $settled = App\Models\payment_xendit::where('status','settled')->where('student_id',
-                    $student->id)->where('description', 'Titipan Pembayaran')->count();
+        $countverifikasi = App\Models\Payment::where('student_id', $student->id)->where('verifikasi',1)->where
+        ('jenis_bayar','Titipan Pembayaran')->count();
     @endphp
-    @if($settled !=0)
+    @if($countverifikasi !=0)
         <div class="row row-xs">
             <div class="col-sm-6 col-lg-6">
                 <div class="card card-body border-danger">
@@ -97,7 +97,7 @@
             <div class="col-sm-6 col-lg-6 mg-t-10 mg-lg-t-0">
                 <div class="card card-body border-danger">
                     <h6 class="tx-uppercase d-flex justify-content-between tx-11 tx-spacing-1 tx-color-02 tx-semibold mg-b-8">
-                        <a href=""
+                        <a href="{{route('file')}}"
                            class="stretched-link text-black text-decoration-none">
                             Upload File</a>
                         @if($student->ijazah==null)
@@ -123,7 +123,10 @@
     @else
         <div class="card-body">
             <div class="alert alert-solid alert-info alert-dismissible fade show" role="alert">
-                <p>Pada menu pembayaran ini silahkan untuk mengikuti </p>
+                <p>Ananda {{$student->name}} Belum diperkenankan untuk mengisi biodata, Silahkan Ananda
+                    {{$student->name}} untuk melakukan titipan pembayaran terlebih dahulu. Info lebih lanjut silahkan
+                    menghubungi Admin PPDB SMA TELKOM BANDUNG
+                </p>
             </div>
         </div>
     @endif
