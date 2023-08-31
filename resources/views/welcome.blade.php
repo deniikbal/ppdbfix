@@ -87,16 +87,16 @@
                                 @endif
                             @else
                                 <div class="text-center text-lg-start">
-                                    {{--                                    <a href="{{ route('register') }}" target="_blank"--}}
-                                    {{--                                       class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">--}}
-                                    {{--                                        <i class="bi bi-person-plus-fill ml-2"></i>--}}
-                                    {{--                                        <span>Daftar Sekarang</span>--}}
-                                    {{--                                    </a>--}}
-                                    {{--                                    <a href="{{ route('login') }}" target="_blank"--}}
-                                    {{--                                       class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">--}}
-                                    {{--                                        <span>Login</span>--}}
-                                    {{--                                        <i class="bi bi-box-arrow-in-right"></i>--}}
-                                    {{--                                    </a>--}}
+                                    <a href="{{ route('register') }}" target="_blank"
+                                       class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">
+                                        <i class="bi bi-person-plus-fill ml-2"></i>
+                                        <span>Daftar Sekarang</span>
+                                    </a>
+                                    <a href="{{ route('login') }}" target="_blank"
+                                       class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">
+                                        <span>Login</span>
+                                        <i class="bi bi-box-arrow-in-right"></i>
+                                    </a>
                                 </div>
                             @endauth
                         </div>
