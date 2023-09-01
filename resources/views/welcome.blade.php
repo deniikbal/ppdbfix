@@ -70,7 +70,7 @@
                     @if (Route::has('login'))
                         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                             @auth
-                                @if(Auth::user()->role == 'admin')
+                                @if(Auth::user()->role == 1)
                                     <div class="text-center text-lg-start">
                                         <a href="{{ route('admin.index') }}" target="_blank"
                                            class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">

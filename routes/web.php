@@ -69,7 +69,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 });
 //Student
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'student'])->group(function () {
     Route::get('student', [StudentController::class, 'index'])->name('student.index');
     Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
     Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
