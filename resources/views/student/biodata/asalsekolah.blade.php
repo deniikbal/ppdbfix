@@ -37,6 +37,7 @@
                                 {{ Carbon\Carbon::now()->format('Y') }}</span>
 
                         <ul class="pd-l-10 mg-0 mg-t-20 tx-13">
+                            <li>NISN : {{ $student->nisn }}</li>
                             <li>Nama Sekolah : {{ $student->asal_sekolah }}</li>
                             <li>NPSN : {{ $student->npsn }}</li>
                             <li>Kecamatan : {{ $student->kec_sekolah }}</li>

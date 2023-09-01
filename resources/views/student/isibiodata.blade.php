@@ -49,6 +49,8 @@
                             Asal Sekolah</a>
                         @if($student->npsn==null)
                             <span class="badge badge-danger">Belum Lengkap</span>
+                        @elseif($student->nisn==null)
+                            <span class="badge badge-danger">Belum Lengkap</span>
                         @else
                             <span class="badge badge-success">Lengkap</span>
                         @endif

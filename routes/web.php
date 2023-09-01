@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\Admin\PaymentController as PaymentControllerAlias;
+use App\Http\Controllers\Admin\PrintController;
 use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\Student\PaymentController as PaymentControllerAlias1;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\WhatsAppController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,15 +55,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('deletestudent/{id}', [AdminStudentController::class, 'destroy'])->name('deletestudent');
     Route::put('updatestudentadmin/{uuid}', [AdminStudentController::class, 'updatestudentadmin'])->name('updatestudentadmin');
     Route::post('createstudentadmin', [AdminStudentController::class, 'createstudentadmin'])->name('createstudentadmin');
+    Route::put('printform/{id}', [PrintController::class, 'print'])->name('printform');
     //WhatsApp
-    Route::get('wa', [\App\Http\Controllers\WhatsAppController::class, 'index'])->name('wa.index');
-    Route::post('wastore', [\App\Http\Controllers\WhatsAppController::class, 'wastore'])->name('wa.store');
-    Route::post('deletewa/{id}', [\App\Http\Controllers\WhatsAppController::class, 'deletewa'])->name('deletewa');
-    Route::post('waupdate/{id}', [\App\Http\Controllers\WhatsAppController::class, 'waupdate'])->name('waupdate');
+    Route::get('wa', [WhatsAppController::class, 'index'])->name('wa.index');
+    Route::post('wastore', [WhatsAppController::class, 'wastore'])->name('wa.store');
+    Route::post('deletewa/{id}', [WhatsAppController::class, 'deletewa'])->name('deletewa');
+    Route::post('waupdate/{id}', [WhatsAppController::class, 'waupdate'])->name('waupdate');
     //PAYMENT
-    Route::get('adminpayment', [\App\Http\Controllers\Admin\PaymentController::class, 'index'])->name('adminpayment');
-    Route::get('editpaymentadmin/{id}', [\App\Http\Controllers\Admin\PaymentController::class, 'editpaymentadmin'])->name('editpaymentadmin');
-    Route::put('updatepayadmin/{id}', [\App\Http\Controllers\Admin\PaymentController::class, 'updatepayadmin'])->name
+    Route::get('adminpayment', [PaymentControllerAlias::class, 'index'])->name('adminpayment');
+    Route::get('editpaymentadmin/{id}', [PaymentControllerAlias::class, 'editpaymentadmin'])->name('editpaymentadmin');
+    Route::put('updatepayadmin/{id}', [PaymentControllerAlias::class, 'updatepayadmin'])->name
     ('updatepayadmin');
 
 });
@@ -77,11 +82,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
     //Payment
     Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
-    Route::get('pembayaran', [\App\Http\Controllers\Student\PaymentController::class, 'index'])->name('pembayaran.index');
-    Route::post('uploadtp', [\App\Http\Controllers\Student\PaymentController::class, 'uploadtp'])->name('uploadtp');
+    Route::get('pembayaran', [PaymentControllerAlias1::class, 'index'])->name('pembayaran.index');
+    Route::post('uploadtp', [PaymentControllerAlias1::class, 'uploadtp'])->name('uploadtp');
     Route::post('create', [PaymentController::class, 'store'])->name('payment.create');
     Route::post('bayar/{id}', [PaymentController::class, 'bayar'])->name('payment.bayar');
     Route::post('checkout/{id}', [PaymentController::class, 'checkout'])->name('checkout');
     //Update Alamat
     Route::post('updatealamat/{uuid}', [StudentController::class, 'updatealamat'])->name('updatealamat');
+    //Upload File
+    Route::get('file', [StudentController::class, 'file'])->name('file');
 });

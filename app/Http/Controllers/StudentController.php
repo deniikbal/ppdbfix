@@ -175,10 +175,14 @@ class StudentController extends Controller
 
     public function updatesekolah(Request $request, $uuid)
     {
+        $valid = $request->validate([
+            'nisn' => 'required',
+        ]);
         $school = School::findorfail($request->asal_sekolah);
         $students = Student::where('uuid', $uuid)->first();
         $students->update([
             'asal_sekolah' => $school->sekolah,
+            'nisn' => $request->nisn,
             'npsn' => $school->npsn,
             'provinsi_sekolah' => $school->propinsi,
             'kota_sekolah' => $school->kabupaten_kota,

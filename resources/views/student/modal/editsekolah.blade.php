@@ -15,6 +15,18 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
+                            <label for="inputEmail3">NISN</label>
+                            <input class="form-control @error('nisn') is-invalid @enderror" name="nisn" type="text"
+                                   value="{{old('nisn',
+                            $student->nisn)
+                            }}">
+                            @error('nisn')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="inputEmail3">Asal Sekolah</label>
                             <select class="form-control select2" id="asal_sekolah" name="asal_sekolah">
                                 <option value="">---Pilih---</option>

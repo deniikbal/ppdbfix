@@ -30,6 +30,12 @@ class StudentsDataTable extends DataTable
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="' . url("showstudent/$row->id/edit") . '">Edit</a>
+                        <form action="' . url("printform/$row->uuid") . '" method="post">
+                        ' . csrf_field() . '
+                            ' . method_field("PUT") . '
+                        <button class="dropdown-item" target ="blank" onclick="return confirm(\'Yakin Mau Print ' .
+                    $row->name . '\')" type="submit">Print Formulir</button>
+                        </form>
                         <form action="' . url("deletestudent/$row->id") . '" method="post">
                         ' . csrf_field() . '
                             ' . method_field("DELETE") . '
