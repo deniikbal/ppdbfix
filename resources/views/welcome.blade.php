@@ -72,14 +72,14 @@
                             @auth
                                 @if(Auth::user()->role == 'admin')
                                     <div class="text-center text-lg-start">
-                                        <a href="{{ route('dashboard') }}" target="_blank"
+                                        <a href="{{ route('admin.index') }}" target="_blank"
                                            class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">
                                             <i class="bi bi-person-plus-fill ml-2"></i> <span>Admin</span>
                                         </a>
                                     </div>
                                 @else
                                     <div class="text-center text-lg-start">
-                                        <a href="{{ route('students.index') }}" target="_blank"
+                                        <a href="{{ route('student.index') }}" target="_blank"
                                            class="btn btn-danger d-inline-flex align-items-center justify-content-center align-self-center">
                                             <i class="bi bi-person-plus-fill ml-2"></i> <span>Home</span>
                                         </a>

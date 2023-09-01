@@ -35,7 +35,7 @@ class PrintController extends Controller
         $this->pdf->SetMargins(10, 10, 10);
         $this->pdf->Ln(7);
         $this->pdf->SetFont('Arial', 'B', 18);
-        $this->pdf->Cell(190, 5, 'Formulir Pendaftaran PPDB Tahun 2023', '0', 0, 'C');
+        $this->pdf->Cell(190, 5, 'Formulir Pendaftaran PPDB Tahun' . Carbon::now()->isoFormat('Y'), '0', 0, 'C');
         $this->pdf->Ln(10);
         $this->pdf->SetFont('Arial', 'B', 12);
         $this->pdf->Cell(190, 7, 'Data Pribadi Pendaftar', '0', 1, 'L');
