@@ -26,7 +26,6 @@ class PrintController extends Controller
         $image = asset('assets/img/logots.png', "r");
         //dd($image);
         $pasfoto = asset('storage/' . $student->foto);
-        $pasfoto = 'https://ppdb.smatelkombandung.sch.id/assets/img/logots.png';
         $iconuser = 'https://ppdb.smatelkombandung.sch.id/assets/img/pp.jpg';
 
         $this->pdf->SetFont('Arial', 'B', 12);
@@ -35,18 +34,17 @@ class PrintController extends Controller
         $this->pdf->SetMargins(10, 10, 10);
         $this->pdf->Ln(7);
         $this->pdf->SetFont('Arial', 'B', 18);
-        $this->pdf->Cell(190, 5, 'Formulir Pendaftaran PPDB Tahun' . Carbon::now()->isoFormat('Y'), '0', 0, 'C');
+        $this->pdf->Cell(190, 5, 'Formulir Pendaftaran PPDB Tahun ' . Carbon::now()->isoFormat('Y'), '0', 0, 'C');
         $this->pdf->Ln(10);
         $this->pdf->SetFont('Arial', 'B', 12);
         $this->pdf->Cell(190, 7, 'Data Pribadi Pendaftar', '0', 1, 'L');
         $this->pdf->SetFont('Arial', '', 11);
         $this->pdf->Ln(5);
-        if ($student == null) {
-            $this->pdf->Image($pasfoto, 155, 75, 40, 60);
-        } else {
+        if ($student->foto == null) {
             $this->pdf->Image($iconuser, 155, 75, 40, 60);
+        } else {
+            $this->pdf->Image($pasfoto, 155, 75, 40, 60);
         }
-        $this->pdf->Image($pasfoto, 155, 75, 40, 60);
         $this->pdf->Cell(55, 5, 'No Pendaftaran', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');

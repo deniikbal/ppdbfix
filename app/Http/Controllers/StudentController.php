@@ -231,4 +231,70 @@ class StudentController extends Controller
         $schools = School::all();
         return view('student.biodata.asalsekolah', compact('student', 'schools'));
     }
+
+    public function uploadfile()
+    {
+        $student = Student::where('user_id', auth()->id())->first();
+        $title = 'Upload File';
+        return view('student.file.index', compact('student', 'title'));
+
+    }
+
+    public function uploadkk(Request $request)
+    {
+
+        $request->validate([
+            'doc_kk' => 'required|image',
+        ]);
+        if ($request->file('doc_kk')) {
+            if ($request->oldfile) {
+                Storage::delete($request->oldfile);
+            }
+            $save = $request->file('doc_kk')->store('doc_kk');
+        }
+        $student = Student::find($request->id);
+        $student->update([
+            'doc_kk' => $save,
+        ]);
+        return redirect()->back()->with('success', 'Berhasil Upload Kartu Keluarga');
+
+    }
+
+    public function uploadakte(Request $request)
+    {
+        $request->validate([
+            'doc_akte' => 'required|image',
+        ]);
+        if ($request->file('doc_akte')) {
+            if ($request->oldfile) {
+                Storage::delete($request->oldfile);
+            }
+            $save = $request->file('doc_akte')->store('doc_akte');
+        }
+        $student = Student::find($request->id);
+        $student->update([
+            'doc_akte' => $save,
+        ]);
+        return redirect()->back()->with('success', 'Berhasil Upload Akte Lahir');
+
+    }
+
+    public function uploadfoto(Request $request)
+    {
+        $request->validate([
+            'foto' => 'required|image',
+        ]);
+        if ($request->file('foto')) {
+            if ($request->oldfile) {
+                Storage::delete($request->oldfile);
+            }
+            $save = $request->file('foto')->store('foto');
+        }
+        $student = Student::find($request->id);
+        $student->update([
+            'foto' => $save,
+        ]);
+        return redirect()->back()->with('success', 'Berhasil Upload Pas Foto');
+
+    }
 }

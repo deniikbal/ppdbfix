@@ -90,5 +90,8 @@ Route::middleware(['auth', 'student'])->group(function () {
     //Update Alamat
     Route::post('updatealamat/{uuid}', [StudentController::class, 'updatealamat'])->name('updatealamat');
     //Upload File
-    Route::get('file', [StudentController::class, 'file'])->name('file');
+    Route::get('file', [StudentController::class, 'uploadfile'])->name('file');
+    Route::post('uploadkk', [StudentController::class, 'uploadkk'])->name('uploadkk');
+    Route::post('uploadakte', [StudentController::class, 'uploadakte'])->name('uploadakte');
+    Route::post('uploadfoto', [StudentController::class, 'uploadfoto'])->name('uploadfoto');
 });

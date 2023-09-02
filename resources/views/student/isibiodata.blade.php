@@ -102,7 +102,11 @@
                         <a href="{{route('file')}}"
                            class="stretched-link text-black text-decoration-none">
                             Upload File</a>
-                        @if($student->ijazah==null)
+                        @if($student->doc_kk==null)
+                            <span class="badge badge-danger">Belum Lengkap</span>
+                        @elseif($student->doc_akte==null)
+                            <span class="badge badge-danger">Belum Lengkap</span>
+                        @elseif($student->foto==null)
                             <span class="badge badge-danger">Belum Lengkap</span>
                         @else
                             <span class="badge badge-success">Lengkap</span>
