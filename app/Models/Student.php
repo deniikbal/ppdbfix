@@ -139,4 +139,9 @@ class Student extends Model
     {
         return $this->hasMany(payment_xendit::class);
     }
+
+    public function payment(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
