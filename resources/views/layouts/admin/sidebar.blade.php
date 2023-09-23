@@ -15,8 +15,6 @@
     <li class="nav-item @if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}"
             class="nav-link"><i data-feather="user"></i>
             <span>User Management</span></a></li>
-
-
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>
