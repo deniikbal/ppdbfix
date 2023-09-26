@@ -43,7 +43,8 @@ class PrintController extends Controller
         if ($student->foto == null) {
             $this->pdf->Image($iconuser, 155, 75, 40, 60);
         } else {
-            $this->pdf->Image($pasfoto, 155, 75, 40, 60);
+            $this->pdf->Image($pasfoto, 155, 75, 40, 60,);
+            // $this->pdf->Image($pasfoto);
         }
         $this->pdf->Cell(55, 5, 'No Pendaftaran', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
@@ -145,10 +146,10 @@ class PrintController extends Controller
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->kec_sekolah, '0', 1, 'L');
 
-//        $this->pdf->Cell(55, 5, 'Desa / Kelurahan SMP/MTs', '0', 0, 'L');
-//        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
-//        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
-//        $this->pdf->Cell(50, 5, $student->desa_sekolah, '0', 1, 'L');
+        //        $this->pdf->Cell(55, 5, 'Desa / Kelurahan SMP/MTs', '0', 0, 'L');
+        //        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
+        //        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
+        //        $this->pdf->Cell(50, 5, $student->desa_sekolah, '0', 1, 'L');
 
         $this->pdf->Ln(5);
         $this->pdf->SetFont('Arial', 'B', 12);
@@ -228,8 +229,15 @@ class PrintController extends Controller
         $this->pdf->SetFont('Arial', 'I', 8);
         $this->pdf->SetFillColor(136, 137, 136);
         $this->pdf->SetY(280, 5);
-        $this->pdf->Cell(0, 5, 'PPDB SMA TELKOM - Halaman : ' . $this->pdf->PageNo(),
-            0, 0, 'C', true);
+        $this->pdf->Cell(
+            0,
+            5,
+            'PPDB SMA TELKOM - Halaman : ' . $this->pdf->PageNo(),
+            0,
+            0,
+            'C',
+            true
+        );
 
 
         $this->pdf->SetFont('Arial', 'B', 12);
@@ -278,33 +286,38 @@ class PrintController extends Controller
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->provinsi_pd, '0', 1, 'L');
 
-//        $this->pdf->Ln(5);
-//        $this->pdf->SetFont('Arial', 'B', 12);
-//        $this->pdf->Cell(190, 7, 'Data Prestasi Pendaftar', '0', 1, 'L');
-//        $this->pdf->SetFont('Arial', '', 11);
-//        $this->pdf->Ln(3);
-//
-//        $this->pdf->SetFillColor(228, 38, 44);
-//        $this->pdf->Cell(10, 6, 'No', '1', 0, 'C', true);
-//        $this->pdf->Cell(80, 6, 'Nama Kegiatan', '1', 0, 'C', true);
-//        $this->pdf->Cell(25, 6, 'Jenis', '1', 0, 'C', true);
-//        $this->pdf->Cell(30, 6, 'Tingkat', '1', 0, 'C', true);
-//        $this->pdf->Cell(20, 6, 'Tahun', '1', 0, 'C', true);
-//        $this->pdf->Cell(30, 6, 'Pencapaian', '1', 1, 'C', true);
+        $this->pdf->Ln(8);
+        $this->pdf->SetFont('Arial', 'B', 12);
+        $this->pdf->Cell(190, 7, 'Upload File', '0', 1, 'L');
+        $this->pdf->SetFont('Arial', '', 11);
+        $this->pdf->Ln(3);
+        //        $this->pdf->Ln(5);
+        //        $this->pdf->SetFont('Arial', 'B', 12);
+        //        $this->pdf->Cell(190, 7, 'Data Prestasi Pendaftar', '0', 1, 'L');
+        //        $this->pdf->SetFont('Arial', '', 11);
+        //        $this->pdf->Ln(3);
+        //
+        //        $this->pdf->SetFillColor(228, 38, 44);
+        //        $this->pdf->Cell(10, 6, 'No', '1', 0, 'C', true);
+        //        $this->pdf->Cell(80, 6, 'Nama Kegiatan', '1', 0, 'C', true);
+        //        $this->pdf->Cell(25, 6, 'Jenis', '1', 0, 'C', true);
+        //        $this->pdf->Cell(30, 6, 'Tingkat', '1', 0, 'C', true);
+        //        $this->pdf->Cell(20, 6, 'Tahun', '1', 0, 'C', true);
+        //        $this->pdf->Cell(30, 6, 'Pencapaian', '1', 1, 'C', true);
 
-//        $prestasi = Prestasi::where('student_id', $student->id)->get();
+        //        $prestasi = Prestasi::where('student_id', $student->id)->get();
 
 
-//        $no = 1;
-//        foreach ($prestasi as $item) {
-//            $this->pdf->Cell(10, 6, $no++, '1', 0, 'C');
-//            $this->pdf->Cell(80, 6, $item->nama_kegiatan, '1', 0, 'L');
-//            $this->pdf->Cell(25, 6, $item->jenis_kegiatan, '1', 0, 'C');
-//            $this->pdf->Cell(30, 6, $item->tingkat, '1', 0, 'C');
-//            $this->pdf->Cell(20, 6, $item->tahun, '1', 0, 'C');
-//            $this->pdf->Cell(30, 6, $item->hasil, '1', 1, 'C');
-//        }
-//        //dd($prestasi);
+        //        $no = 1;
+        //        foreach ($prestasi as $item) {
+        //            $this->pdf->Cell(10, 6, $no++, '1', 0, 'C');
+        //            $this->pdf->Cell(80, 6, $item->nama_kegiatan, '1', 0, 'L');
+        //            $this->pdf->Cell(25, 6, $item->jenis_kegiatan, '1', 0, 'C');
+        //            $this->pdf->Cell(30, 6, $item->tingkat, '1', 0, 'C');
+        //            $this->pdf->Cell(20, 6, $item->tahun, '1', 0, 'C');
+        //            $this->pdf->Cell(30, 6, $item->hasil, '1', 1, 'C');
+        //        }
+        //        //dd($prestasi);
 
         $cetak = Carbon::now()->isoFormat('dddd, D MMMM Y');
 
@@ -321,22 +334,39 @@ class PrintController extends Controller
         $this->pdf->SetFont('ZapfDingbats', 'B', 12);
         $this->pdf->Cell(5, 5, 4, 0, 0, 'L');
         $this->pdf->SetFont('Arial', 'I', 8);
-        $this->pdf->Cell(150, 5, 'Cetak formulir pendaftaran PPDB SMA TELKOM menggunakan kertas berukuran minimal A4',
-            0, 1, 'L');
+        $this->pdf->Cell(
+            150,
+            5,
+            'Cetak formulir pendaftaran PPDB SMA TELKOM menggunakan kertas berukuran minimal A4',
+            0,
+            1,
+            'L'
+        );
         $this->pdf->SetFont('ZapfDingbats', 'B', 12);
         $this->pdf->Cell(5, 5, 4, 0, 0, 'L');
         $this->pdf->SetFont('Arial', 'I', 8);
-        $this->pdf->MultiCell(180, 5, 'Kartu peserta PPDB SMA TELKOM diberikan kepada pendaftar sebagai tanda bukti bahwa siswa yang bersangkutan telah melengkapi berkas-berkas pendaftaran',
-            0, 1, false);
+        $this->pdf->MultiCell(
+            180,
+            5,
+            'Kartu peserta PPDB SMA TELKOM diberikan kepada pendaftar sebagai tanda bukti bahwa siswa yang bersangkutan telah melengkapi berkas-berkas pendaftaran',
+            0,
+            1,
+            false
+        );
         $this->pdf->SetFont('ZapfDingbats', 'B', 12);
         $this->pdf->Cell(5, 5, 4, 0, 0, 'L');
         $this->pdf->SetFont('Arial', 'I', 8);
-        $this->pdf->Cell(150, 5, 'Jika terdapat kesalahan data silahkan perbaiki data terlebih dahulu, kemudian cetak kembali',
-            0, 1, 'L');
+        $this->pdf->Cell(
+            150,
+            5,
+            'Jika terdapat kesalahan data silahkan perbaiki data terlebih dahulu, kemudian cetak kembali',
+            0,
+            1,
+            'L'
+        );
 
         $this->pdf->Output('I', 'Formulir ' . $student->name . '.pdf');
 
         exit;
-
     }
 }
