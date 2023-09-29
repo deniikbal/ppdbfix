@@ -181,7 +181,12 @@ class PrintController extends Controller
         $this->pdf->Cell(55, 5, 'Tanggal Lahir Ayah', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
-        $this->pdf->Cell(50, 5, Carbon::parse($student->tahun_ayah)->isoFormat('D MMMM Y'), '0', 1, 'L');
+        if ($student->tahun_ayah == null) {
+            $this->pdf->Cell(50, 5, '', '0', 1, 'L');
+        } else {
+            $this->pdf->Cell(50, 5, Carbon::parse($student->tahun_ayah)->isoFormat('D MMMM Y'), '0', 1, 'L');
+        }
+
 
         $this->pdf->Cell(55, 5, 'Pendidikan Ayah', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
@@ -218,7 +223,11 @@ class PrintController extends Controller
         $this->pdf->Cell(55, 5, 'Tahun Lahir Ibu', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
-        $this->pdf->Cell(50, 5, Carbon::parse($student->tahun_ibu)->isoFormat('D MMMM Y'), '0', 1, 'L');
+        if ($student->tahun_ibu == null) {
+            $this->pdf->Cell(50, 5, '', '0', 1, 'L');
+        } else {
+            $this->pdf->Cell(50, 5, Carbon::parse($student->tahun_ibu)->isoFormat('D MMMM Y'), '0', 1, 'L');
+        }
 
         $this->pdf->Cell(55, 5, 'Pendidikan Ibu', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');

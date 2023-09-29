@@ -166,8 +166,7 @@ class StudentController extends Controller
         $sheet->setCellValue('AJ1', "Jarak");
         $sheet->setCellValue('AK1', "Waktu");
         $sheet->setCellValue('AL1', "Jumlah Saudara");
-        $sheet->setCellValue('AM1', "VALIDASI");
-        $sheet->setCellValue('AN1', "CREATED_AT");
+        $sheet->setCellValue('AM1', "CREATED_AT");
 
         $column = 2;
         foreach ($students as $student) {
@@ -194,13 +193,21 @@ class StudentController extends Controller
             $sheet->setCellValue('U' . $column, $student->provinsi_pd);
             $sheet->setCellValue('V' . $column, $student->nama_ayah);
             $sheet->setCellValue('W' . $column, "'" . $student->nik_ayah);
-            $sheet->setCellValue('X' . $column, \Carbon\Carbon::parse($student->tahun_ayah)->isoFormat('DD MMMM YYYY'));
+            if ($student->tahun_ayah == null) {
+                $sheet->setCellValue('X' . $column, '');
+            } else {
+                $sheet->setCellValue('X' . $column, Carbon::parse($student->tahun_ayah)->isoFormat('DD MMMM YYYY'));
+            }
             $sheet->setCellValue('Y' . $column, $student->pendidikan_ayah);
             $sheet->setCellValue('Z' . $column, $student->pekerjaan_ayah);
             $sheet->setCellValue('AA' . $column, $student->penghasilan_ayah);
             $sheet->setCellValue('AB' . $column, $student->nama_ibu);
             $sheet->setCellValue('AC' . $column, "'" . $student->nik_ibu);
-            $sheet->setCellValue('AD' . $column, \Carbon\Carbon::parse($student->tahun_ibu)->isoFormat('DD MMMM YYYY'));
+            if ($student->tahun_ibu == null) {
+                $sheet->setCellValue('AD' . $column, '');
+            } else {
+                $sheet->setCellValue('AD' . $column, Carbon::parse($student->tahun_ibu)->isoFormat('DD MMMM YYYY'));
+            }
             $sheet->setCellValue('AE' . $column, $student->pendidikan_ibu);
             $sheet->setCellValue('AF' . $column, $student->pekerjaan_ibu);
             $sheet->setCellValue('AG' . $column, $student->penghasilan_ibu);
@@ -209,8 +216,7 @@ class StudentController extends Controller
             $sheet->setCellValue('AJ' . $column, $student->jarak);
             $sheet->setCellValue('AK' . $column, $student->waktu);
             $sheet->setCellValue('AL' . $column, $student->jumlah_saudara);
-            $sheet->setCellValue('AM' . $column, $student->verifikasi);
-            $sheet->setCellValue('AN' . $column, \Carbon\Carbon::parse($student->created_at)->isoFormat('DD MMMM YYYY'));
+            $sheet->setCellValue('AM' . $column, \Carbon\Carbon::parse($student->created_at)->isoFormat('DD MMMM YYYY'));
             $column++;
         }
         $sheet->getColumnDimension('A')->setAutoSize(true);
@@ -252,10 +258,9 @@ class StudentController extends Controller
         $sheet->getColumnDimension('AK')->setAutoSize(true);
         $sheet->getColumnDimension('AL')->setAutoSize(true);
         $sheet->getColumnDimension('AM')->setAutoSize(true);
-        $sheet->getColumnDimension('AN')->setAutoSize(true);
-        $sheet->getStyle('A1:AN1')->getFont()->setBold(true);
-        $sheet->getStyle('A1:AN1')->getAlignment()->setHorizontal('center');
-        $sheet->getStyle('A1:AN1')->getFill()
+        $sheet->getStyle('A1:AM1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:AM1')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A1:AM1')->getFill()
             ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
             ->getStartColor()->setARGB('FFFFFF00');
         $name = Auth::user()->name;
