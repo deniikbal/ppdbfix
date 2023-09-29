@@ -26,6 +26,9 @@
                     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
                             data-target="#exampleModal"><i data-feather="user-plus"></i> Add Student
                     </button>
+                    <a href="{{route('export')}}" class="btn btn-outline-danger btn-sm ml-2"><i
+                                data-feather="download"></i>
+                        Export</a>
                 </div>
                 <div class="card-body">
                     {{ $dataTable->table() }}

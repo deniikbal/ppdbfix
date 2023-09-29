@@ -55,6 +55,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('deletestudent/{id}', [AdminStudentController::class, 'destroy'])->name('deletestudent');
     Route::put('updatestudentadmin/{uuid}', [AdminStudentController::class, 'updatestudentadmin'])->name('updatestudentadmin');
     Route::post('createstudentadmin', [AdminStudentController::class, 'createstudentadmin'])->name('createstudentadmin');
+    Route::get('export', [AdminStudentController::class, 'export'])->name('export');
     //Print
     Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
     //WhatsApp

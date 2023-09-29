@@ -35,17 +35,18 @@ class PrintController extends Controller
         $this->pdf->Ln(7);
         $this->pdf->SetFont('Arial', 'B', 18);
         $this->pdf->Cell(190, 5, 'Formulir Pendaftaran PPDB Tahun ' . Carbon::now()->isoFormat('Y'), '0', 0, 'C');
-        $this->pdf->Ln(10);
+        $this->pdf->Ln(7);
         $this->pdf->SetFont('Arial', 'B', 12);
         $this->pdf->Cell(190, 7, 'Data Pribadi Pendaftar', '0', 1, 'L');
         $this->pdf->SetFont('Arial', '', 11);
         $this->pdf->Ln(5);
-        if ($student->foto == null) {
-            $this->pdf->Image($iconuser, 155, 75, 40, 60);
-        } else {
-            $this->pdf->Image($pasfoto, 155, 75, 40, 60,);
-            // $this->pdf->Image($pasfoto);
-        }
+        $this->pdf->Image($iconuser, 155, 75, 40, 60);
+//        if ($student->foto == null) {
+//            $this->pdf->Image($iconuser, 155, 75, 40, 60);
+//        } else {
+//            $this->pdf->Image($pasfoto, 155, 75, 40, 60,);
+//            // $this->pdf->Image($pasfoto);
+//        }
         $this->pdf->Cell(55, 5, 'No Pendaftaran', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
@@ -172,6 +173,11 @@ class PrintController extends Controller
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->nik_ayah, '0', 1, 'L');
 
+        $this->pdf->Cell(55, 5, 'Tempat Lahir Ayah', '0', 0, 'L');
+        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
+        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
+        $this->pdf->Cell(50, 5, $student->tempat_lahir_ayah, '0', 1, 'L');
+
         $this->pdf->Cell(55, 5, 'Tanggal Lahir Ayah', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
@@ -203,6 +209,11 @@ class PrintController extends Controller
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->nik_ibu, '0', 1, 'L');
+
+        $this->pdf->Cell(55, 5, 'Tempat Lahir Ibu', '0', 0, 'L');
+        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
+        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
+        $this->pdf->Cell(50, 5, $student->tempat_lahir_ibu, '0', 1, 'L');
 
         $this->pdf->Cell(55, 5, 'Tahun Lahir Ibu', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
@@ -288,9 +299,25 @@ class PrintController extends Controller
 
         $this->pdf->Ln(8);
         $this->pdf->SetFont('Arial', 'B', 12);
-        $this->pdf->Cell(190, 7, 'Upload File', '0', 1, 'L');
+        $this->pdf->Cell(190, 7, 'Unggah File', '0', 1, 'L');
         $this->pdf->SetFont('Arial', '', 11);
         $this->pdf->Ln(3);
+        $this->pdf->Cell(55, 5, 'Unggah Akte Lahir', '0', 0, 'L');
+        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
+        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
+        if ($student->doc_akte == null) {
+            $this->pdf->MultiCell(100, 5, 'Belum Unggah', '0', 'L',);
+        } else {
+            $this->pdf->MultiCell(100, 5, 'Sudah Unggah', '0', 'L',);
+        }
+        $this->pdf->Cell(55, 5, 'Unggah Kartu Keluarga', '0', 0, 'L');
+        $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
+        $this->pdf->Cell(1, 5, '', '0', 0, 'L');
+        if ($student->doc_kk == null) {
+            $this->pdf->MultiCell(100, 5, 'Belum Unggah', '0', 'L',);
+        } else {
+            $this->pdf->MultiCell(100, 5, 'Sudah Unggah', '0', 'L',);
+        }
         //        $this->pdf->Ln(5);
         //        $this->pdf->SetFont('Arial', 'B', 12);
         //        $this->pdf->Cell(190, 7, 'Data Prestasi Pendaftar', '0', 1, 'L');

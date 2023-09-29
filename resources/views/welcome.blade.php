@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                <img src="{{asset('/assets/img/bc.jpg')}}" class="img-fluid" alt=""/>
+                <img src="{{asset('/assets/img/bc.png')}}" class="img-fluid" alt=""/>
             </div>
             <div class="modal" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -354,11 +354,11 @@
                             <p>Jalur Prestasi 1</p>
                         </strong>
                         <p style="font-size: 12px">Akademik /Non Akademik / Tahfidz Qur'an</p>
-                        <p>1 September s/d 31 Desember 2022</p>
+                        <p>1 September s/d 31 Desember 2023</p>
                         <strong>
                             <p>Jalur Reguler 1</p>
                         </strong>
-                        <p>1 September s/d 31 Desember 2022</p>
+                        <p>1 September s/d 31 Desember 2023</p>
                     </div>
                 </div>
 
@@ -370,11 +370,11 @@
                             <p>Jalur Prestasi 2</p>
                         </strong>
                         <p style="font-size: 12px">Akademik /Non Akademik / Tahfidz Qur'an</p>
-                        <p>1 Januari s/d 31 Maret 2023</p>
+                        <p>1 Januari s/d 31 Maret 2024</p>
                         <strong>
                             <p>Jalur Reguler 2</p>
                         </strong>
-                        <p>1 Januari s/d 31 Maret 2023</p>
+                        <p>1 Januari s/d 31 Maret 2024</p>
                     </div>
                 </div>
 
@@ -385,7 +385,7 @@
                         <strong>
                             <p>Jalur Reguler 3</p>
                         </strong>
-                        <p>1 April s/d 31 Juni 2023</p>
+                        <p>1 April s/d 31 Juni 2024</p>
                         <br>
                         <br>
                         <p><strong><span>**</span>Jika Kuota Masih Ada</strong></p>

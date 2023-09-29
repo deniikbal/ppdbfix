@@ -218,6 +218,8 @@ class StudentController extends Controller
             'pendidikan_ibu' => $request->pendidikan_ibu,
             'pekerjaan_ibu' => $request->pekerjaan_ibu,
             'penghasilan_ibu' => $request->penghasilan_ibu,
+            'tempat_lahir_ayah' => $request->tempat_lahir_ayah,
+            'tempat_lahir_ibu' => $request->tempat_lahir_ibu,
         ]);
         return redirect()->back()->with('success', 'Data Orang Berhasil Diupdate');
     }
