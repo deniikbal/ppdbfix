@@ -40,13 +40,13 @@ class PrintController extends Controller
         $this->pdf->Cell(190, 7, 'Data Pribadi Pendaftar', '0', 1, 'L');
         $this->pdf->SetFont('Arial', '', 11);
         $this->pdf->Ln(5);
-        $this->pdf->Image($iconuser, 155, 75, 40, 60);
-//        if ($student->foto == null) {
-//            $this->pdf->Image($iconuser, 155, 75, 40, 60);
-//        } else {
-//            $this->pdf->Image($pasfoto, 155, 75, 40, 60,);
-//            // $this->pdf->Image($pasfoto);
-//        }
+        //$this->pdf->Image($iconuser, 155, 75, 40, 60);
+        if ($student->foto == null) {
+            $this->pdf->Image($iconuser, 155, 75, 40, 60);
+        } else {
+            $this->pdf->Image($pasfoto, 155, 75, 40, 60,);
+            // $this->pdf->Image($pasfoto);
+        }
         $this->pdf->Cell(55, 5, 'No Pendaftaran', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
