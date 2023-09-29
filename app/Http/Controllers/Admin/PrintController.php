@@ -198,7 +198,7 @@ class PrintController extends Controller
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->pekerjaan_ayah, '0', 1, 'L');
 
-        $this->pdf->Cell(55, 5, 'Penghasilan Ayah Ayah', '0', 0, 'L');
+        $this->pdf->Cell(55, 5, 'Penghasilan Ayah', '0', 0, 'L');
         $this->pdf->Cell(5, 5, ':', '0', 0, 'L');
         $this->pdf->Cell(1, 5, '', '0', 0, 'L');
         $this->pdf->Cell(50, 5, $student->penghasilan_ayah, '0', 1, 'L');
