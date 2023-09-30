@@ -9,16 +9,18 @@
                     <div data-label="Example" class="df-example demo-table">
                         <table id="example2" class="table">
                             <thead class="table-danger">
-                                <tr>
-                                    <th>No.</th>
-                                    <th>No Daftar</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Invoice</th>
-                                    <th>Nominal</th>
-                                    <th>Tanggal</th>
-                                    <th>Jenis Bayar</th>
-                                    <th>Aksi</th>
-                                </tr>
+                            <tr>
+                                <th>No.</th>
+                                <th>No Daftar</th>
+                                <th>Nama Lengkap</th>
+                                <th>Invoice</th>
+                                <th>Nominal</th>
+                                <th>Tanggal</th>
+                                <th>Bukti Bayar</th>
+                                <th>Jenis Bayar</th>
+                                <th>Aksi</th>
+
+                            </tr>
                             </thead>
                             @php
                                 $no = 1;
@@ -26,34 +28,34 @@
                             @endphp
 
                             <tbody>
-                                @foreach ($payments as $pay)
-                                    <tr>
-                                        <td>{{ $no++ }}</td>
-                                        <td>{{ $pay->student->nodaftar }}</td>
-                                        <td>{{ $pay->student->name }}</td>
-                                        <td>{{ $pay->id_bayar }}</td>
-                                        <td>{{ $pay->nominal }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($pay->tanggal)->isoFormat('D MMMM Y') }}</td>
-                                        <td>{{ $pay->jenis_bayar }}</td>
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                                data-toggle="modal" data-target="#editapikey{{ $pay->id }}"><i
+                            @foreach ($payments as $pay)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $pay->student->nodaftar }}</td>
+                                    <td>{{ $pay->student->name }}</td>
+                                    <td>{{ $pay->id_bayar }}</td>
+                                    <td>{{ $pay->nominal }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($pay->tanggal)->isoFormat('D MMMM Y') }}</td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-sm pd-x-15 btn-danger btn-xs btn-uppercase mg-l-5"
+                                                data-toggle="modal" data-target="#viewbukti{{ $pay->id }}"><i
                                                     class="far
-                                        fa-edit"></i></button>
-                                            <form onclick="return confirm('Yakin Mau Menghapus Api Key ')"
-                                                action="{{ route('deletewa', $pay->id) }}" method="post"
-                                                style="display: inline-block">
-                                                @csrf
-                                                <button class="btn btn-danger btn-sm" type="submit"><i
-                                                        class="far
-                                    fa-trash-alt"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-
-                                    </tr>
-                                @endforeach
+                                        fa-eye"></i></button>
+                                    </td>
+                                    <td>{{ $pay->jenis_bayar }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ route('deletepayment', $pay->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-xs btn-danger btn-flat delete-confirm"
+                                                    data-toggle="tooltip" title='Delete'>Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @include('student.payment.modal.viewbukti')
+                            @endforeach
                             </tbody>
                         </table>
                     </div><!-- df-example -->
@@ -71,6 +73,25 @@
                 sSearch: '',
                 lengthMenu: '_MENU_ items/halaman',
             },
+        });
+    </script>
+    <script type="text/javascript">
+        $('.delete-confirm').click(function (event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `Are you sure you want to delete this record?`,
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
         });
     </script>
 @endpush

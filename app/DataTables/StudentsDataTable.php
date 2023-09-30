@@ -31,6 +31,7 @@ class StudentsDataTable extends DataTable
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="' . url("showstudent/$row->id/edit") . '">Edit</a>
                         <a class="dropdown-item" target="_blank" href="' . url("printform/$row->uuid") . '">Print Form</a>
+                        <a class="dropdown-item" target="_blank" href="' . url("surat/$row->uuid") . '">Surat</a>
                         <form action="' . url("deletestudent/$row->id") . '" method="post">
                         ' . csrf_field() . '
                             ' . method_field("DELETE") . '

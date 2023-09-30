@@ -6,7 +6,7 @@ use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PrintFormulir extends Fpdf
+class Surat extends Fpdf
 {
     public function Header()
     {
@@ -24,21 +24,5 @@ class PrintFormulir extends Fpdf
         $this->Cell('190', '5', 'Jalan Radio Palasari Telp. (022) 5229478 Kecamatan Dayeuhkolot Kabupaten Bandung', 0, 1, 'C');
         $this->Line(10, 40, 200, 40);
         $this->Ln(8);
-    }
-
-    public function Footer()
-    {
-        $this->SetFont('Arial', 'I', 8);
-        $this->SetFillColor(136, 137, 136);
-        $this->SetY(280, 5);
-        $this->Cell(
-            0,
-            5,
-            'PPDB SMA TELKOM - Halaman : ' . $this->PageNo(),
-            0,
-            0,
-            'C',
-            true
-        );
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PrintFormulir;
 use App\Models\Student;
+use App\Models\WhatsApp;
 use Carbon\Carbon;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
@@ -404,5 +405,17 @@ class PrintController extends Controller
         $this->pdf->Output('I', 'Formulir ' . $student->name . '.pdf');
 
         exit;
+    }
+
+
+    public function updatesurat(Request $request, $id)
+    {
+        //dd($request->all());
+        $wa = WhatsApp::find($id);
+        $wa->update([
+            'tanggal_surat' => $request->tanggal_surat,
+            'no_surat' => $request->no_surat,
+        ]);
+        return redirect()->back();
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\Student\PaymentController as PaymentControllerAlias1;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SuratController;
 use App\Http\Controllers\WhatsAppController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('export', [AdminStudentController::class, 'export'])->name('export');
     //Print
     Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
+    Route::get('surat/{id}', [SuratController::class, 'surat'])->name('surat');
+    Route::post('updatesurat/{id}', [PrintController::class, 'updatesurat'])->name('updatesurat');
+
     //WhatsApp
     Route::get('wa', [WhatsAppController::class, 'index'])->name('wa.index');
     Route::post('wastore', [WhatsAppController::class, 'wastore'])->name('wa.store');
@@ -67,6 +71,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('adminpayment', [PaymentControllerAlias::class, 'index'])->name('adminpayment');
     Route::get('editpaymentadmin/{id}', [PaymentControllerAlias::class, 'editpaymentadmin'])->name('editpaymentadmin');
     Route::put('updatepayadmin/{id}', [PaymentControllerAlias::class, 'updatepayadmin'])->name('updatepayadmin');
+    Route::delete('deletepayment/{id}', [PaymentControllerAlias::class, 'deletepayment'])->name('deletepayment');
 });
 //Student
 Route::middleware(['auth', 'student'])->group(function () {
