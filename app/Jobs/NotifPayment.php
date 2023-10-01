@@ -42,16 +42,14 @@ class NotifPayment implements ShouldQueue
         $payment = $this->payment;
         $student = Student::find($payment->student_id);
         $user = User::where('id', $student->user_id)->first();
-        $linkimage = url('storage/' . $payment->bukti_bayar);
         $data = [
             'api_key' => $setting->api_key,
             'sender' => $setting->sender,
             'number' => $user->no_handphone,
             'media_type' => 'image',
             'caption' => "*Pembayaran Administrasi*
-            \n*Nama*: $student->name\n*No Daftar*: $student->nodaftar\n*Nominal* : Rp. $payment->nominal\n*Id Bayar* : $payment->id_bayar\n*Jenis Pembayaran* : $payment->jenis_pembayaran \n*Bayar* : $payment->jenis_bayar \n*Keterangan*: $payment->keterangan",
-            //'url' => "https://smktelkom-pwt.sch.id/wp-content/uploads/2019/02/logo-telkom-schools.png",
-            'url' => $linkimage,
+            \n*Nama*: $student->name\n*No Daftar*: $student->nodaftar\n*Nominal* : Rp. $payment->nominal\n*Id Bayar* : $payment->id_bayar\n*Jenis Pembayaran* : $payment->jenis_pembayaran \n*Bayar* : $payment->jenis_bayar",
+            'url' => "https://ppdb.smatelkombandung.sch.id/storage/" . $payment->bukti_bayar,
         ];
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");

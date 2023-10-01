@@ -34,8 +34,6 @@ class NewPayment extends Notification implements ShouldQueue
         return TelegramFile::create()
             ->to(-1001947572376)
             ->content("*Pembayaran Administrasi*\n \n*Nama*: $student->name\n*No Daftar*: $student->nodaftar\n*Nominal* : Rp. $payment->nominal\n*Id Bayar* : $payment->id_bayar\n*Jenis Pembayaran* : $payment->jenis_pembayaran \n*Bayar* : $payment->jenis_bayar")
-            //->file('/storage/' . $payment->bukti_bayar, 'photo'); // local photo
-            //->photo("https://ppdb.smatelkombandung.sch.id/storage/foto/u2QO5NrHZFE2bd15GimUYd4KkzBT1B4L25BMwMOH.jpg");
-            ->photo("$linkimage");
+            ->photo("https://ppdb.smatelkombandung.sch.id/storage/" . $payment->bukti_bayar);
     }
 }
