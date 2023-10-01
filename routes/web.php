@@ -32,6 +32,9 @@ Route::get('/', function () {
 Route::get('getschoolas', [HomeController::class, 'getschoolas']);
 Auth::routes();
 
+Route::get('testing', [\App\Http\Controllers\TestingController::class, 'testing']);
+Route::post('sendnotif', [\App\Http\Controllers\TestingController::class, 'sendnotif'])->name('sendnotif');
+Route::post('bayar', [\App\Http\Controllers\TestingController::class, 'bayar'])->name('bayar');
 //Route::get('home', [HomeController::class, 'index'])->name('home');
 //Admin
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -100,3 +103,5 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('uploadakte', [StudentController::class, 'uploadakte'])->name('uploadakte');
     Route::post('uploadfoto', [StudentController::class, 'uploadfoto'])->name('uploadfoto');
 });
+
+

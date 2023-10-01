@@ -7,6 +7,7 @@ use App\Jobs\NotifPayment;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Notifications\CreatePayment;
+use App\Notifications\NewPayment;
 use App\Notifications\NotificationPayment;
 use App\Notifications\RegisterStudent;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
@@ -49,8 +50,7 @@ class PaymentController extends Controller
             'bukti_bayar' => $save,
         ]);
         NotifPayment::dispatch($payment);
-        //Notification::send($payment, new CreatePayment($payment));
-        //Notification::send($student, new RegisterStudent($student));
+        //Notification::send($payment, new NewPayment($payment));
         return redirect()->back()->with('success', 'Upload Bukti Pembayaran Berhasil');
     }
 }
