@@ -10,6 +10,7 @@
         "codedge/laravel-fpdf": "^1.12",
         "guzzlehttp/guzzle": "^7.7",
         "haruncpi/laravel-id-generator": "^1.1",
+        "laravel-notification-channels/telegram": "^4.0",
         "laravel/framework": "^10.15.0",
         "laravel/sanctum": "^3.2.5",
         "laravel/tinker": "^2.8.1",

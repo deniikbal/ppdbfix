@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NotifPayment;
 use App\Models\Payment;
 use App\Models\Student;
+use App\Notifications\CreatePayment;
+use App\Notifications\NotificationPayment;
+use App\Notifications\RegisterStudent;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class PaymentController extends Controller
 {
@@ -43,6 +48,9 @@ class PaymentController extends Controller
             'jenis_bayar' => $request->jenis_bayar,
             'bukti_bayar' => $save,
         ]);
+        NotifPayment::dispatch($payment);
+        //Notification::send($payment, new CreatePayment($payment));
+        //Notification::send($student, new RegisterStudent($student));
         return redirect()->back()->with('success', 'Upload Bukti Pembayaran Berhasil');
     }
 }

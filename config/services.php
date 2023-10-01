@@ -36,6 +36,9 @@ return [
         'isProduction' => env('MIDTRANS_IS_PRODUCTION'),
         'isSanitized' => env('MIDTRANS_IS_SANITIZED'),
         'is3ds' => env('MIDTRANS_IS_3DS'),
-    ]
+    ],
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN', '6249950518:AAFHg1yYlc1zb9x8u-Je_NIw4Ui4DbxvMM8')
+    ],
 
 ];

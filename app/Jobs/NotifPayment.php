@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\Payment;
 use App\Models\payment_xendit;
+use App\Models\Student;
 use App\Models\User;
 use App\Models\WhatsApp;
 use Carbon\Carbon;
@@ -25,7 +27,7 @@ class NotifPayment implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(payment_xendit $payment)
+    public function __construct(Payment $payment)
     {
         $this->payment = $payment;
     }
@@ -38,19 +40,24 @@ class NotifPayment implements ShouldQueue
     {
         $setting = WhatsApp::findorfail(1);
         $payment = $this->payment;
-        //$wa = $student->notif_wa + 1;
-        $expired = Carbon::parse($payment->expiry_date);
+        $student = Student::find($payment->student_id);
+        $user = User::where('id', $student->user_id)->first();
+        $linkimage = url('storage/' . $payment->bukti_bayar);
         $data = [
             'api_key' => $setting->api_key,
             'sender' => $setting->sender,
-            'number' => $payment->no_handphone,
-            'message' => "Berikut data titipan pembayaran \n \nInvoice : *$payment->external_id* \nStatus Pembayaran : *$payment->status* \nExpired Pembayaran : *$expired* \n\nSilahkan untuk melakukan pembayaran melalui link pembayaran berikut: \n$payment->invoice_url",
+            'number' => $user->no_handphone,
+            'media_type' => 'image',
+            'caption' => "*Pembayaran Administrasi*
+            \n*Nama*: $student->name\n*No Daftar*: $student->nodaftar\n*Nominal* : Rp. $payment->nominal\n*Id Bayar* : $payment->id_bayar\n*Jenis Pembayaran* : $payment->jenis_pembayaran \n*Bayar* : $payment->jenis_bayar \n*Keterangan*: $payment->keterangan",
+            //'url' => "https://smktelkom-pwt.sch.id/wp-content/uploads/2019/02/logo-telkom-schools.png",
+            'url' => $linkimage,
         ];
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($curl, CURLOPT_URL, 'https://pedia.ypt.or.id/send-message');
+        curl_setopt($curl, CURLOPT_URL, 'https://pedia.ypt.or.id/send-media');
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($curl, CURLOPT_ENCODING, '');
