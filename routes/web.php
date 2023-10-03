@@ -35,6 +35,7 @@ Auth::routes();
 Route::get('testing', [\App\Http\Controllers\TestingController::class, 'testing']);
 Route::post('sendnotif', [\App\Http\Controllers\TestingController::class, 'sendnotif'])->name('sendnotif');
 Route::post('bayar', [\App\Http\Controllers\TestingController::class, 'bayar'])->name('bayar');
+Route::post('usernotification', [\App\Http\Controllers\TestingController::class, 'usernotification'])->name('usernotification');
 //Route::get('home', [HomeController::class, 'index'])->name('home');
 //Admin
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -75,6 +76,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('editpaymentadmin/{id}', [PaymentControllerAlias::class, 'editpaymentadmin'])->name('editpaymentadmin');
     Route::put('updatepayadmin/{id}', [PaymentControllerAlias::class, 'updatepayadmin'])->name('updatepayadmin');
     Route::delete('deletepayment/{id}', [PaymentControllerAlias::class, 'deletepayment'])->name('deletepayment');
+//Testing
+    Route::get('testing', [\App\Http\Controllers\TestingController::class, 'testing']);
+    Route::post('sendnotif', [\App\Http\Controllers\TestingController::class, 'sendnotif'])->name('sendnotif');
+    Route::post('bayar', [\App\Http\Controllers\TestingController::class, 'bayar'])->name('bayar');
+    Route::post('usernotification', [\App\Http\Controllers\TestingController::class, 'usernotification'])->name('usernotification');
 });
 //Student
 Route::middleware(['auth', 'student'])->group(function () {
