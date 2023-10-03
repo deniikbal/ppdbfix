@@ -6,7 +6,7 @@
                 .
                 <form action="{{route('sendnotif')}}" method="post">
                     @csrf
-                    <button class="btn btn-danger" type="submit">Test</button>
+                    <button class="btn btn-primary" type="submit">Test</button>
                 </form>
                 <form action="{{route('bayar')}}" method="post">
                     @csrf
