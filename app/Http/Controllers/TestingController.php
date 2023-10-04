@@ -37,8 +37,8 @@ class TestingController extends Controller
 
     public function usernotification()
     {
-        AuthAlias::user()->notify(new UserNotification());
-        //Notification::send($user, new UserNotification($user));
+        $user = User::find(AuthAlias::id());
+        Notification::send($user, new UserNotification($user));
         return back();
 
     }
