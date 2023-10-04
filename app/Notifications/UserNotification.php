@@ -39,7 +39,7 @@ class UserNotification extends Notification implements ShouldQueue
 <strong>Email : </strong>' . $user->email . '
 <strong>Password : </strong>' . $user->password_plain . '
 
-<strong>PPDB 2023</strong>',
+<strong>PPDB SMA TEL 2023</strong>',
             'parse_mode' => 'html'
         ]));
     }
