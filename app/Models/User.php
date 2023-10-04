@@ -18,6 +18,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    public function routeNotificationForTelegram()
+    {
+        return -1001947572376;
+    }
+
     protected $fillable = [
         'name',
         'email',

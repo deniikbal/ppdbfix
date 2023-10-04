@@ -9,8 +9,9 @@ use App\Notifications\NewPayment;
 use App\Notifications\RegisterStudent;
 use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Notification;
+use \App\Notifications\TelegramNotification;
 
 class TestingController extends Controller
 {
@@ -36,8 +37,8 @@ class TestingController extends Controller
 
     public function usernotification()
     {
-        $user = User::find(Auth::id());
-        Notification::send($user, new UserNotification($user));
+        AuthAlias::user()->notify(new UserNotification());
+        //Notification::send($user, new UserNotification($user));
         return back();
 
     }
