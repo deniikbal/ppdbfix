@@ -41,7 +41,7 @@ class RegNewStudent implements ShouldQueue
         $data = [
             'api_key' => $setting->api_key,
             'sender' => $setting->sender,
-            'number' => $student->no_handphone,
+            'number' => $student->nohp_ortu,
             'message' => "*Pendaftaran Calon Siswa Berhasil* \n\n*Nama Lengkap* : $student->name \n*No Daftar* : $student->nodaftar \n*Jenis Kelamin* : $student->jenis_kelamin \n*Kecamatan Domisili* : $student->kec_pd \n*Asal Sekolah* : $student->asal_sekolah \n*No HP* : $student->nohp_siswa",
         ];
         $curl = curl_init();
