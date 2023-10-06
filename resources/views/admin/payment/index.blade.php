@@ -3,7 +3,8 @@
     <div class="container">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header bg-info d-flex justify-content-end">
+                <div class="card-header">
+                    Payment
                 </div>
                 <div class="card-body">
                     <div data-label="Example" class="df-example demo-table">
@@ -19,7 +20,6 @@
                                 <th>Bukti Bayar</th>
                                 <th>Jenis Bayar</th>
                                 <th>Aksi</th>
-
                             </tr>
                             </thead>
                             @php
