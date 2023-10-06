@@ -51,14 +51,6 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <form method="POST" action="{{ route('deletepayment', $pay->id) }}"
-                                              style="display: inline-block">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-xs btn-danger btn-flat delete-confirm"
-                                                    data-toggle="tooltip" title='Delete'>Delete
-                                            </button>
-                                        </form>
                                         <form action="{{route('verifikasipay', $pay->id)}}" method="post"
                                               style="display: inline-block">
                                             @csrf
