@@ -43,13 +43,30 @@
                                                     class="far
                                         fa-eye"></i></button>
                                     </td>
-                                    <td>{{ $pay->jenis_bayar }}</td>
                                     <td>
-                                        <form method="POST" action="{{ route('deletepayment', $pay->id) }}">
+                                        @if($pay->verifikasi==1)
+                                            <a class="badge badge-success badge-pill">{{ $pay->jenis_bayar}}</a>
+                                        @else
+                                            <a class="badge badge-primary badge-pill">{{ $pay->jenis_bayar}}</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{ route('deletepayment', $pay->id) }}"
+                                              style="display: inline-block">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-xs btn-danger btn-flat delete-confirm"
                                                     data-toggle="tooltip" title='Delete'>Delete
+                                            </button>
+                                        </form>
+                                        <form action="{{route('verifikasipay', $pay->id)}}" method="post"
+                                              style="display: inline-block">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" onclick="return confirm('Yakin Mau ' +
+                                             'Verifikasi
+                                            {{$pay->id_bayar}}')"
+                                                    class="btn btn-xs btn-primary">Verifikasi
                                             </button>
                                         </form>
                                     </td>

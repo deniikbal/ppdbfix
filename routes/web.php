@@ -75,6 +75,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('adminpayment', [PaymentControllerAlias::class, 'index'])->name('adminpayment');
     Route::get('editpaymentadmin/{id}', [PaymentControllerAlias::class, 'editpaymentadmin'])->name('editpaymentadmin');
     Route::put('updatepayadmin/{id}', [PaymentControllerAlias::class, 'updatepayadmin'])->name('updatepayadmin');
+    Route::put('verifikasipay/{id}', [PaymentControllerAlias::class, 'verifikasipay'])->name('verifikasipay');
     Route::delete('deletepayment/{id}', [PaymentControllerAlias::class, 'deletepayment'])->name('deletepayment');
 //Testing
     Route::get('testing', [\App\Http\Controllers\TestingController::class, 'testing']);

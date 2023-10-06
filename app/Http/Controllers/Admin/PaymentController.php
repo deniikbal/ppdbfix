@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\PaymentDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\payment_xendit;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use function Termwind\render;
 
@@ -31,6 +32,16 @@ class PaymentController extends Controller
             'status' => $request->status,
         ]);
         return redirect()->route('adminpayment')->with('success', 'Data Payment Berhasil Diupdate');
+
+    }
+
+    public function verifikasipay($id)
+    {
+        $payment = Payment::find($id);
+        $payment->update([
+            'verifikasi' => 1,
+        ]);
+        return back()->with('success', 'Berhasil Verifikasi');
 
     }
 }

@@ -40,7 +40,8 @@ class StudentsDataTable extends DataTable
                         <form  action="' . url("/regisnewuser/$row->id") . '" method="post">
                             ' . csrf_field() . '
                             ' . method_field("PUT") . '
-                        <a onclick="return confirm(\'Yakin Mau Mengirim WA ' . $row->name . '\')" class="dropdown-item">Send Wa</a>
+                        <a onclick="return confirm(\'Yakin Mau Mengirim WA ' . $row->name . '\')" class="dropdown-item">Send Wa 
+                        <span class="badge badge-danger">' . $row->notif_wa . '</span></a>
                         </form>
                     </div>
                 </div>
