@@ -91,7 +91,6 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
     Route::get('calon_siswa', [StudentController::class, 'isibiodata'])->name('isibiodata');
     Route::post('updatebiodata/{uuid}', [StudentController::class, 'updatebiodata'])->name('updatebiodata');
-    Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
     Route::get('editorangtua', [StudentController::class, 'editorangtua'])->name('editorangtua');
     Route::get('editsekolah', [StudentController::class, 'editsekolah'])->name('editsekolah');
     Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
@@ -111,5 +110,6 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('uploadakte', [StudentController::class, 'uploadakte'])->name('uploadakte');
     Route::post('uploadfoto', [StudentController::class, 'uploadfoto'])->name('uploadfoto');
 });
+Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
 
 
