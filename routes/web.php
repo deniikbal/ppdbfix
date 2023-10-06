@@ -61,6 +61,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('updatestudentadmin/{uuid}', [AdminStudentController::class, 'updatestudentadmin'])->name('updatestudentadmin');
     Route::post('createstudentadmin', [AdminStudentController::class, 'createstudentadmin'])->name('createstudentadmin');
     Route::get('export', [AdminStudentController::class, 'export'])->name('export');
+    Route::put('regisnewstudent/{id}', [AdminStudentController::class, 'regisnewstudent'])->name('regisnewstudent');
     //Print
     Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
     Route::get('surat/{id}', [SuratController::class, 'surat'])->name('surat');

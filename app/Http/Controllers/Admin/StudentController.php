@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\UpdateStudentAdminRequest;
+use App\Jobs\RegisterNewUser;
 use App\Jobs\RegNewStudent;
 use App\Models\District;
 use App\Models\Province;
@@ -271,6 +272,15 @@ class StudentController extends Controller
         header('Cache-Control: max-age=0');
         $writer = new Xlsx($spreadsheet);
         $writer->save('php://output');
+
+    }
+
+    public function regisnewstudent($id)
+    {
+        $student = Student::find($id);
+        RegNewStudent::dispatch($student);
+        return back()->with('success', 'Success');
+
 
     }
 }

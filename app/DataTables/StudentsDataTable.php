@@ -37,11 +37,11 @@ class StudentsDataTable extends DataTable
                             ' . method_field("DELETE") . '
                         <button class="dropdown-item" onclick="return confirm(\'Yakin Mau Menghapus ' . $row->name . '\')" type="submit">Delete</button>
                         </form>
-                        <form  action="' . url("/regisnewuser/$row->id") . '" method="post">
-                            ' . csrf_field() . '
+                        <form action="' . url("regisnewstudent/$row->id") . '" method="post">
+                        ' . csrf_field() . '
                             ' . method_field("PUT") . '
-                        <a onclick="return confirm(\'Yakin Mau Mengirim WA ' . $row->name . '\')" class="dropdown-item">Send Wa 
-                        <span class="badge badge-danger">' . $row->notif_wa . '</span></a>
+                        <button class="dropdown-item" onclick="return confirm(\'Yakin Mau Kirim WA ' . $row->name . '\')" type="submit">Send WA
+                        <a class="badge badge-info">' . $row->notif_wa . '</a></button>
                         </form>
                     </div>
                 </div>
