@@ -19,12 +19,12 @@
                     Berikut Langkah-langkah pendaftaran Calon Siswa <strong>SMA TELKOM BANDUNG</strong></p>
                 <ol>
                     <li>Klik tombol Tambah Siswa Baru
-                        @if($count!=1)
+                        @if ($count != 1)
                             <button type="button" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                    data-toggle="modal" data-target="#exampleModal">
+                                data-toggle="modal" data-target="#exampleModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
@@ -32,10 +32,10 @@
                             </button>
                         @else
                             <button type="button" class="btn btn-sm pd-x-15 btn-warning btn-xs btn-uppercase mg-l-5"
-                                    disabled>
+                                disabled>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-file wd-10 mg-r-5">
                                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                                     <polyline points="13 2 13 9 20 9"></polyline>
                                 </svg>
@@ -44,17 +44,21 @@
                         @endif
                         Isi dengan nama calon siswa yang akan didaftarkan.
                     </li>
-                    <li>Isi data siswa dengan mengklik
-                        <diV class="badge badge-danger"> Verifikasi Data Siswa dan Sekolah</diV>
-                        , harap di isi data siswa dengan
-                        data sebenar-benarnya dan jika sudah terisi semua klik simpan permananen diakhir mengisi.
+                    <li>
+                        Selanjutnya silahkan melakukan upload bukti transfer Titipan Pembayaran di menu pembayaran.
                     </li>
-                    <li>Klik tombol
-                        <div class="badge badge-primary">Pembayaran Biaya Pendidikan</div>
-                        , upload bukti transfernya.
+                    <li>
+                        Jika sudah upload bukti transfer tunggu sampai pembayaran diverifikasi oleh admin.
                     </li>
-                    <li>Jika pembayaran sudah diverifikasi Download file
-                        <div class="badge badge-dark">Kartu Peserta dan Kartu Formulir</div>
+                    <li>
+                        Setelah diverifikasi oleh admin selanjutnya untuk mengisi <a class="badge badge-danger">
+                            Biodata Calon Siswa, Asal Sekolah, Biodata
+                            Orang Tua, dan upload Gambar Pas Foto, Akte Lahir dan Kartu Keluarga.
+                        </a>
+                    </li>
+                    <li>
+                        Jika mengisi biodata sudah lengkap maka akan ada tombol <a class="badge badge-primary">download
+                            formulir.</a>
                     </li>
                 </ol>
             </div>

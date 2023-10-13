@@ -63,7 +63,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('export', [AdminStudentController::class, 'export'])->name('export');
     Route::put('regisnewstudent/{id}', [AdminStudentController::class, 'regisnewstudent'])->name('regisnewstudent');
     //Print
-    Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
     Route::get('surat/{id}', [SuratController::class, 'surat'])->name('surat');
     Route::post('updatesurat/{id}', [PrintController::class, 'updatesurat'])->name('updatesurat');
 
@@ -78,7 +77,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('updatepayadmin/{id}', [PaymentControllerAlias::class, 'updatepayadmin'])->name('updatepayadmin');
     Route::put('verifikasipay/{id}', [PaymentControllerAlias::class, 'verifikasipay'])->name('verifikasipay');
     Route::delete('deletepayment/{id}', [PaymentControllerAlias::class, 'deletepayment'])->name('deletepayment');
-//Testing
+    //Testing
     Route::get('testing', [\App\Http\Controllers\TestingController::class, 'testing']);
     Route::post('sendnotif', [\App\Http\Controllers\TestingController::class, 'sendnotif'])->name('sendnotif');
     Route::post('bayar', [\App\Http\Controllers\TestingController::class, 'bayar'])->name('bayar');
@@ -111,5 +110,4 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('uploadfoto', [StudentController::class, 'uploadfoto'])->name('uploadfoto');
 });
 Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
-
-
+Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
