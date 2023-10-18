@@ -22,7 +22,6 @@ class PaymentController extends Controller
         $title = 'Edit Payment';
         $pay = payment_xendit::with('student')->find($id);
         return view('admin.payment.show', compact('pay', 'title'));
-
     }
 
     public function updatepayadmin(Request $request, $id)
@@ -32,7 +31,6 @@ class PaymentController extends Controller
             'status' => $request->status,
         ]);
         return redirect()->route('adminpayment')->with('success', 'Data Payment Berhasil Diupdate');
-
     }
 
     public function verifikasipay($id)
@@ -42,6 +40,11 @@ class PaymentController extends Controller
             'verifikasi' => 1,
         ]);
         return back()->with('success', 'Berhasil Verifikasi');
-
+    }
+    public function deletepayment($id)
+    {
+        $payment = Payment::findorfail($id);
+        $payment->delete();
+        return redirect()->back();
     }
 }
