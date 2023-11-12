@@ -111,3 +111,4 @@ Route::middleware(['auth', 'student'])->group(function () {
 });
 Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
 Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');
+Route::delete('deletepayment/{id}', [PaymentControllerAlias::class, 'deletepayment'])->name('deletepayment');

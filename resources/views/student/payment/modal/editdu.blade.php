@@ -1,8 +1,9 @@
-<div class="modal fade" id="uploaddu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editpay{{ $pay->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content tx-14">
             <div class="modal-header">
-                <h6 class="modal-title" id="exampleModalLabel">Pembayaran Daftar Ulang</h6>
+                <h6 class="modal-title" id="exampleModalLabel">Edit Pembayaran Daftar Ulang</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -36,7 +37,7 @@
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Tanggal Pembayaran</label>
                         <input type="date" name="tanggal" class="form-control @error('tanggal') is-invalid @enderror"
-                            value="{{ old('tanggal') }}">
+                            value="{{ $pay->tanggal }}">
                         @error('tanggal')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -52,8 +53,10 @@
                         <select name="jenis_pembayaran"
                             class="form-control @error('jenis_pembayaran') is-invalid @enderror">
                             <option value="">--Pilih--</option>
-                            <option value="cash">Cash</option>
-                            <option value="transfer">Transfer</option>
+                            <option value="cash" {{ $pay->jenis_pembayaran == 'cash' ? 'selected' : '' }}>Cash
+                            </option>
+                            <option value="transfer" {{ $pay->jenis_pembayaran == 'transfer' ? 'selected' : '' }}>
+                                Transfer</option>
                         </select>
                         @error('jenis_pembayaran')
                             <span class="invalid-feedback" role="alert">
@@ -63,9 +66,9 @@
                     </div>
                     <div class="form-group mb-2">
                         <label for="formGroupExampleInput" class="d-block">Nominal Pembayaran DU</label>
-                        <input type="text" name="nominal" id="nominal"
+                        <input type="text" name="nominal" id="nominal2"
                             class="form-control @error('nominal') is-invalid @enderror" placeholder="Nominal Pembayaran"
-                            value="{{ old('nominal') }}"
+                            value=""
                             data-inputmask="'alias': 'numeric','prefix':'Rp. ','digits':2,'groupSeparator':',','autoGroup':true,'digitsOptional':true,'removeMaskOnSubmit':true,'autoUnmask':true">
                         @error('nominal')
                             <span class="invalid-feedback" role="alert">

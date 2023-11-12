@@ -45,6 +45,6 @@ class PaymentController extends Controller
     {
         $payment = Payment::findorfail($id);
         $payment->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Berhasil Dihapus');
     }
 }
