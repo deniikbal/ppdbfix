@@ -66,7 +66,7 @@
                         <input type="text" name="nominal" id="nominal"
                             class="form-control @error('nominal') is-invalid @enderror" placeholder="Nominal Pembayaran"
                             value="{{ old('nominal') }}"
-                            data-inputmask="'alias': 'numeric','prefix':'Rp. ','digits':0,'groupSeparator':',','autoGroup':true,'digitsOptional':true,'removeMaskOnSubmit':true,'autoUnmask':true">
+                            data-inputmask="'alias': 'numeric','prefix':'Rp. ','digits':0,'groupSeparator':'.','autoGroup':true,'digitsOptional':true,'removeMaskOnSubmit':true,'autoUnmask':true">
                         @error('nominal')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
