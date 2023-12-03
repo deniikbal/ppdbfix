@@ -40,6 +40,7 @@ class NotifPayment implements ShouldQueue
     {
         $setting = WhatsApp::findorfail(1);
         $payment = $this->payment;
+        $wa = $payment->notifikasi + 1;
         $student = Student::find($payment->student_id);
         $user = User::where('id', $student->user_id)->first();
         $data = [
@@ -65,8 +66,8 @@ class NotifPayment implements ShouldQueue
         echo "<pre>";
         print_r($result);
 
-//        $student->update([
-//            'notif_wa' => $wa,
-//        ]);
+        $payment->update([
+            'notifikasi' => $wa,
+        ]);
     }
 }

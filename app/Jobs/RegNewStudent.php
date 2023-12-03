@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Student;
+use App\Models\User;
 use App\Models\WhatsApp;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -26,7 +27,6 @@ class RegNewStudent implements ShouldQueue
     public function __construct(Student $student)
     {
         $this->student = $student;
-
     }
 
     /**
@@ -37,11 +37,12 @@ class RegNewStudent implements ShouldQueue
 
         $setting = WhatsApp::findorfail(1);
         $student = $this->student;
+        $user = User::where('id', $student->user_id)->first();
         $wa = $student->notif_wa + 1;
         $data = [
             'api_key' => $setting->api_key,
             'sender' => $setting->sender,
-            'number' => $student->nohp_ortu,
+            'number' => $user->no_handphone,
             'message' => "*Pendaftaran Calon Siswa Berhasil* \n\n*Nama Lengkap* : $student->name \n*No Daftar* : $student->nodaftar \n*Jenis Kelamin* : $student->jenis_kelamin \n*Kecamatan Domisili* : $student->kec_pd \n*Asal Sekolah* : $student->asal_sekolah \n*No HP* : $student->nohp_siswa",
         ];
         $curl = curl_init();
@@ -61,6 +62,5 @@ class RegNewStudent implements ShouldQueue
         $student->update([
             'notif_wa' => $wa,
         ]);
-
     }
 }
