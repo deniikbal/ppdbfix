@@ -35,7 +35,7 @@
                                     <th>Nama Lengkap</th>
                                     <th>Email</th>
                                     <th>No Handphone</th>
-                                    <th>Role</th>
+                                    <th>Send WA</th>
                                 </tr>
                             </thead>
                             @php
@@ -50,7 +50,18 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->no_handphone }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>
+                                            <form action="{{ route('regisnewuser', $user->id) }}" method="post"
+                                                style="display: inline-block">
+                                                @csrf
+                                                @method('PUT')
+                                                <button
+                                                    onclick="return confirm(\'Yakin Mau Mengirim WA ' . $user->name . '\')"
+                                                    class="btn btn-dark btn-sm"> <i class="fas fa-paper-plane"></i>
+                                                    {{ $user->notif_wa }}
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
