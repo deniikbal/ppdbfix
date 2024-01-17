@@ -12,9 +12,13 @@
     <li class="nav-item @if (request()->routeIs('schools.index')) active @endif"><a href="{{ route('schools.index') }}"
             class="nav-link"><i data-feather="briefcase"></i>
             <span>Schools</span></a></li>
-    <li class="nav-item @if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}"
-            class="nav-link"><i data-feather="user"></i>
-            <span>User Management</span></a></li>
+    <li class="nav-item with-sub">
+        <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>
+        <ul>
+            <li><a href="{{ route('users.index') }}">User Management</a></li>
+            <li><a href="{{ route('user.blmbayar') }}">User Blm Daftar</a></li>
+        </ul>
+    </li>
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>

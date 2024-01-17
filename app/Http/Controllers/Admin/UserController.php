@@ -9,6 +9,7 @@ use App\DataTables\UsersDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserController extends Controller
 {
@@ -86,5 +87,18 @@ class UserController extends Controller
         $user = User::find($id);
         RegisterNewUser::dispatch($user);
         return redirect()->back()->with('success', ' Berhasil Mengirim Wa');
+    }
+
+    public function notstudent()
+    {
+        $users = User::doesntHave('student')
+            ->where('role', 0)
+            ->get();
+        $title = 'User Belum Punya No Daftar';
+        // $users = User::whereDoesntHave('student', function (Builder $query) {
+        //     $query->where('role',);
+        // })->get();
+        //dd($users);
+        return view('admin.users.notstudent', compact('users', 'title'));
     }
 }
