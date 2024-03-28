@@ -511,7 +511,7 @@
                                     target="_blank"><i class="bi bi-phone"></i> +6282116497877 (Bu Lilis)</a> <br />
                                 <strong>Phone:</strong> (022) 5229478<br />
                                 <strong>Email:</strong> smatelkombandung@ypt.or.id<br />
-                                <a href="https://drive.google.com/file/d/1wZMNu524xf2W1MfzRDDbNrHSlc1gXs0C/view?usp=sharing"
+                                <a href="https://drive.google.com/file/d/1R4yas-7DQ_VKf_KDwV5-2Ru-ZYxwGGvU/view?usp=sharing"
                                     target="_blank">*syarat dan ketentuan bagi siswa berkebutuhan khusus</a>
                             </p>
                         </div>
