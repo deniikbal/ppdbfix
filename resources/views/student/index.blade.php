@@ -16,7 +16,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <p>Selamat datang di web PPDB SMA TELKOM BANDUNG Tahun Ajaran 2023-2024,
+                    <p>Selamat datang di web PPDB SMA TELKOM BANDUNG Tahun Ajaran 2024/2025,
                         Berikut Langkah-langkah pendaftaran Calon Siswa <strong>SMA TELKOM BANDUNG</strong></p>
                     <ol>
                         <li>Klik tombol Tambah Siswa Baru
