@@ -16,7 +16,7 @@
             ->where('jenis_bayar', 'Titipan Pembayaran')
             ->count();
     @endphp
-    @if ($countverifikasi != 0)
+    {{-- @if ($countverifikasi != 0) --}}
         <div class="row">
             <div class="col-lg-12">
                 <div class="alert alert-solid alert-secondary alert-dismissible fade show" role="alert">
@@ -158,7 +158,7 @@
                 </div>
             </div><!-- col -->
         </div>
-    @else
+    {{-- @else
         <div class="card-body">
             <div class="alert alert-solid alert-info alert-dismissible fade show" role="alert">
                 <p>Ananda {{ $student->name }} Belum diperkenankan untuk mengisi biodata, Silahkan Ananda
@@ -167,6 +167,6 @@
                 </p>
             </div>
         </div>
-    @endif
+    @endif --}}
 
 @endsection
