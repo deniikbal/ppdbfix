@@ -64,7 +64,7 @@
                     <h1 data-aos="fade-up">PPDB Online</h1>
                     <h3 data-aos="fade-up">SMA TELKOM BANDUNG</h3>
                     <h4 data-aos="fade-up" data-aos-delay="400" class="mt-3">Untuk calon pendaftar tahun ajaran
-                        2024/2025 bisa mendaftar melalui website ini atau langsung datang ke tempat pendaftaran</h4>
+                        2025/2026 bisa mendaftar melalui website ini atau langsung datang ke tempat pendaftaran</h4>
                     <div data-aos="fade-up" data-aos-delay="600">
 
                         @if (Route::has('login'))
@@ -137,7 +137,7 @@
             //        $pesertatest = \App\Models\Test::all()->count();
             //        $kuota = \App\Models\Setting::find(1)->first();
         @endphp
-        <section id="counts" class="counts">
+        {{-- <section id="counts" class="counts">
             <div class="container" data-aos="fade-up">
                 <div class="row gy-4">
                     <div class="col-lg-3 col-md-6">
@@ -186,7 +186,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         <!-- End Counts Section -->
 
         <!-- ======= Features Section ======= -->
@@ -356,11 +356,11 @@
                                 <p>Jalur Prestasi 1</p>
                             </strong>
                             <p style="font-size: 12px">Akademik /Non Akademik / Tahfidz Qur'an</p>
-                            <p>1 September s/d 31 Desember 2023</p>
+                            <p>1 September s/d 31 Desember 2024</p>
                             <strong>
                                 <p>Jalur Reguler 1</p>
                             </strong>
-                            <p>1 September s/d 31 Desember 2023</p>
+                            <p>1 September s/d 31 Desember 2024</p>
                         </div>
                     </div>
 
@@ -372,11 +372,11 @@
                                 <p>Jalur Prestasi 2</p>
                             </strong>
                             <p style="font-size: 12px">Akademik /Non Akademik / Tahfidz Qur'an</p>
-                            <p>1 Januari s/d 31 Maret 2024</p>
+                            <p>1 Januari s/d 31 Maret 2025</p>
                             <strong>
                                 <p>Jalur Reguler 2</p>
                             </strong>
-                            <p>1 Januari s/d 31 Maret 2024</p>
+                            <p>1 Januari s/d 31 Maret 2025</p>
                         </div>
                     </div>
 
@@ -387,7 +387,7 @@
                             <strong>
                                 <p>Jalur Reguler 3</p>
                             </strong>
-                            <p>1 April s/d 31 Juni 2024</p>
+                            <p>1 April s/d 31 Juni 2025</p>
                             <br>
                             <br>
                             <p><strong><span>**</span>Jika Kuota Masih Ada</strong></p>
@@ -504,11 +504,11 @@
                             <h4>Hubungi Kami</h4>
                             <p>
                                 <a href="https://api.whatsapp.com/send?phone=+62081322299010&text=Assalamualaikum%252525252C%2525252Bmohon%2525252Binfo%2525252Bpendaftaran"
-                                    target="_blank"><i class="bi bi-phone"></i> +6281322299010 (Bu Nissa)</a> <br />
+                                    target="_blank"><i class="bi bi-phone"></i> +6281322299010 (Bu Icha)</a> <br />
                                 <a href="https://api.whatsapp.com/send?phone=+62081398877234&text=Assalamualaikum%252525252C%2525252Bmohon%2525252Binfo%2525252Bpendaftaran"
-                                    target="_blank"><i class="bi bi-phone"></i> +6281398877234 (Bu Ranti)</a> <br />
+                                    target="_blank"><i class="bi bi-phone"></i> +6281398877234 (Bu Reti)</a> <br />
                                 <a href="https://api.whatsapp.com/send?phone=+62082116497877&text=Assalamualaikum%252525252C%2525252Bmohon%2525252Binfo%2525252Bpendaftaran"
-                                    target="_blank"><i class="bi bi-phone"></i> +6282116497877 (Bu Lilis)</a> <br />
+                                    target="_blank"><i class="bi bi-phone"></i> +6282116497877 (Bu Ranti)</a> <br />
                                 <strong>Phone:</strong> (022) 5229478<br />
                                 <strong>Email:</strong> smatelkombandung@ypt.or.id<br />
                                 <a href="https://drive.google.com/file/d/1R4yas-7DQ_VKf_KDwV5-2Ru-ZYxwGGvU/view?usp=sharing"
