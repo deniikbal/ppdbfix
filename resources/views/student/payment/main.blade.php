@@ -30,6 +30,15 @@
                     </ol>
                 </div>
                 <div class="alert alert-light">
+                    @php
+                        $student = App\Models\Student::where('user_id', auth()->id())->first();
+                        $set = App\Models\WhatsApp::find(1);
+                        $countverifikasi = App\Models\Payment::where('student_id', $student->id)
+                            ->where('verifikasi', 1)
+                            ->where('jenis_bayar', 'Titipan Pembayaran')
+                            ->count();
+                    @endphp
+
                     <a href="#uploadtp" class="btn btn-danger btn-sm @if ($countverifikasi == 1) disabled @endif"
                         data-toggle="modal">Titipan Pembayaran</a>
                     @if ($countverifikasi != 0)
