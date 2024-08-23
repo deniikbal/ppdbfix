@@ -30,31 +30,6 @@
                     </ol>
                 </div>
                 <div class="alert alert-light">
-                    @php
-                        $student = App\Models\Student::where('user_id', auth()->id())->first();
-                        $paymentxendit = App\Models\payment_xendit::where('student_id', $student->id)->get();
-                        $countxendit = App\Models\payment_xendit::where('student_id', $student->id)->count();
-                        $pay01 = App\Models\payment_xendit::where('student_id', $student->id)->count();
-                        $pay02 = App\Models\payment_xendit::where('description', 'Titipan Pembayaran')
-                            ->where('status', 'EXPIRED')
-                            ->where('student_id', $student->id)
-                            ->count();
-                        $pay03 = App\Models\payment_xendit::where('description', 'Titipan Pembayaran')
-                            ->where('status', 'pending')
-                            ->where('student_id', $student->id)
-                            ->count();
-                        $settled = App\Models\payment_xendit::where('status', 'settled')
-                            ->where('student_id', $student->id)
-                            ->where('description', 'Titipan Pembayaran')
-                            ->count();
-
-                        $set = App\Models\WhatsApp::find(1);
-                        $countverifikasi = App\Models\Payment::where('student_id', $student->id)
-                            ->where('verifikasi', 1)
-                            ->where('jenis_bayar', 'Titipan Pembayaran')
-                            ->count();
-                    @endphp
-
                     <a href="#uploadtp" class="btn btn-danger btn-sm @if ($countverifikasi == 1) disabled @endif"
                         data-toggle="modal">Titipan Pembayaran</a>
                     @if ($countverifikasi != 0)
