@@ -16,7 +16,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <p>Selamat datang di web PPDB SMA TELKOM BANDUNG Tahun Ajaran 2024/2025,
+                    <p>Selamat datang di web PPDB SMA TELKOM BANDUNG Tahun Ajaran 2025/2026,
                         Berikut Langkah-langkah pendaftaran Calon Siswa <strong>SMA TELKOM BANDUNG</strong></p>
                     <ol>
                         <li>Klik tombol Tambah Siswa Baru
@@ -54,13 +54,7 @@
                             Jika sudah upload bukti transfer tunggu sampai pembayaran diverifikasi oleh admin.
                         </li>
                         <li>
-                            Setelah diverifikasi oleh admin selanjutnya untuk mengisi
-                            Biodata Calon Siswa, Asal Sekolah, Biodata
-                            Orang Tua, dan upload Gambar Pas Foto, Akte Lahir dan Kartu Keluarga.
-                        </li>
-                        <li>
-                            Jika mengisi biodata sudah lengkap maka akan ada tombol <a class="badge badge-primary">download
-                                formulir.</a>
+                            Silahkan untuk mengisi biodata Calon Peserta Didik.
                         </li>
                     </ol>
                 </div>

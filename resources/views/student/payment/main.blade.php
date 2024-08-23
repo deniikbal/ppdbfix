@@ -1,12 +1,12 @@
 @extends('layouts.student.main')
 @section('title')
-    Pembayaran Calon Siswa
+    Pembayaran Calon Peserta Didik, {{$student->name}}
 @endsection
 @section('main')
     Pembayaran
 @endsection
 @section('data')
-    Pembayaran Calon Siswa
+    Pembayaran Calon Peserta Didik
 @endsection
 
 @section('content')
@@ -26,9 +26,6 @@
                         <li>
                             Setelah melakukan transfer upload bukti transfer dengan mengklik tombol upload titipan
                             pembayaran, tunggu sampai di verifikasi oleh admin.
-                        </li>
-                        <li>
-                            Selanjutnya silahkan untuk melengkapi biodata diri.
                         </li>
                     </ol>
                 </div>

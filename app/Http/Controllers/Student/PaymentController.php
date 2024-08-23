@@ -20,7 +20,7 @@ class PaymentController extends Controller
     {
         $student = Student::where('user_id', auth()->id())->first();
         $payments = Payment::where('student_id', $student->id)->get();
-        return view('student.payment.main', compact('payments'));
+        return view('student.payment.main', compact('payments','student'));
     }
 
     public function uploadtp(Request $request, Student $student)

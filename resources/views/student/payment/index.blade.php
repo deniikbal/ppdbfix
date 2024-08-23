@@ -1,12 +1,12 @@
 @extends('layouts.student.main')
 @section('title')
-    Pembayaran Calon Siswa
+    Pembayaran Calon Peserta Didik, {{$student->name}}
 @endsection
 @section('main')
     Pembayaran
 @endsection
 @section('data')
-    Pembayaran Calon Siswa
+    Pembayaran Calon Peserta Didik
 @endsection
 
 @section('content')

@@ -74,8 +74,10 @@ class StudentController extends Controller
         $agama = $siswa->agama();
         $hoby = $siswa->hoby();
         $cita = $siswa->cita();
+        $pekerjaan = $siswa->pekerjaan();
         $schools = School::all();
-        return view('student.biodata.biodata_pesertadidik', compact('student','jenis_kelamin','agama','schools'));
+        return view('student.biodata.biodata_pesertadidik', compact('student',
+            'jenis_kelamin', 'agama', 'schools', 'pekerjaan', 'cita'));
     }
 
     /**
@@ -312,6 +314,61 @@ class StudentController extends Controller
             'foto' => $save,
         ]);
         return redirect()->back()->with('success', 'Berhasil Upload Pas Foto');
+
+    }
+
+    public function savebiodata(Request $request, $id)
+    {
+        //return $request->all();
+        $validated = $request->validate([
+            'name' => 'required',
+            'nisn' => 'required|size:10',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'agama' => 'required',
+            'asal_sekolah' => 'required',
+            'nohp_siswa' => 'required',
+            'nama_ayah' => 'required',
+            'pekerjaan_ayah' => 'required',
+            'nama_ibu' => 'required',
+            'pekerjaan_ibu' => 'required',
+            'nohp_ortu' => 'required',
+            'alamat_pd' => 'required',
+            'rt' => 'required|max:3',
+            'rw' => 'required|max:3',
+            'desa_pd' => 'required',
+            'kec_pd' => 'required',
+            'kota_pd' => 'required',
+            'provinsi_pd' => 'required',
+        ],[
+            'name.required' => 'Nama Harus Diisi',
+            'nisn.required' => 'NISN Harus Diisi',
+            'nisn.size' => 'NISN Harus 10 Angka',
+            'tempat_lahir.required' => 'Tempat Lahir Harus Diisi',
+            'tanggal_lahir.required' => 'Tanggal Lahir Harus Diisi',
+            'jenis_kelamin.required' => 'Jenis Kelamin Harus Diisi',
+            'agama.required' => 'Agama Harus Diisi',
+            'asal_sekolah.required' => 'Asal Sekolah Harus Diisi',
+            'nohp_siswa.required' => 'No. HP Harus Diisi',
+            'nama_ayah.required' => 'Nama Ayah Harus Diisi',
+            'pekerjaan_ayah.required' => 'Pekerjaan Ayah Harus Diisi',
+            'nama_ibu.required' => 'Nama Ibu Harus Diisi',
+            'pekerjaan_ibu.required' => 'Pekerjaan Ibu Harus Diisi',
+            'nohp_ortu.required' => 'No. HP Harus Diisi',
+            'alamat_pd.required' => 'Alamat Harus Diisi',
+            'rt.required' => 'RT Harus Diisi',
+            'rt.max' => 'Maksimal 3 Angka',
+            'rw.required' => 'RW Harus Diisi',
+            'rw.max' => 'Maximal 3 Angka',
+            'desa_pd.required' => 'Desa / Kelurahan Harus Diisi',
+            'kec_pd.required' => 'Kecamatan Harus Diisi',
+            'kota_pd.required' => 'Kota Harus Diisi',
+            'provinsi_pd.required' => 'Provinsi Harus Diisi',
+        ]);
+        $student = Student::find($id);
+        $student->update($validated);
+        return redirect()->back()->with('success', 'Biodata CPD Berhasil Diupdate');
 
     }
 }
