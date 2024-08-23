@@ -66,6 +66,18 @@ class StudentController extends Controller
         ));
     }
 
+    public function editbiodata()
+    {
+        $student = Student::where('user_id', auth()->id())->first();
+        $siswa = new Student();
+        $jenis_kelamin = $siswa->jenis_kelamin();
+        $agama = $siswa->agama();
+        $hoby = $siswa->hoby();
+        $cita = $siswa->cita();
+        $schools = School::all();
+        return view('student.biodata.biodata_pesertadidik', compact('student','jenis_kelamin','agama','schools'));
+    }
+
     /**
      * Store a newly created resource in storage.
      */

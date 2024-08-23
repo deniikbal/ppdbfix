@@ -6,7 +6,7 @@
     Dashbaord
 @endsection
 @section('data')
-    Daftar Calon Siswa
+    Daftar Calon Peserta Didik
 @endsection
 @section('content')
     <div class="row">

@@ -95,6 +95,7 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('editsekolah', [StudentController::class, 'editsekolah'])->name('editsekolah');
     Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
     Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
+    Route::get('editbiodata', [StudentController::class, 'editbiodata'])->name('editbiodata');
     //Payment
     Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
     Route::get('pembayaran', [PaymentControllerAlias1::class, 'index'])->name('pembayaran.index');

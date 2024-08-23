@@ -22,8 +22,8 @@
                         href="{{ route('pembayaran.index') }}" class="nav-link"><i
                             data-feather="life-buoy"></i><span>Pembayaran</span></a></li>
         @endif
-        <li class="nav-item @if (request()->routeIs('isibiodata')) active @endif"><a
-                    href="{{ route('isibiodata') }}" class="nav-link"><i
+        <li class="nav-item @if (request()->routeIs('editbiodata')) active @endif"><a
+                    href="{{ route('editbiodata') }}" class="nav-link"><i
                         data-feather="user"></i><span>Biodata</span></a></li>
     @endif
 </ul>
