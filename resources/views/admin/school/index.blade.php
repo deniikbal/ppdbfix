@@ -6,7 +6,7 @@
                 <div class="card-header d-flex justify-content-end">
                     <button type="button" class="btn btn-outline-primary btn-sm"
                             data-toggle="modal" data-target="#addschool"><i data-feather="plus"></i> Add
-                        School
+                        Sekolah
                     </button>
                 </div>
                 <div class="card-body">

@@ -6,19 +6,22 @@
 
     <li class="nav-label mg-t-25">Pages</li>
     <li class="nav-item @if (request()->routeIs('allstudent')) active @endif"><a href="{{ route('allstudent') }}"
-            class="nav-link"><i data-feather="users"></i> <span>Student</span></a></li>
+            class="nav-link"><i data-feather="users"></i> <span>Peserta Didik</span></a></li>
     <li class="nav-item @if (request()->routeIs('adminpayment')) active @endif"><a href="{{ route('adminpayment') }}"
-            class="nav-link"><i data-feather="shopping-bag"></i><span>Payment</span></a></li>
+            class="nav-link"><i data-feather="shopping-bag"></i><span>Pembayaran</span></a></li>
     <li class="nav-item @if (request()->routeIs('schools.index')) active @endif"><a href="{{ route('schools.index') }}"
             class="nav-link"><i data-feather="briefcase"></i>
-            <span>Schools</span></a></li>
-    <li class="nav-item with-sub">
+            <span>Sekolah</span></a></li>
+    <li class="nav-item @if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}"
+            class="nav-link"><i data-feather="user"></i>
+            <span>Users</span></a></li>
+    <!-- <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="user"></i> <span>User Pages</span></a>
         <ul>
-            <li><a href="{{ route('users.index') }}">User Management</a></li>
+            <li class="@if (request()->routeIs('users.index')) active @endif"><a href="{{ route('users.index') }}">User Management</a></li>
             <li><a href="{{ route('user.blmbayar') }}">User Blm Daftar</a></li>
         </ul>
-    </li>
+    </li> -->
     <li class="nav-item with-sub">
         <a href="" class="nav-link"><i data-feather="file"></i> <span>Setting</span></a>
         <ul>
