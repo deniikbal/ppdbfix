@@ -5,8 +5,8 @@
             <div class="media align-items-stretch justify-content-center ht-100p">
                 <div class="sign-wrapper mg-lg-r-50 mg-xl-r-60">
                     <div class="pd-t-20 wd-100p">
-                        <h4 class="tx-color-01 mg-b-5">Create New Account</h4>
-                        <p class="tx-color-03 tx-16 mg-b-40">It's free to signup and only takes a minute.</p>
+                        <h4 class="tx-color-01 mg-b-5">Buat Akun Baru</h4>
+                        <p class="tx-color-03 tx-16 mg-b-40">Silahkan membuat akun sesuai form</p>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group mb-2">
@@ -35,12 +35,12 @@
                             </div>
                             <div class="form-group mb-2">
                                 <div class="d-flex justify-content-between mg-b-5">
-                                    <label class="mg-b-0-f">No WhatsApp</label>
+                                    <label class="mg-b-0-f">No WhatsApp <span class="tx-danger tx-xs-12">*Contoh: 0851xxxxxxxx</span></label>
                                 </div>
                                 <input id="email" type="text"
-                                       class="form-control @error('no_handphone') is-invalid @enderror"
+                                       class="form-control mb-1 @error('no_handphone') is-invalid @enderror"
                                        name="no_handphone" value="{{ old('no_handphone') }}"
-                                       autocomplete="no_handphone">
+                                       placeholder="0851xxxxxxxx">
 
                                 @error('no_handphone')
                                 <span class="invalid-feedback" role="alert">
@@ -66,8 +66,7 @@
                                        name="password_confirmation" autocomplete="new-password">
                             </div>
                             <div class="form-group tx-12">
-                                Dengan mengeklik Buat akun di bawah ini, Anda menyetujui persyaratan layanan dan
-                                pernyataan privasi kami.
+                                Dimohon untuk mengisi nomor WhatsApp sesuai contoh.
                             </div><!-- form-group -->
 
                             <button type="submit" class="btn btn-danger btn-block">Buat Akun</button>

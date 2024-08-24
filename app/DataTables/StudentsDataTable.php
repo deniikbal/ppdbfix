@@ -24,27 +24,20 @@ class StudentsDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($row) {
                 $aksi = '
-                <div class="dropdown">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Edit
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="' . url("showstudent/$row->id/edit") . '">Edit</a>
-                        <a class="dropdown-item" target="_blank" href="' . url("printform/$row->uuid") . '">Print Form</a>
-                        <a class="dropdown-item" target="_blank" href="' . url("surat/$row->uuid") . '">Surat</a>
-                        <form action="' . url("deletestudent/$row->id") . '" method="post">
-                        ' . csrf_field() . '
-                            ' . method_field("DELETE") . '
-                        <button class="dropdown-item" onclick="return confirm(\'Yakin Mau Menghapus ' . $row->name . '\')" type="submit">Delete</button>
-                        </form>
-                        <form action="' . url("regisnewstudent/$row->id") . '" method="post">
-                        ' . csrf_field() . '
-                            ' . method_field("PUT") . '
-                        <button class="dropdown-item" onclick="return confirm(\'Yakin Mau Kirim WA ' . $row->name . '\')" type="submit">Send WA
-                        <a class="badge badge-info">' . $row->notif_wa . '</a></button>
-                        </form>
-                    </div>
-                </div>
+            <form style="display:inline-block" action="' . url("deletestudent/$row->id") . '" method="post">
+                ' . csrf_field() . '
+                ' . method_field("DELETE") . '
+                <button class="btn btn-xs btn-danger" onclick="return confirm(\'Yakin Mau Menghapus ' . $row->name . '\')"
+                type="submit"><i class="fas fa-trash"></i></button>
+            </form>
+            <form style="display:inline-block" action="' . url("regisnewstudent/$row->id") . '" method="post">
+                ' . csrf_field() . '
+                ' . method_field("PUT") . '
+                <button class="btn btn-xs btn-success" onclick="return confirm(\'Yakin Mau Kirim WA ' . $row->name . '\')"
+                type="submit"><i class="fas fa-paper-plane"></i> <a class="badge badge-dark">' . $row->notif_wa . '</a>
+                </button>
+            </form>
+            </div>
                 ';
                 return $aksi;
             })
@@ -95,7 +88,7 @@ class StudentsDataTable extends DataTable
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(200)
                 ->addClass('text-center'),
         ];
     }

@@ -56,9 +56,23 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'no_handphone' => ['required'],
+            'no_handphone' => ['required','numeric','unique:users'],
+        ],
+        [
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.min' => 'Password minimal 8 karakter',
+            'password.string' => 'Password minimal 8 karakter',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'no_handphone.required' => 'No. WhatsApp tidak boleh kosong',
+            'no_handphone.numeric' => 'No. WhatsApp harus berupa angka',
+            'no_handphone.unique' => 'No. WhatsApp sudah terdaftar',
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.

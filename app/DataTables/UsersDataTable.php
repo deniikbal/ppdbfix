@@ -75,7 +75,7 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            Column::make('role'),
+            //Column::make('role'),
             Column::make('no_handphone'),
             Column::make('action'),
         ];

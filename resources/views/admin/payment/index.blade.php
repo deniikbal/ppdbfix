@@ -67,17 +67,17 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <form action="{{ route('verifikasipay', $pay->id) }}" method="post"
-                                                style="display: inline-block">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit"
-                                                    onclick="return confirm('Yakin Mau ' +
-                                             'Verifikasi
-                                            {{ $pay->id_bayar }}')"
-                                                    class="btn btn-xs btn-primary">Verifikasi
-                                                </button>
-                                            </form>
+{{--                                            <form action="{{ route('verifikasipay', $pay->id) }}" method="post"--}}
+{{--                                                style="display: inline-block">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('PUT')--}}
+{{--                                                <button type="submit"--}}
+{{--                                                    onclick="return confirm('Yakin Mau ' +--}}
+{{--                                             'Verifikasi--}}
+{{--                                            {{ $pay->id_bayar }}')"--}}
+{{--                                                    class="btn btn-xs btn-primary">Verifikasi--}}
+{{--                                                </button>--}}
+{{--                                            </form>--}}
                                             <form action="{{ route('deletepayment', $pay->id) }}" method="post"
                                                 style="display: inline-block">
                                                 @csrf
