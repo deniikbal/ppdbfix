@@ -35,12 +35,13 @@ class RegisterNewUser implements ShouldQueue
         $user = $this->user;
         $wa = $user->notif_wa + 1;
         $setting = WhatsApp::findorfail(1);
+        $tahun = now()->format('Y');
         $data = [
             'api_key' => $setting->api_key,
             'sender' => $setting->sender,
             'number' => $user->no_handphone,
             'message' => "*Acount User Berhasil Dibuat* \n\nNama User : $user->name \nEmail : $user->email \nPassword : $user->password_plain
-            \n *PANITIA PPDB 2023*",
+            \n *PANITIA PPDB $tahun*",
         ];
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">DAFTAR SISWA BARU</h5>
+                <h5 class="modal-title" id="exampleModalLabel">DAFTAR PESERTA DIDIK BARU</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,7 +13,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="alert alert-danger" style="display:none"></div>
-                    <div class="form-row mb-1">
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">Nama Lengkap</label>
                             <input type="text" name="name" id="name" class="form-control"
@@ -24,10 +24,9 @@
                             <input type="text" name="nama_ayah" id="nama_ayah"
                                 class="form-control @error('nama_ayah') is-invalid @enderror" placeholder="Nama Ayah"
                                 value="{{ old('nama_ayah') }}">
-
                         </div>
                     </div>
-                    <div class="form-row mb-2">
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2">
@@ -97,7 +96,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger" id="formSubmit">Daftar Siswa</button>
+                    <button type="submit" class="btn btn-danger" id="formSubmit">DAFTAR</button>
                 </div>
             </form>
         </div>

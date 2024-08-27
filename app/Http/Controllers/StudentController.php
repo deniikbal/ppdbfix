@@ -94,6 +94,17 @@ class StudentController extends Controller
             'regencies_id' => 'required',
             'districts_id' => 'required',
             'nohp_siswa' => 'required|min:10|numeric'
+        ],[
+            'name.required' => 'Nama Lengkap tidak boleh kosong',
+            'name.unique' => 'Nama sudah terdaftar',
+            'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+            'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
+            'nohp_siswa.required' => 'No WA siswa tidak boleh kosong',
+            'nohp_siswa.numeric' => 'No WA siswa harus berupa angka',
+            'asal_sekolah.required' => 'Asal sekolah tidak boleh kosong',
+            'provinces_id.required' => 'Provinsi tidak boleh kosong',
+            'regencies_id.required' => 'Kota / Kabupaten tidak boleh kosong',
+            'districts_id.required' => 'Kecamatan tidak boleh kosong',
         ]);
         if ($valid->fails()) {
             return response()->json(['errors' => $valid->errors()->all()]);

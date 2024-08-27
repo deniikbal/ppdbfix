@@ -34,11 +34,9 @@
                         $student = App\Models\Student::where('user_id', auth()->id())->first();
                         $set = App\Models\WhatsApp::find(1);
                         $countverifikasi = App\Models\Payment::where('student_id', $student->id)
-                            ->where('verifikasi', 1)
                             ->where('jenis_bayar', 'Titipan Pembayaran')
                             ->count();
                     @endphp
-
                     <a href="#uploadtp" class="btn btn-danger btn-sm @if ($countverifikasi == 1) disabled @endif"
                         data-toggle="modal">Titipan Pembayaran</a>
                     @if ($countverifikasi != 0)
@@ -60,7 +58,7 @@
                                         <th>Nominal</th>
                                         <th>Tanggal</th>
                                         <th>Jenis Bayar</th>
-                                        <th>Verifikasi</th>
+{{--                                        <th>Verifikasi</th>--}}
                                         <th>Bukti</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -76,10 +74,10 @@
                                             <td>{{ $pay->nominal }}</td>
                                             <td>{{ \Carbon\Carbon::parse($pay->tanggal)->isoFormat('D MMMM Y') }}</td>
                                             <td>{{ $pay->jenis_bayar }}</td>
-                                            <td>
-                                                <span
-                                                    class="badge badge-pill badge-{{ $pay->verifikasi == 1 ? 'info' : 'danger' }}">{{ $pay->verifikasi == 1 ? 'Sudah Verifikasi' : 'Belum Veriifikasi' }}</span>
-                                            </td>
+{{--                                            <td>--}}
+{{--                                                <span--}}
+{{--                                                    class="badge badge-pill badge-{{ $pay->verifikasi == 1 ? 'info' : 'danger' }}">{{ $pay->verifikasi == 1 ? 'Sudah Verifikasi' : 'Belum Veriifikasi' }}</span>--}}
+{{--                                            </td>--}}
                                             <td>
                                                 <button type="button"
                                                     class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"

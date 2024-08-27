@@ -37,7 +37,6 @@ class StudentsDataTable extends DataTable
                 type="submit"><i class="fas fa-paper-plane"></i> <a class="badge badge-dark">' . $row->notif_wa . '</a>
                 </button>
             </form>
-            </div>
                 ';
                 return $aksi;
             })
