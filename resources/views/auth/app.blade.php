@@ -95,6 +95,16 @@
 <!-- append theme customizer -->
 <script src="{{asset('/lib/js-cookie/js.cookie.js')}}"></script>
 <script src="{{asset('/assets/js/dashforge.settings.js')}}"></script>
+@include('layouts.admin.script')
+<script>
+    //message with toastr
+    @if (session()->has('success'))
+
+    toastr.success('{{ session('success') }}');
+    @elseif (session()->has('error'))
+    toastr.error('{{ session('error') }}', 'GAGAL!');
+    @endif
+</script>
 <script>
     $(function () {
         'use script'
