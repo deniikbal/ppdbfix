@@ -30,9 +30,18 @@ class RegisterStudent extends Notification implements ShouldQueue
     public function toTelegram($notifiable)
     {
         $student = $this->student;
-        return TelegramMessage::create()
-            ->to(-1001947572376)
-            ->content("*Pendaftaran Calon Siswa Berhasil* \n")
-            ->line("\n*Nama Lengkap* : $student->name \n*No Daftar* : $student->nodaftar \n*Jenis Kelamin* : $student->jenis_kelamin \n*Kecamatan Domisili* : $student->kec_pd \n*Asal Sekolah* : $student->asal_sekolah \n*No HP* : $student->nohp_siswa");
+        $now=now()->format('Y');
+        return (new \TelegramNotifications\Messages\TelegramMessage([
+            'text' => '<strong>Pendaftaran Calon Siswa Berhasil</strong>
+
+                        <strong>Nama Lengkap : </strong>' . $student->name . '
+                        <strong>No Daftar : </strong>' . $student->nodaftar . '
+                        <strong>Jenis Kelamin : </strong>' . $student->jenis_kelamin . '
+                        <strong>Kecamatan Domisili : </strong>' . $student->kec_pd . '
+                        <strong>Asal Sekolah : </strong>' . $student->asal_sekolah . '
+
+                        <strong>PPDB SMA TELKOM '. $now .' </strong>',
+            'parse_mode' => 'html'
+        ]));
     }
 }

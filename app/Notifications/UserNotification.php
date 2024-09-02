@@ -31,15 +31,16 @@ class UserNotification extends Notification implements ShouldQueue
     public function toTelegram()
     {
         $user = $this->user;
+        $now = now()->format('Y');
         //$user = User::find(Auth::id());
         return (new TelegramMessage([
-            'text' => '<strong>Pendaftaran Calon Siswa Berhasil</strong> 
-<strong>Nama Lengkap : </strong>' . $user->name . '
+            'text' => '<strong>Pendaftaran Calon Siswa Berhasil</strong>
 
-<strong>Email : </strong>' . $user->email . '
-<strong>Password : </strong>' . $user->password_plain . '
+                        <strong>Nama Lengkap : </strong>' . $user->name . '
+                        <strong>Email : </strong>' . $user->email . '
+                        <strong>Password : </strong>' . $user->password_plain . '
 
-<strong>PPDB SMA TEL 2023</strong>',
+                        <strong>PPDB SMA TELKOM '. $now .' </strong>',
             'parse_mode' => 'html'
         ]));
     }
