@@ -39,8 +39,14 @@ class StudentController extends Controller
     {
         $student = Student::where('user_id', auth()->id())->first();
         $count = Student::where('user_id', auth()->id())->get()->count();
+        $siswa = new Student();
+        $jenis_kelamin = $siswa->jenis_kelamin();
+        $agama = $siswa->agama();
+        $pekerjaan = $siswa->pekerjaan();
+        $pendidikan = $siswa->pendidikan();
         $schools = School::all();
-        return view('student.isibiodata', compact('student', 'count', 'schools'));
+        return view('student.biodata', compact('student','pendidikan',
+            'count', 'schools','jenis_kelamin','agama','schools','pekerjaan'));
     }
 
     /**
@@ -75,9 +81,10 @@ class StudentController extends Controller
         $hoby = $siswa->hoby();
         $cita = $siswa->cita();
         $pekerjaan = $siswa->pekerjaan();
+        $pendidikan = $siswa->pendidikan();
         $schools = School::all();
         return view('student.biodata.biodata_pesertadidik', compact('student',
-            'jenis_kelamin', 'agama', 'schools', 'pekerjaan', 'cita'));
+            'jenis_kelamin', 'agama', 'schools', 'pekerjaan', 'cita', 'pendidikan', 'schools'));
     }
 
     /**
@@ -178,26 +185,55 @@ class StudentController extends Controller
         return redirect()->back();
     }
 
-    public function updatebiodata(UpdateStudentRequest $request, $uuid)
+    public function updatebiodata(Request $request, $id)
     {
-        //dd($uuid);
-        $students = Student::where('uuid', $uuid)->first();
-        //dd($students);
-        $students->update([
-            'name' => $request->name,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'tempat_lahir' => $request->tempat_lahir,
-            'nik' => $request->nik,
-            'agama' => $request->agama,
-            'nohp_siswa' => $request->nohp_siswa,
-            'anak_ke' => $request->anak_ke,
-            'jumlah_saudara' => $request->jumlah_saudara,
-            'tinggi_badan' => $request->tinggi_badan,
-            'berat_badan' => $request->berat_badan,
-            'hoby' => $request->hoby,
-            'cita' => $request->cita,
+        //dd($request->all());
+        $students = Student::where('id', $id)->first();
+
+        $validated = $request->validate([
+            'nik'=>'required|size:16',
+            'name'=>'required|string',
+            'nisn'=>'required|size:10',
+            'jenis_kelamin'=>'required',
+            'tempat_lahir'=>'required',
+            'tanggal_lahir'=>'required',
+            'agama'=>'required',
+            'alamat_pd'=>'required',
+            'provinsi_pd'=>'required',
+            'kota_pd'=>'required',
+            'kec_pd'=>'required',
+            'desa_pd'=>'required',
+            'kode_pos'=>'required|numeric',
+            'suku'=>'required|string',
+            'bahasa'=>'required|string',
+            'anak_ke'=>'required|numeric',
+            'golongan'=>'required|string',
+            'nohp_siswa'=>'required|numeric',
+            'email'=>'required|email',
+        ],[
+            'nik.required' => 'NIK tidak boleh kosong',
+            'nik.size' => 'NIK tidak boleh lebih dari 16',
+            'name.required' => 'Nama tidak boleh kosong',
+            'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
+            'tempat_lahir.required' => 'Tempat lahir tidak boleh kosong',
+            'tanggal_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+            'agama.required' => 'Agama tidak boleh kosong',
+            'alamat_pd.required' => 'Alamat tidak boleh kosong',
+            'provinsi_pd.required' => 'Provinsi tidak boleh kosong',
+            'kota_pd.required' => 'Kota tidak boleh kosong',
+            'kec_pd.required' => 'Kecamatan tidak boleh kosong',
+            'desa_pd.required' => 'Desa tidak boleh kosong',
+            'kode_pos.required' => 'Kode pos tidak boleh kosong',
+            'suku.required' => 'Suku tidak boleh kosong',
+            'bahasa.required' => 'Bahasa tidak boleh kosong',
+            'anak_ke.required' => 'Anak ke-tidak boleh kosong',
+            'golongan.required' => 'Golongan tidak boleh kosong',
+            'nohp_siswa.required' => 'No HP tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid'
+
         ]);
+        $students->update($validated);
         return redirect()->back()->with('success', 'Data Siswa Berhasil Diupdate');
     }
 
@@ -229,27 +265,49 @@ class StudentController extends Controller
         return view('student.biodata.biodata_orangtua', compact('student', 'pendidikan', 'pekerjaan', 'penghasilan'));
     }
 
-    public function updateorangtua(UpdateOrtuRequest $request, $uuid)
+    public function updateayah(Request $request, $id)
     {
-        $students = Student::where('uuid', $uuid)->first();
-        $students->update([
-            'no_kk' => $request->no_kk,
-            'nama_ayah' => $request->nama_ayah,
-            'nik_ayah' => $request->nik_ayah,
-            'tahun_ayah' => $request->tahun_ayah,
-            'pendidikan_ayah' => $request->pendidikan_ayah,
-            'pekerjaan_ayah' => $request->pekerjaan_ayah,
-            'penghasilan_ayah' => $request->penghasilan_ayah,
-            'nama_ibu' => $request->nama_ibu,
-            'nik_ibu' => $request->nik_ibu,
-            'tahun_ibu' => $request->tahun_ibu,
-            'pendidikan_ibu' => $request->pendidikan_ibu,
-            'pekerjaan_ibu' => $request->pekerjaan_ibu,
-            'penghasilan_ibu' => $request->penghasilan_ibu,
-            'tempat_lahir_ayah' => $request->tempat_lahir_ayah,
-            'tempat_lahir_ibu' => $request->tempat_lahir_ibu,
+        $students = Student::where('id', $id)->first();
+        $validated = $request->validate([
+            'nama_ayah'=>'required|string',
+            'usia_ayah'=>'required|size:2',
+            'alamat_ayah'=>'required|string',
+            'nowa_ayah'=>'required|numeric',
+            'pendidikan_ayah'=>'required|string',
+            'pekerjaan_ayah'=>'required|string',
+        ],[
+            'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+            'usia_ayah.required' => 'Usia Ayah tidak boleh kosong',
+            'alamat_ayah.required' => 'Alamat Ayah tidak boleh kosong',
+            'pekerjaan_ayah.required' => 'Pekerjaan Ayah tidak boleh kosong',
+            'nowa_ayah.required' => 'No. WA tidak boleh kosong',
+            'pendidikan_ayah.required' => 'Pendidikan Ayah tidak boleh kosong',
         ]);
-        return redirect()->back()->with('success', 'Data Orang Berhasil Diupdate');
+        $students->update($validated);
+        return redirect()->back()->with('success', 'Data Ayah Berhasil Diupdate');
+    }
+
+    public function updateibu(Request $request, $id)
+    {
+        //dd($request->all());
+        $students = Student::where('id', $id)->first();
+        $validated = $request->validate([
+            'nama_ibu'=>'required|string',
+            'usia_ibu'=>'required|size:2',
+            'alamat_ibu'=>'required|string',
+            'nowa_ibu'=>'required|numeric',
+            'pendidikan_ibu'=>'required|string',
+            'pekerjaan_ibu'=>'required|string',
+        ],[
+            'nama_ibu.required' => 'Nama Ibu tidak boleh kosong',
+            'usia_ibu.required' => 'Usia Ibu tidak boleh kosong',
+            'alamat_ibu.required' => 'Alamat Ibu tidak boleh kosong',
+            'pekerjaan_ibu.required' => 'Pekerjaan Ibu tidak boleh kosong',
+            'nowa_ibu.required' => 'No. WA tidak boleh kosong',
+            'pendidikan_ibu.required' => 'Pendidikan Ibu tidak boleh kosong',
+        ]);
+        $students->update($validated);
+        return redirect()->back()->with('success', 'Data Ibu Berhasil Diupdate');
     }
 
     /**

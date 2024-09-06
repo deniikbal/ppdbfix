@@ -1,5 +1,5 @@
 @php
-$count = \App\Models\User::whereHas('student')->count();
+$count = \App\Models\Student::where('user_id', auth()->id())->get()->count();
 @endphp
 <ul class="nav nav-aside">
     <li class="nav-label">Dashboard</li>
@@ -7,8 +7,11 @@ $count = \App\Models\User::whereHas('student')->count();
         <a href="{{ route('student.index') }}" class="nav-link"><i data-feather="shopping-bag"></i>
             <span>Dashboard</span></a></li>
     @if($count==1)
-    <li class="nav-item @if (request()->routeIs('editbiodata')) active @endif"><a
-            href="{{ route('editbiodata') }}" class="nav-link"><i
+{{--    <li class="nav-item @if (request()->routeIs('editbiodata')) active @endif"><a--}}
+{{--            href="{{ route('editbiodata') }}" class="nav-link"><i--}}
+{{--                data-feather="user"></i><span>Biodata</span></a></li>--}}
+        <li class="nav-item @if (request()->routeIs('isibiodata')) active @endif"><a
+            href="{{ route('isibiodata') }}" class="nav-link"><i
                 data-feather="user"></i><span>Biodata</span></a></li>
     <li class="nav-item @if (request()->routeIs('pembayaran.index')) active @endif"><a
             href="{{ route('pembayaran.index') }}" class="nav-link"><i

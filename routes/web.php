@@ -90,10 +90,11 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('createstudent', [StudentController::class, 'store'])->name('student.store');
     Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata.edit');
     Route::get('calon_siswa', [StudentController::class, 'isibiodata'])->name('isibiodata');
-    Route::post('updatebiodata/{uuid}', [StudentController::class, 'updatebiodata'])->name('updatebiodata');
+    Route::post('updatebiodata/{id}', [StudentController::class, 'updatebiodata'])->name('updatestudent');
     Route::get('editorangtua', [StudentController::class, 'editorangtua'])->name('editorangtua');
     Route::get('editsekolah', [StudentController::class, 'editsekolah'])->name('editsekolah');
-    Route::post('updateorangtua/{uuid}', [StudentController::class, 'updateorangtua'])->name('updateorangtua');
+    Route::post('updateayah/{id}', [StudentController::class, 'updateayah'])->name('updateayah');
+    Route::post('updateibu/{id}', [StudentController::class, 'updateibu'])->name('updateibu');
     Route::post('updatefoto/{id}', [StudentController::class, 'updatefoto'])->name('updatefoto');
     Route::get('editbiodata', [StudentController::class, 'editbiodata'])->name('editbiodata');
     Route::post('savebiodata/{id}', [StudentController::class, 'savebiodata'])->name('savebiodata');
