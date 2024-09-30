@@ -63,6 +63,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('createstudentadmin', [AdminStudentController::class, 'createstudentadmin'])->name('createstudentadmin');
     Route::get('export', [AdminStudentController::class, 'export'])->name('export');
     Route::put('regisnewstudent/{id}', [AdminStudentController::class, 'regisnewstudent'])->name('regisnewstudent');
+    Route::get('viewstudent/{id}', [AdminStudentController::class, 'viewstudent'])->name('viewstudent');
     //Print
     Route::get('surat/{id}', [SuratController::class, 'surat'])->name('surat');
     Route::post('updatesurat/{id}', [PrintController::class, 'updatesurat'])->name('updatesurat');

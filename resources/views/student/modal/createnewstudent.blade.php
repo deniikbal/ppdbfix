@@ -27,6 +27,13 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail3">Tanggal Lahir PD</label>
+                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control"
+                                   placeholder="Nama Lengkap" value="{{ old('tanggal_lahir') }}">
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">Jenis Kelamin</label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-control select2">
@@ -127,6 +134,7 @@
                     data: {
                         name: $('#name').val(),
                         nama_ayah: $('#nama_ayah').val(),
+                        tanggal_lahir: $('#tanggal_lahir').val(),
                         jenis_kelamin: $('#jenis_kelamin').val(),
                         provinces_id: $('#provinces_id').val(),
                         regencies_id: $('#regencies_id').val(),

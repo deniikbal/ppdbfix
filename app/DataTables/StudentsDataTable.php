@@ -4,6 +4,7 @@ namespace App\DataTables;
 
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
@@ -30,6 +31,7 @@ class StudentsDataTable extends DataTable
                 <button class="btn btn-xs btn-danger" onclick="return confirm(\'Yakin Mau Menghapus ' . $row->name . '\')"
                 type="submit"><i class="fas fa-trash"></i></button>
             </form>
+            <a href="' . url("viewstudent/$row->id") . '" class="btn btn-warning btn-xs"><i class="fas fa-eye"></i></a>
             <form style="display:inline-block" action="' . url("regisnewstudent/$row->id") . '" method="post">
                 ' . csrf_field() . '
                 ' . method_field("PUT") . '
@@ -81,6 +83,7 @@ class StudentsDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
+            Column::make('tanggal_lahir'),
             Column::make('nodaftar'),
             Column::make('jenis_kelamin'),
             Column::make('asal_sekolah'),

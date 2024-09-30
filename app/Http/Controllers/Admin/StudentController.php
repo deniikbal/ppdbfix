@@ -227,4 +227,11 @@ class StudentController extends Controller
 
 
     }
+    public function viewstudent($id)
+    {
+        $student = Student::find($id);
+        $title = "View Data Siswa";
+        return view('admin.student.view', compact('student','title'));
+
+    }
 }
