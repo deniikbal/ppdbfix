@@ -42,6 +42,9 @@ class StudentsDataTable extends DataTable
                 ';
                 return $aksi;
             })
+            ->addColumn('created_at_formatted', function ($document) {
+                return \Carbon\Carbon::parse($document->tanggal_lahir)->isoFormat('D MMMM Y');
+            })
             ->setRowId('id');
     }
 
@@ -82,16 +85,17 @@ class StudentsDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('name'),
-            Column::make('tanggal_lahir'),
+            Column::make('name')->width(200),
             Column::make('nodaftar'),
             Column::make('jenis_kelamin'),
+            ['data' => 'created_at_formatted', 'name' => 'created_at_formatted', 'title' => 'Tanggal Lahir'],
             Column::make('asal_sekolah'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(200)
                 ->addClass('text-center'),
+
         ];
     }
 
