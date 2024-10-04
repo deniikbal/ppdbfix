@@ -8175,7 +8175,7 @@ strong {
     .breadcrumb-style1 .breadcrumb-item.active,
     .breadcrumb-style2 .breadcrumb-item.active,
     .breadcrumb-style3 .breadcrumb-item.active {
-      color: #0168fa; }
+      color: #dc3545; }
     .breadcrumb-style1 .breadcrumb-item + .breadcrumb-item::before,
     .breadcrumb-style2 .breadcrumb-item + .breadcrumb-item::before,
     .breadcrumb-style3 .breadcrumb-item + .breadcrumb-item::before {
@@ -13687,15 +13687,15 @@ textarea.parsley-success:focus {
     position: relative; }
     .nav-aside .nav-item.active .nav-link {
       opacity: 1;
-      color: #0168fa;
+      color: #dc3545;
       font-weight: 500; }
       .nav-aside .nav-item.active .nav-link::before {
         opacity: 1;
         visibility: visible;
-        border-left-color: #0168fa; }
+        border-left-color: #dc3545; }
     .nav-aside .nav-item.active svg {
-      color: #0168fa;
-      fill: rgba(1, 104, 250, 0.2); }
+      color: #dc3545;
+      fill: rgb(245,198,203); }
     .nav-aside .nav-item + .nav-item {
       margin-top: 1px; }
     .nav-aside .nav-item ul {

@@ -11,7 +11,7 @@
         <h4 class="mg-b-0 tx-spacing--1">Calon Peserta Didik</h4>
     </div>
     <div class="d-none d-md-block">
-        <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i data-feather="clock" class="wd-10 mg-r-5"></i>
+        <button class="btn btn-sm pd-x-15 btn-danger btn-uppercase mg-l-5"><i data-feather="clock" class="wd-10 mg-r-5"></i>
             {{ \Carbon\Carbon::now()->format('D, d M Y H:i:s') }}
         </button>
     </div>
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-danger text-white">
                         Data Calon Peserta Didik
                     </div>
                     <div class="card-body">
@@ -133,11 +133,58 @@
                     <div class="row mb-2">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-danger text-white">
                                     Data Ayah / Wali
                                 </div>
                                 <div class="card-body">
-
+                                    <style type="text/css">
+                                        .tg  {border-collapse:collapse;border-spacing:0;}
+                                        .tg td{border-color: #ffffff;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                            overflow:hidden;padding:10px 5px;word-break:normal;}
+                                        .tg th{border-color: #ffffff;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                                            font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                                        .tg .tg-0lax{text-align:left;vertical-align:top}
+                                    </style>
+                                    <table class="tg" style="undefined;table-layout: fixed; width: 501px"><colgroup>
+                                            <col style="width: 180.333333px">
+                                            <col style="width: 27.333333px">
+                                            <col style="width: 250.333333px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th class="tg-0lax">Nama Ayah</th>
+                                            <th class="tg-0lax">:</th>
+                                            <th class="tg-0lax">{{$student->nama_ayah}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="tg-0lax">Usia Ayah</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->usia_ayah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Alamat Ayah</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->alamat_ayah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">No WhatsApp</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->nowa_ayah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Pendidikan</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->pendidikan_ayah}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Pekerjaan</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->pekerjaan_ayah}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -145,10 +192,50 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-danger text-white">
                                     Data Ibu
                                 </div>
                                 <div class="card-body">
+                                    <table class="tg" style="undefined;table-layout: fixed; width: 501px"><colgroup>
+                                            <col style="width: 180.333333px">
+                                            <col style="width: 27.333333px">
+                                            <col style="width: 250.333333px">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th class="tg-0lax">Nama Ibu</th>
+                                            <th class="tg-0lax">:</th>
+                                            <th class="tg-0lax">{{$student->nama_ibu}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="tg-0lax">Usia Ibu</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->usia_ibu}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Alamat Ibu</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->alamat_ibu}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">No WhatsApp</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->nowa_ibu}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Pendidikan</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->pendidikan_ibu}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tg-0lax">Pekerjaan</td>
+                                            <td class="tg-0lax">:</td>
+                                            <td class="tg-0lax">{{$student->pekerjaan_ibu}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
 
                                 </div>
                             </div>

@@ -104,7 +104,7 @@
                         <h4 class="mg-b-0 tx-spacing--1">@yield('title')</h4>
                     </div>
                     <div class="d-none d-md-block">
-                        <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5"><i
+                        <button class="btn btn-sm pd-x-15 btn-danger btn-uppercase mg-l-5"><i
                                 class="far fa-clock"></i>
                             {{ \Carbon\Carbon::now()->format('D, d M Y H:i:s') }}</button>
                     </div>
