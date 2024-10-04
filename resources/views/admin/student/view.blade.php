@@ -64,28 +64,28 @@
                             <tr>
                                 <td class="tg-0lax">Jenis Kelamin</td>
                                 <td class="tg-0lax">:</td>
-                                <td class="tg-0lax">{{$student->nisn}}</td>
+                                <td class="tg-0lax">{{$student->jenis_kelamin}}</td>
                             </tr>
                             <tr>
                                 <td class="tg-0lax">Tempat Lahir</td>
                                 <td class="tg-0lax">:</td>
-                                <td class="tg-0lax">{{$student->tempat_lahir}}</td>
+                                <td class="tg-0lax">{{\Illuminate\Support\Str::upper($student->tempat_lahir)}}</td>
                             </tr>
                             <tr>
                                 <td class="tg-0lax">Tanggal Lahir</td>
                                 <td class="tg-0lax">:</td>
-                                <td class="tg-0lax">{{date('d-m-Y', strtotime($student->tanggal_lahir))}}</td>
+                                <td class="tg-0lax">{{\Carbon\Carbon::parse($student->tanggal_lahir)->isoFormat('D MMMM Y')}}</td>
                             </tr>
 
                             <tr>
                                 <td class="tg-0lax">Alamat</td>
                                 <td class="tg-0lax">:</td>
-                                <td class="tg-0lax">{{$student->alamat_pd}}</td>
+                                <td class="tg-0lax">{{\Illuminate\Support\Str::upper($student->alamat_pd)}}</td>
                             </tr>
                             <tr>
                                 <td class="tg-0lax">Desa / Kelurahan</td>
                                 <td class="tg-0lax">:</td>
-                                <td class="tg-0lax">{{$student->desa_pd}}</td>
+                                <td class="tg-0lax">{{\Illuminate\Support\Str::upper($student->desa_pd)}}</td>
                             </tr>
                             <tr>
                                 <td class="tg-0lax">Kecamatan</td>
