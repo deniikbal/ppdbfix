@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Yajra\DataTables\EloquentDataTable;
@@ -42,8 +43,20 @@ class StudentsDataTable extends DataTable
                 ';
                 return $aksi;
             })
-            ->addColumn('created_at_formatted', function ($document) {
-                return \Carbon\Carbon::parse($document->tanggal_lahir)->isoFormat('D MMMM Y');
+//            ->addColumn('tanggal_lahir', function ($date) {
+//                return Carbon::parse($date->tanggal_lahir)->isoFormat('D MMMM Y');
+//                //return $date->tanggal_lahir;
+//            })
+            ->addColumn('tanggal_lahir', function($row)
+            {
+                if ($row->tanggal_lahir == Null) {
+                    return $row->tanggal_lahir;
+                    //return 'Null';
+                }else {
+                    //return date("d F Y", strtotime($row->tanggal_lahir));
+                    return Carbon::parse($row->tanggal_lahir)->isoFormat('D MMMM Y');
+                }
+
             })
             ->setRowId('id');
     }
@@ -88,7 +101,7 @@ class StudentsDataTable extends DataTable
             Column::make('name')->width(200),
             Column::make('nodaftar'),
             Column::make('jenis_kelamin'),
-            ['data' => 'created_at_formatted', 'name' => 'created_at_formatted', 'title' => 'Tanggal Lahir'],
+            ['data' => 'tanggal_lahir', 'name' => 'tanggal_lahir', 'title' => 'Tanggal Lahir'],
             Column::make('asal_sekolah'),
             Column::computed('action')
                 ->exportable(false)
