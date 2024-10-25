@@ -96,7 +96,7 @@ class StudentController extends Controller
             'name' => 'required|unique:students',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
-            'nama_ayah' => 'required',
+            // 'nama_ayah' => 'required',
             'asal_sekolah' => 'required',
             'provinces_id' => 'required',
             'regencies_id' => 'required',
@@ -105,7 +105,7 @@ class StudentController extends Controller
         ],[
             'name.required' => 'Nama Lengkap tidak boleh kosong',
             'name.unique' => 'Nama sudah terdaftar',
-            'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+            // 'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
             'tanggal_lahir.required' => 'Tanggal Lahir tidak boleh kosong',
             'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
             'nohp_siswa.required' => 'No WA siswa tidak boleh kosong',
@@ -141,7 +141,7 @@ class StudentController extends Controller
                 'nodaftar' => $Id,
                 'nohp_ortu' => auth()->user()->no_handphone,
                 'nohp_siswa' => $request->nohp_siswa,
-                'nama_ayah' => $request->nama_ayah,
+                // 'nama_ayah' => $request->nama_ayah,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'uuid' => $uuid,
             ]);
