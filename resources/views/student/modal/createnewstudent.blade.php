@@ -30,7 +30,7 @@
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">NIK PD</label>
                             <input type="text" name="nik" id="nik" class="form-control"
-                                   placeholder="Nomor Induk Kependudukan PD" value="{{ old('nik') }}">
+                                   placeholder="Nomor Induk Kependudukan" value="{{ old('nik') }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail3">Tanggal Lahir PD</label>

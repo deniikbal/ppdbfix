@@ -131,10 +131,10 @@ class StudentController extends Controller
             $Id = IdGenerator::generate(['table' => 'students', 'field' => 'nodaftar', 'length' => 10, 'prefix' => ('SMATEL-')]);
             $student = Student::create([
                 'name' => $request->name,
-                'nik' => $request->nik,
                 'provinsi_pd' => $provinsi->name,
                 'kota_pd' => $kota->name,
                 'kec_pd' => $kec->name,
+                'nik' => $request->nik,
                 'jenis_kelamin' => $request->jenis_kelamin,
                 'asal_sekolah' => $school->sekolah,
                 'npsn' => $school->npsn,
