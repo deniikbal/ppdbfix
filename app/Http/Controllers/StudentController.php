@@ -94,6 +94,7 @@ class StudentController extends Controller
     {
         $valid = Validator::make($request->all(), [
             'name' => 'required|unique:students',
+            'nik'=>'required|size:16',
             'jenis_kelamin' => 'required',
             'tanggal_lahir' => 'required',
             'nama_ayah' => 'required',
@@ -105,6 +106,8 @@ class StudentController extends Controller
         ],[
             'name.required' => 'Nama Lengkap tidak boleh kosong',
             'name.unique' => 'Nama sudah terdaftar',
+            'nik.size' => 'NIK Harus 16 Angka',
+            'nik.required' => 'NIK tidak boleh kosong',
             'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
             'tanggal_lahir.required' => 'Tanggal Lahir tidak boleh kosong',
             'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
@@ -128,6 +131,7 @@ class StudentController extends Controller
             $Id = IdGenerator::generate(['table' => 'students', 'field' => 'nodaftar', 'length' => 10, 'prefix' => ('SMATEL-')]);
             $student = Student::create([
                 'name' => $request->name,
+                'nik' => $request->nik,
                 'provinsi_pd' => $provinsi->name,
                 'kota_pd' => $kota->name,
                 'kec_pd' => $kec->name,

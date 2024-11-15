@@ -27,10 +27,15 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail3">NIK PD</label>
+                            <input type="text" name="nik" id="nik" class="form-control"
+                                   placeholder="Nomor Induk Kependudukan PD" value="{{ old('nik') }}">
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="inputEmail3">Tanggal Lahir PD</label>
                             <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control"
-                                   placeholder="Nama Lengkap" value="{{ old('tanggal_lahir') }}">
+                                   placeholder="" value="{{ old('tanggal_lahir') }}">
                         </div>
                     </div>
                     <div class="form-row">
@@ -133,6 +138,7 @@
                     method: 'post',
                     data: {
                         name: $('#name').val(),
+                        nik: $('#nik').val(),
                         nama_ayah: $('#nama_ayah').val(),
                         tanggal_lahir: $('#tanggal_lahir').val(),
                         jenis_kelamin: $('#jenis_kelamin').val(),
