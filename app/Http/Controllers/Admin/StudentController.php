@@ -152,6 +152,7 @@ class StudentController extends Controller
         $sheet->setCellValue('U1', "Kabupaten");
         $sheet->setCellValue('V1', "Provinsi");
         $sheet->setCellValue('W1', "CREATED_AT");
+        $sheet->setCellValue('X1', "NIK Siswa");
 
         $column = 2;
         foreach ($students as $student) {
@@ -178,6 +179,7 @@ class StudentController extends Controller
             $sheet->setCellValue('U' . $column, $student->kota_pd);
             $sheet->setCellValue('V' . $column, $student->provinsi_pd);
             $sheet->setCellValue('W' . $column, \Carbon\Carbon::parse($student->created_at)->isoFormat('DD MMMM YYYY'));
+            $sheet->setCellValue('X' . $column, $student->nik);
             $column++;
         }
         $sheet->getColumnDimension('A')->setAutoSize(true);
@@ -203,9 +205,10 @@ class StudentController extends Controller
         $sheet->getColumnDimension('U')->setAutoSize(true);
         $sheet->getColumnDimension('V')->setAutoSize(true);
         $sheet->getColumnDimension('W')->setAutoSize(true);
-        $sheet->getStyle('A1:W1')->getFont()->setBold(true);
-        $sheet->getStyle('A1:W1')->getAlignment()->setHorizontal('center');
-        $sheet->getStyle('A1:W1')->getFill()
+        $sheet->getColumnDimension('X')->setAutoSize(true);
+        $sheet->getStyle('A1:X1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:X1')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('A1:X1')->getFill()
             ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
             ->getStartColor()->setARGB('FFFFFF00');
         $name = Auth::user()->name;
