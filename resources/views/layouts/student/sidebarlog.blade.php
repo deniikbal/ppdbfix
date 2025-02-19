@@ -1,6 +1,7 @@
 <div class="d-flex align-items-center justify-content-start">
-    <a href="" class="avatar"><img
-                src="https://via.placeholder.com/500" class="rounded" alt=""></a>
+    <a href="" class="avatar">
+        {{-- {!! Avatar::create(Auth::user()->name)->toSvg() !!} --}}
+    </a>
     <div class="aside-alert-link">
         <a href="" class="new" data-toggle="tooltip" title="You have 2 unread messages"><i
                     data-feather="message-square"></i></a>

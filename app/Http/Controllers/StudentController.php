@@ -92,6 +92,31 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'nik' => 'required|size:16',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required',
+            'nama_ayah' => 'required',
+            'asal_sekolah' => 'required',
+            'provinces_id' => 'required',
+            'regencies_id' => 'required',
+            'districts_id' => 'required',
+            'nohp_siswa' => 'required|min:10|numeric'
+        ],[
+            'name.required' => 'Nama Lengkap tidak boleh kosong',
+            'nik.size' => 'NIK Harus 16 Angka',
+            'nik.required' => 'NIK tidak boleh kosong',
+            'nama_ayah.required' => 'Nama Ayah tidak boleh kosong',
+            'tanggal_lahir.required' => 'Tanggal Lahir tidak boleh kosong',
+            'jenis_kelamin.required' => 'Jenis kelamin tidak boleh kosong',
+            'nohp_siswa.required' => 'No WA siswa tidak boleh kosong',
+            'nohp_siswa.numeric' => 'No WA siswa harus berupa angka',
+            'asal_sekolah.required' => 'Asal sekolah tidak boleh kosong',
+            'provinces_id.required' => 'Provinsi tidak boleh kosong',
+            'regencies_id.required' => 'Kota / Kabupaten tidak boleh kosong',
+            'districts_id.required' => 'Kecamatan tidak boleh kosong',
+        ]);
         $valid = Validator::make($request->all(), [
             'name' => 'required|unique:students',
             'nik'=>'required|size:16',
@@ -118,9 +143,7 @@ class StudentController extends Controller
             'regencies_id.required' => 'Kota / Kabupaten tidak boleh kosong',
             'districts_id.required' => 'Kecamatan tidak boleh kosong',
         ]);
-        if ($valid->fails()) {
-            return response()->json(['errors' => $valid->errors()->all()]);
-        } else {
+
             $school = School::find($request->asal_sekolah);
             $provinsi = Province::find($request->provinces_id);
             $kota = Regency::find($request->regencies_id);
@@ -151,9 +174,9 @@ class StudentController extends Controller
             ]);
             Notification::send($student, new RegisterStudent($student));
             RegNewStudent::dispatch($student);
+            return redirect()->to('/student')->with('success', 'Data Berhasil Disimpan');
             //SendRegisStudent::dispatch($student);
-            return response()->json(['success' => 'Data is successfully added']);
-        }
+            //return response()->json(['success' => 'Data is successfully added']);
     }
 
     /**
@@ -446,5 +469,11 @@ class StudentController extends Controller
         $student->update($validated);
         return redirect()->back()->with('success', 'Biodata CPD Berhasil Diupdate');
 
+
+    }
+
+    public function createstudent () {
+        $schools = School::all();
+        return view('student.create', compact('schools'));
     }
 }

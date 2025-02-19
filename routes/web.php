@@ -113,6 +113,7 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::post('uploadkk', [StudentController::class, 'uploadkk'])->name('uploadkk');
     Route::post('uploadakte', [StudentController::class, 'uploadakte'])->name('uploadakte');
     Route::post('uploadfoto', [StudentController::class, 'uploadfoto'])->name('uploadfoto');
+    Route::get('createstudent', [StudentController::class, 'createstudent'])->name('createstudent');
 });
 Route::post('updatesekolah/{uuid}', [StudentController::class, 'updatesekolah'])->name('updatesekolah');
 Route::get('printform/{id}', [PrintController::class, 'print'])->name('printform');

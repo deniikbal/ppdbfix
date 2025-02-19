@@ -21,8 +21,7 @@
                     <ol>
                         <li>Klik tombol Tambah Siswa Baru
                             @if ($count != 1)
-                                <button type="button" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5"
-                                    data-toggle="modal" data-target="#exampleModal">
+                                <a href="{{ route('createstudent') }}" class="btn btn-sm pd-x-15 btn-primary btn-xs btn-uppercase mg-l-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -31,7 +30,7 @@
                                         <polyline points="13 2 13 9 20 9"></polyline>
                                     </svg>
                                     Daftar Peserta Didik Baru
-                                </button>
+                                </a>
                             @else
                                 <button type="button" class="btn btn-sm pd-x-15 btn-warning btn-xs btn-uppercase mg-l-5"
                                     disabled>
@@ -59,7 +58,7 @@
                     </ol>
                 </div>
             </div>
-            @include('student.modal.createnewstudent')
+            {{-- @include('student.modal.createnewstudent') --}}
         </div>
 
     </div>
